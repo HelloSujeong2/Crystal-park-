@@ -35,6 +35,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--peacock);outlin
 #labels{position:fixed;inset:0;pointer-events:none;overflow:hidden}
 .tag{position:absolute;left:0;top:0;display:flex;flex-direction:column;align-items:center;gap:4px;will-change:transform}
 .tag .name{font-family:var(--font-display);font-weight:700;font-size:17px;line-height:1;padding:3px 9px 4px;border-radius:999px;background:rgba(255,255,255,.88);color:var(--c,#3f7a57);box-shadow:0 1px 0 rgba(0,0,0,.06);white-space:nowrap}
+.tag .sub{font-size:11.5px;line-height:1.2;padding:2px 8px;border-radius:999px;background:rgba(44,58,50,.72);color:#fff;white-space:nowrap}
 .tag.me .name{background:var(--c,#3f7a57);color:#fff}
 .bubble{max-width:220px;font-size:14px;line-height:1.4;padding:8px 12px;border-radius:16px;background:#fff;color:var(--ink);box-shadow:0 4px 14px rgba(40,60,50,.16);position:relative;word-break:keep-all;overflow-wrap:anywhere;text-align:center;animation:pop .25s ease-out}
 .bubble::after{content:"";position:absolute;left:50%;bottom:-6px;width:12px;height:12px;background:#fff;transform:translateX(-50%) rotate(45deg);border-radius:2px}
@@ -61,7 +62,7 @@ h1 span{color:var(--rose)}
 #enter{font-family:var(--font-display);font-weight:700;font-size:24px;padding:12px 18px 14px;border:none;border-radius:18px;background:var(--leaf);color:#fff;box-shadow:0 6px 0 #2e5d42;transition:transform .1s,box-shadow .1s}
 #enter:active{transform:translateY(4px);box-shadow:0 2px 0 #2e5d42}
 .netline{margin:0;font-size:13px;color:var(--muted);text-align:center;line-height:1.5}
-@media (max-width:520px){.chars{grid-template-columns:repeat(2,1fr)}.panel{padding-top:22px}}
+@media (max-width:520px){.chars{grid-template-columns:repeat(3,1fr)}.panel{padding-top:22px}}
 
 /* HUD */
 #hud{position:fixed;inset:0;pointer-events:none}
@@ -115,6 +116,35 @@ h1 span{color:var(--rose)}
 .bird .bh{grid-column:1 / -1;font-size:12.5px;line-height:1.5;color:var(--muted)}
 .meter{height:6px;border-radius:999px;background:#e5ece7;overflow:hidden}
 .meter i{display:block;height:100%;background:linear-gradient(90deg,var(--leaf),var(--peacock));border-radius:inherit;transition:width .4s}
+#reader{position:absolute;right:max(14px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);width:min(360px,calc(100vw - 28px));max-height:min(70vh,560px);overflow-y:auto;border-radius:22px;padding:16px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px;background:rgba(255,252,244,.94)}
+.rhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.rhead b{display:block;font-family:var(--font-display);font-size:24px;line-height:1.05;color:var(--leaf);text-wrap:balance}
+.rhead span{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.rx{border:1px solid var(--glass-line);background:#fff;border-radius:10px;padding:5px 10px;font-size:12.5px}
+#shelf{display:flex;flex-direction:column;gap:6px}
+.bookbtn{display:flex;gap:10px;align-items:stretch;text-align:left;border:1px solid var(--glass-line);background:#fff;border-radius:12px;padding:0;overflow:hidden}
+.bookbtn:hover{background:var(--leaf-soft)}
+.bookbtn .spine{width:12px;background:var(--cv)}
+.bookbtn .bt{display:flex;flex-direction:column;gap:2px;padding:9px 10px 9px 0;min-width:0}
+.bookbtn b{font-size:14.5px}
+.bookbtn small{font-size:11.5px;color:var(--muted)}
+#rtext{margin:0;font-size:15.5px;line-height:1.85;white-space:pre-line;color:var(--ink);min-height:8em;word-break:keep-all}
+.rnav{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rnav span{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.rnav button{border:none;background:var(--leaf);color:#fff;border-radius:10px;padding:7px 12px;font-size:13px}
+.rnav button:disabled{background:#c9d6cd;cursor:default}
+#photo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 28px));border-radius:22px;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;align-items:stretch}
+#photo img{width:100%;max-height:58vh;object-fit:contain;border-radius:12px;background:#dfe9e2}
+.pact{display:flex;gap:8px;justify-content:center}
+.pbtn{font-size:14px;padding:9px 16px;border-radius:12px;border:none;background:var(--leaf);color:#fff;text-decoration:none;font-family:inherit}
+.pbtn.ghost{background:#fff;color:var(--ink);border:1px solid var(--glass-line)}
+#flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none}
+#flash.go{animation:flash .5s ease-out}
+@keyframes flash{0%{opacity:.85}100%{opacity:0}}
+.plist li{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px}
+.fbtn{font-size:11.5px;padding:5px 9px;border-radius:999px;border:1px solid var(--glass-line);background:#fff;white-space:nowrap}
+.fbtn.on{background:var(--leaf);color:#fff;border-color:var(--leaf)}
+@media (max-width:640px){.emotes{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;max-width:100%;scrollbar-width:none;padding-bottom:2px}.emotes::-webkit-scrollbar{display:none}.emo{flex:none}#reader{top:auto;bottom:calc(150px + env(safe-area-inset-bottom,0px));transform:none;max-height:46vh}}
 #prompt{font-size:13px;padding:6px 12px;border-radius:999px;color:var(--ink)}
 #prompt kbd{font-family:inherit;font-weight:700;color:#fff;background:var(--leaf);border-radius:6px;padding:1px 6px;margin-right:6px}
 .pill{border:1px solid var(--glass-line);cursor:pointer;font-family:inherit}
@@ -155,7 +185,8 @@ h1 span{color:var(--rose)}
   </div>
   <div class="tr">
     <button class="tbtn" id="btnBirds" type="button" aria-controls="birdbook" aria-expanded="false">새 친구 0/6</button>
-    <button class="tbtn" id="btnSky" type="button">노을 보기</button>
+    <button class="tbtn" id="btnSky" type="button">오후 1:00 · 낮</button>
+    <button class="tbtn" id="btnPhoto" type="button">사진 찍기</button>
     <button class="tbtn" id="btnSound" type="button">새소리 켜기</button>
     <button class="tbtn" id="btnChar" type="button">캐릭터 바꾸기</button>
   </div>
@@ -167,7 +198,10 @@ h1 span{color:var(--rose)}
       <button class="emo" type="button" data-e="jump">점프<kbd>2</kbd></button>
       <button class="emo" type="button" data-e="heart">하트<kbd>3</kbd></button>
       <button class="emo" type="button" data-e="dance">춤<kbd>4</kbd></button>
+      <button class="emo" type="button" data-e="bubbles">비눗방울<kbd>5</kbd></button>
       <button class="emo" type="button" data-e="sit">앉기<kbd>E</kbd></button>
+      <button class="emo" type="button" data-e="read">책 읽기<kbd>T</kbd></button>
+      <button class="emo" type="button" data-e="lantern">등불<kbd>L</kbd></button>
       <button class="emo" type="button" data-e="feed">모이 뿌리기<kbd>F</kbd></button>
       <button class="emo" type="button" data-e="coin" id="coinBtn" hidden>소원 동전<kbd>R</kbd></button>
     </div>
@@ -176,13 +210,27 @@ h1 span{color:var(--rose)}
       <button type="submit">말하기</button>
     </form>
   </div>
-  <div id="hint" class="glass">WASD·방향키 이동 · Shift 달리기<br>드래그로 시점 · 휠로 확대<br>F 모이 · Tab 산책객 · B 새 친구<br>새들은 뛰면 놀라서 날아가요</div>
+  <div id="hint" class="glass">WASD·방향키 이동 · Shift 달리기<br>드래그로 시점 · 휠로 확대<br>F 모이 · T 책 · L 등불 · P 사진<br>Tab 산책객 · B 새 친구 · Esc 닫기<br>비눗방울은 눌러서 터뜨려요</div>
   <div id="toast" class="glass"></div>
   <div id="roster" class="glass" hidden>
     <div class="phead"><b>공원에 있는 사람</b><span id="rcount"></span></div>
     <ul class="plist" id="rlist"></ul>
     <p class="pfoot" id="rfoot">이름을 누르면 그 사람 쪽을 바라봐요 · Tab으로 닫기</p>
   </div>
+  <div id="reader" class="glass" hidden>
+    <div class="rhead"><div><b id="rtitle">공원 문고</b><span id="rby"></span></div><button type="button" class="rx" id="rclose" aria-label="책 덮기">덮기</button></div>
+    <div id="shelf"></div>
+    <div id="rpage" hidden>
+      <p id="rtext"></p>
+      <div class="rnav"><button type="button" id="rprev">이전 쪽</button><span id="rnum"></span><button type="button" id="rnext">다음 쪽</button></div>
+    </div>
+  </div>
+  <div id="photo" class="glass" hidden>
+    <img id="photoImg" alt="방금 찍은 공원 사진">
+    <div class="pact"><a id="photoSave" class="pbtn" href="#" download="crystal-park.png">사진 저장</a><button type="button" class="pbtn ghost" id="photoClose">닫기</button></div>
+    <p class="pfoot">저장이 안 되면 사진을 길게 누르거나 우클릭해서 저장하세요.</p>
+  </div>
+  <div id="flash"></div>
   <div id="birdbook" class="glass" hidden>
     <div class="phead"><b>새 친구 도감</b><span id="bcount"></span></div>
     <div class="meter"><i id="bmeter" style="width:0%"></i></div>
@@ -207,6 +255,10 @@ const CHARS = [
   {name:'하준', sex:'남', desc:'모자 쓴 산책 마니아', skin:'#f0c4a0', hair:'#9b5a33', style:'fluffy', top:'#86cdb0', legs:'#4f5d75', shoe:'#fbfbf7', hat:'#f2cf63', tag:'#3f9a7a', scale:1.0},
   {name:'서아', sex:'여', desc:'장미 정원을 좋아해요', skin:'#f8dac4', hair:'#2b2331', style:'long', top:'#f2a3b6', legs:'#f8dac4', shoe:'#9b5f74', dress:'#f2a3b6', ribbon:'#ffffff', tag:'#d06c88', scale:0.98},
   {name:'지우', sex:'여', desc:'공작새랑 친구', skin:'#f3cfb0', hair:'#c88a5a', style:'buns', top:'#b7a5e3', legs:'#f3cfb0', shoe:'#5c4b7a', skirt:'#fbfaf5', tag:'#7b66c4', scale:0.97},
+  {name:'민호', sex:'남', desc:'곱슬머리 사진가', skin:'#e8b891', hair:'#1f1a1c', style:'curly', top:'#e8735a', legs:'#3f4a5c', shoe:'#2d2d2d', backpack:'#6b8f71', tag:'#c9553a', scale:1.03},
+  {name:'준서', sex:'남', desc:'뜨개 모자 책벌레', skin:'#f6d6bd', hair:'#5a4032', style:'beanie', beanie:'#7fa0c9', top:'#e9c46a', legs:'#7a6a58', shoe:'#5b4636', tag:'#b88a1c', scale:0.99},
+  {name:'하린', sex:'여', desc:'헤어밴드 단발', skin:'#f9dccb', hair:'#6b4430', style:'bob', band:'#7fc8b6', top:'#fff1c2', legs:'#f9dccb', shoe:'#e07a5f', dress:'#f6c453', tag:'#c98d10', scale:0.97},
+  {name:'유나', sex:'여', desc:'포니테일 러너', skin:'#efc7a8', hair:'#3b2a2f', style:'ponytail', tie:'#e56b8a', top:'#8fd1c4', legs:'#4b6584', shoe:'#ffffff', tag:'#2f9c8a', scale:0.98},
 ];
 
 /* ---------------- renderer / scene ---------------- */
@@ -292,7 +344,8 @@ const lighting = {from:null, to:'day', k:1, offCur:new THREE.Vector3(28, 46, 22)
 const tmpC1 = new THREE.Color(), tmpC2 = new THREE.Color();
 const lampMat = basic('#fff6d8');
 function applyLighting(dt){
-  if(lighting.k >= 1 && lighting.applied) return;
+  updateDayCycle(dt);
+  return;
   lighting.k = Math.min(1, lighting.k + dt * 0.5);
   const a = PRESETS[lighting.from || lighting.to], b = PRESETS[lighting.to];
   const k = lighting.k * lighting.k * (3 - 2 * lighting.k);
@@ -597,6 +650,7 @@ for(let z = -48; z <= 28; z += 12) lamp(-20, z);
 for(const x of [-24, -6, 6, 24]) lamp(x, 31);
 inst(new THREE.CylinderGeometry(0.07, 0.1, 1, 8), lampPosts);
 
+const WINDOW_LIGHTS = [];
 /* --- across the river: Douro, stepped hillside of houses, arch bridge, boats --- */
 {
   const river = add(new THREE.PlaneGeometry(1400, 120), M('#86c3d4'), 0, -14, 98, null, {cast:false, recv:false});
@@ -613,6 +667,7 @@ inst(new THREE.CylinderGeometry(0.07, 0.1, 1, 8), lampPosts);
       const w = 3 + rnd() * 2.5, h = 3 + rnd() * 4, d = 3 + rnd() * 2;
       const hz = z0 + 2 + rnd() * (z1 - z0 - 6);
       houses.push({x, y:top + h / 2, z:hz, s:[w, h, d], c:pick(HC)});
+      if(rnd() < 0.8) WINDOW_LIGHTS.push(x + (rnd() - 0.5) * w * 0.5, top + h * (0.35 + rnd() * 0.3), hz - d / 2 - 0.08);
       roofs.push({x, y:top + h + 0.9, z:hz, s:[w * 0.78, 1.8, d * 0.78], ry:Math.PI / 4, c:pick(RC)});
     }
   }
@@ -725,6 +780,10 @@ function buildChar(ci){
   else if(C.skirt) sm(new THREE.CylinderGeometry(0.24, 0.33, 0.2, 18), C.skirt, 0, 0.04, 0, body);
   else sm(new THREE.CylinderGeometry(0.25, 0.25, 0.1, 16), C.legs, 0, 0.03, 0, body);
   if(C.sex === '남') sm(new THREE.CylinderGeometry(0.12, 0.17, 0.05, 14), '#ffffff', 0, 0.44, 0.02, body);
+  if(C.backpack){
+    sm(new THREE.BoxGeometry(0.32, 0.34, 0.15), C.backpack, 0, 0.25, -0.24, body);
+    sm(new THREE.BoxGeometry(0.24, 0.12, 0.05), C.backpack, 0, 0.17, -0.33, body);
+  }
   const arms = [];
   for(const sx of [1, -1]){
     const pv = new THREE.Group(); pv.position.set(0.25 * sx, 0.74, 0); pv.rotation.z = 0.12 * sx; inner.add(pv);
@@ -747,7 +806,7 @@ function buildChar(ci){
   const cap = add(new THREE.SphereGeometry(0.43, 28, 16, 0, Math.PI * 2, 0, Math.PI * 0.53), hair, 0, 0.0, -0.01, head);
   cap.rotation.x = -0.42;
   const bang = (x, y, z, s) => { const b = add(new THREE.SphereGeometry(0.12, 12, 8), hair, x, y, z, head); b.scale.set(s, 0.7, 0.6); return b; };
-  if(C.style !== 'fluffy'){ bang(-0.16, 0.2, 0.32, 1.1); bang(0.02, 0.24, 0.34, 1.2); bang(0.18, 0.2, 0.31, 1); }
+  if(C.style !== 'fluffy' && C.style !== 'curly'){ bang(-0.16, 0.2, 0.32, 1.1); bang(0.02, 0.24, 0.34, 1.2); bang(0.18, 0.2, 0.31, 1); }
   if(C.style === 'short'){
     for(const sx of [1, -1]){ const s = add(new THREE.SphereGeometry(0.1, 10, 8), hair, 0.36 * sx, 0.02, -0.02, head); s.scale.set(0.6, 1.2, 1.1); }
   }
@@ -771,6 +830,32 @@ function buildChar(ci){
       add(new THREE.SphereGeometry(0.16, 14, 10), hair, 0.28 * sx, 0.34, -0.06, head);
       add(new THREE.TorusGeometry(0.1, 0.03, 6, 14), '#f2a3b6', 0.24 * sx, 0.27, -0.05, head).rotation.set(0.5, 0, sx * 0.7);
     }
+  }
+  if(C.style === 'curly'){
+    for(let i = 0; i < 22; i++){
+      const yy = 1 - (i + 0.5) / 22 * 1.15, rr = Math.sqrt(Math.max(0, 1 - yy * yy)), th = i * 2.39996;
+      let x = Math.cos(th) * rr * 0.42, y = yy * 0.42 + 0.03, z = Math.sin(th) * rr * 0.42 - 0.03;
+      if(z > 0.22 && y < 0.18) continue;
+      add(new THREE.SphereGeometry(0.1, 8, 6), hair, x, y, z, head);
+    }
+  }
+  if(C.style === 'beanie'){
+    const hat = new THREE.Group(); hat.position.y = 0.03; hat.rotation.x = -0.32; head.add(hat);
+    add(new THREE.SphereGeometry(0.455, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.44), C.beanie, 0, 0, 0, hat);
+    const cuff = add(new THREE.TorusGeometry(0.43, 0.065, 8, 28), C.beanie, 0, 0.08, 0, hat); cuff.rotation.x = Math.PI / 2;
+    add(new THREE.SphereGeometry(0.1, 10, 8), '#f4efe6', 0, 0.48, 0, hat);
+  }
+  if(C.style === 'bob'){
+    const back = add(new THREE.CylinderGeometry(0.44, 0.48, 0.42, 24, 1, true, Math.PI / 2, Math.PI), M(C.hair, {side:THREE.DoubleSide}), 0, -0.13, -0.02, head);
+    back.castShadow = true;
+    for(const sx of [1, -1]){ const s2 = add(new THREE.SphereGeometry(0.12, 10, 8), hair, 0.37 * sx, -0.1, 0.04, head); s2.scale.set(0.6, 1.5, 1); }
+    const band = add(new THREE.TorusGeometry(0.445, 0.032, 8, 24, Math.PI), C.band, 0, 0.02, 0.02, head); band.rotation.x = -0.35;
+  }
+  if(C.style === 'ponytail'){
+    add(new THREE.TorusGeometry(0.06, 0.025, 6, 12), C.tie, 0, 0.18, -0.42, head);
+    [[0, 0.1, -0.5, 0.12], [0, -0.07, -0.53, 0.11], [0, -0.23, -0.5, 0.09], [0, -0.36, -0.45, 0.065]].forEach(([x, y, z, r]) => {
+      const t = add(new THREE.SphereGeometry(r, 10, 8), hair, x, y, z, head); t.scale.set(0.9, 1.25, 0.9);
+    });
   }
   if(C.glasses){
     const gm = basic('#3a2f2a');
@@ -816,23 +901,24 @@ const lerpAngle = (a, b, t) => { let d = ((b - a + Math.PI) % (Math.PI * 2) + Ma
 
 class Avatar {
   constructor(ci, name, isMe){
-    this.isMe = isMe; this.pos = new THREE.Vector3(); this.ry = 0; this.walk = 0; this.moveAmt = 0; this.sit = 0; this.shot = null; this.t = Math.random() * 10; this.curSpeed = 0; this.sitTime = 0; this.perch = null; this.disposed = false;
+    this.isMe = isMe; this.pos = new THREE.Vector3(); this.ry = 0; this.walk = 0; this.moveAmt = 0; this.sit = 0; this.shot = null; this.t = Math.random() * 10; this.curSpeed = 0; this.sitTime = 0; this.perch = null; this.disposed = false; this.reading = -1; this.lantern = false; this.subText = '';
     this.label = document.createElement('div'); this.label.className = 'tag' + (isMe ? ' me' : '');
     this.bubble = document.createElement('div'); this.bubble.className = 'bubble'; this.bubble.hidden = true;
     this.nameEl = document.createElement('div'); this.nameEl.className = 'name';
-    this.label.append(this.bubble, this.nameEl); labelsEl.append(this.label);
+    this.sub = document.createElement('div'); this.sub.className = 'sub'; this.sub.hidden = true;
+    this.label.append(this.bubble, this.nameEl, this.sub); labelsEl.append(this.label);
     this.build(ci); this.setName(name);
   }
   build(ci){
     if(this.p) scene.remove(this.p.root);
-    this.ci = ci; this.p = buildChar(ci); scene.add(this.p.root);
+    this.ci = ci; this.p = buildChar(ci); scene.add(this.p.root); attachProps(this);
     this.nameEl.style.setProperty('--c', CHARS[ci].tag);
   }
   setName(n){ this.name = n; this.nameEl.textContent = n; }
   say(t){ this.bubble.textContent = t; this.bubble.hidden = false; this.bubble.style.animation = 'none'; void this.bubble.offsetWidth; this.bubble.style.animation = ''; this.sayUntil = clock + 7; }
   emote(k){
     if(k === 'heart') spawnHearts(this);
-    else this.shot = {k, t:0, dur:{wave:2.2, jump:0.65, feed:0.6, coin:0.75, dance:4}[k] || 0.65};
+    else this.shot = {k, t:0, dur:{wave:2.2, jump:0.65, feed:0.6, coin:0.75, dance:4, bubbles:1.6}[k] || 0.65};
   }
   update(dt, speed){
     this.t += dt;
@@ -847,7 +933,9 @@ class Avatar {
     let armLZ = 0.12, armRZ = -0.12, y = Math.abs(Math.cos(this.walk)) * 0.06 * m + Math.sin(this.t * 2) * 0.008;
     if(this.sit && m < 0.2){
       legL = legR = -1.45; armL = armR = -0.45; y = this.sit === 1 ? 0.09 : -0.28;
+      if(this.reading >= 0){ armL = armR = -1.15; armLZ = -0.35; armRZ = 0.35; }
     }
+    if(this.lantern && !(this.reading >= 0 && this.sit)){ armL = -0.55; armLZ = 0.15; }
     if(this.shot){
       const sh = this.shot; sh.t += dt;
       if(sh.k === 'wave'){ armRZ = -2.5 + Math.sin(sh.t * 12) * 0.35; armR = 0; }
@@ -855,6 +943,7 @@ class Avatar {
       const u = Math.min(1, sh.t / sh.dur);
       if(sh.k === 'feed'){ armR = -1.4 * Math.sin(Math.PI * u); armRZ = -0.3; }
       if(sh.k === 'coin'){ armR = -2.5 * Math.sin(Math.PI * u); }
+      if(sh.k === 'bubbles'){ armR = -1.5; armRZ = -0.1; }
       if(sh.k === 'dance'){
         const w = sh.t * 8;
         armLZ = 2.3 + Math.sin(w) * 0.5; armRZ = -2.3 + Math.sin(w + Math.PI) * 0.5; armL = armR = 0;
@@ -870,6 +959,8 @@ class Avatar {
     p.inner.position.y = y;
     p.inner.rotation.y += (twist - p.inner.rotation.y) * Math.min(1, dt * 10);
     p.head.rotation.z = Math.sin(this.t * 0.9) * 0.05;
+    p.head.rotation.x += (((this.reading >= 0 && this.sit) ? 0.32 : 0) - p.head.rotation.x) * Math.min(1, dt * 6);
+    updateProps(this, dt);
     p.root.position.copy(this.pos); p.root.rotation.y = this.ry;
     if(this.sayUntil && clock > this.sayUntil){ this.bubble.hidden = true; this.sayUntil = 0; }
     placeEl(this.label, this.pos.x, this.pos.y + 1.85 + y, this.pos.z);
@@ -896,7 +987,7 @@ function spawnHearts(av){
 /* ---------------- player & input ---------------- */
 let entered = false;
 const me = {av:null, nick:'', ci:0, sit:0, emo:{k:'', i:0}, said:{t:'', i:0}};
-try{ me.nick = localStorage.getItem('cp.nick') || ''; me.ci = Math.min(3, Math.max(0, parseInt(localStorage.getItem('cp.ci') || '0', 10) || 0)); }catch(e){}
+try{ me.nick = localStorage.getItem('cp.nick') || ''; me.ci = Math.min(CHARS.length - 1, Math.max(0, parseInt(localStorage.getItem('cp.ci') || '0', 10) || 0)); }catch(e){}
 
 const keys = new Set();
 const joy = {x:0, y:0, active:false, id:null};
@@ -908,8 +999,14 @@ addEventListener('keydown', e => {
   if(typing){ if(e.key === 'Escape') document.activeElement.blur(); return; }
   if(e.key === 'Enter'){ e.preventDefault(); $('#chat').focus(); return; }
   if(e.key === 'Tab'){ e.preventDefault(); toggleRoster(); return; }
+  if(e.key === 'Escape'){ closePanels(); return; }
+  if(reader.open && reader.book >= 0 && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')){ e.preventDefault(); turnPage(e.key === 'ArrowRight' ? 1 : -1); return; }
   const k = e.key.toLowerCase();
-  if(e.repeat && 'efrb1234'.includes(k)) return;
+  if(e.repeat && 'efrbtlp12345'.includes(k)) return;
+  if(k === 't'){ toggleReader(); return; }
+  if(k === 'l'){ toggleLantern(); return; }
+  if(k === 'p'){ takePhoto(); return; }
+  if(k === '5'){ doEmote('bubbles'); return; }
   if(k === 'e'){ toggleSit(); return; }
   if(k === 'b'){ toggleBirdBook(); return; }
   if(k === 'f'){ doEmote('feed'); return; }
@@ -960,18 +1057,31 @@ function moveJoy(e){
 
 function toggleSit(){
   if(!me.av) return;
-  if(me.sit){ me.sit = 0; me.av.sit = 0; return; }
+  if(me.sit){ me.sit = 0; me.av.sit = 0; stopReading(); if(reader.open) closeReader(); return; }
   let best = null, bd = 2.4;
-  for(const b of benches){ const d = Math.hypot(b.x - me.av.pos.x, b.z - me.av.pos.z); if(d < bd){ bd = d; best = b; } }
-  if(best){
-    me.av.pos.set(best.x + Math.sin(best.ry) * 0.08, 0, best.z + Math.cos(best.ry) * 0.08);
-    me.av.ry = best.ry; me.sit = 1;
-  } else me.sit = 2;
+  for(const b of benches){
+    for(const side of [-1, 1]){
+      const sx = b.x + Math.cos(b.ry) * 0.42 * side + Math.sin(b.ry) * 0.08, sz = b.z - Math.sin(b.ry) * 0.42 * side + Math.cos(b.ry) * 0.08;
+      let taken = false;
+      remotes.forEach(r => { if(r.av.sit === 1 && Math.hypot(r.tx - sx, r.tz - sz) < 0.3) taken = true; });
+      if(taken) continue;
+      const d = Math.hypot(sx - me.av.pos.x, sz - me.av.pos.z);
+      if(d < bd){ bd = d; best = {x:sx, z:sz, ry:b.ry}; }
+    }
+  }
+  if(best){ me.av.pos.set(best.x, 0, best.z); me.av.ry = best.ry; me.sit = 1; }
+  else me.sit = 2;
   me.av.sit = me.sit;
 }
 function doEmote(k){
   if(!me.av) return;
   if(k === 'sit'){ toggleSit(); return; }
+  if(k === 'read'){ toggleReader(); return; }
+  if(k === 'lantern'){ toggleLantern(); return; }
+  if(k === 'bubbles'){
+    if(clock < (me.bubCD || 0)) return;
+    me.bubCD = clock + 1.6;
+  }
   if(k === 'feed'){
     if(clock < (me.feedCD || 0)) return;
     me.feedCD = clock + 1.2;
@@ -1049,10 +1159,6 @@ $('#enter').addEventListener('click', () => {
   lastPresence = '';
 });
 $('#btnChar').addEventListener('click', () => { $('#start').hidden = false; $('#hud').hidden = true; entered = false; keys.clear(); renderChars(); });
-$('#btnSky').addEventListener('click', () => {
-  lighting.from = lighting.to; lighting.to = lighting.to === 'day' ? 'dusk' : 'day'; lighting.k = 0;
-  $('#btnSky').textContent = lighting.to === 'day' ? '노을 보기' : '낮으로';
-});
 
 /* ---------------- ambient sound ---------------- */
 let noiseBuf = null, actx = null, master = null, soundOn = false, nextChirp = 0, fountainGain = null;
@@ -1115,7 +1221,7 @@ function upsertPeer(p){
   if(p.sameTab || p.kind !== 'viewer') return;
   const pr = p.presence || {};
   if(!Array.isArray(pr.p)){ removePeer(p.peer); return; }
-  const ci = Math.round(num(pr.c, 0, 3, 0));
+  const ci = Math.round(num(pr.c, 0, CHARS.length - 1, 0));
   const name = cleanStr(pr.n, 12) || '산책객';
   let r = remotes.get(p.peer);
   if(!r){
@@ -1128,9 +1234,11 @@ function upsertPeer(p){
   if(r.av.name !== name) r.av.setName(name);
   r.tx = num(pr.p[0], -80, 80, r.tx); r.tz = num(pr.p[1], -80, 50, r.tz); r.try = num(pr.p[2], -10, 10, 0);
   r.av.sit = Math.round(num(pr.sit, 0, 2, 0));
+  r.av.reading = Math.round(num(pr.rd, -1, BOOKS.length - 1, -1));
+  r.av.lantern = pr.ln === 1;
   const e = pr.e && typeof pr.e === 'object' ? pr.e : null;
   if(e && typeof e.i === 'number'){
-    if(r.emoI !== null && e.i !== r.emoI && ['wave', 'jump', 'heart', 'feed', 'coin', 'dance'].includes(e.k)){ r.av.emote(e.k); emoteEffects(r.av, e.k, false); }
+    if(r.emoI !== null && e.i !== r.emoI && ['wave', 'jump', 'heart', 'feed', 'coin', 'dance', 'bubbles'].includes(e.k)){ r.av.emote(e.k); emoteEffects(r.av, e.k, false); }
     r.emoI = e.i;
   }
   const s = pr.s && typeof pr.s === 'object' ? pr.s : null;
@@ -1144,6 +1252,7 @@ function removePeer(id){
   const r = remotes.get(id); if(!r) return;
   if(entered) logLine('', `${r.av.name}님이 산책을 마쳤어요`, '', true);
   if(r.av.perch){ r.av.perch.host = null; r.av.perch = null; }
+  if(me.follow === id){ me.follow = null; toast(`${r.av.name}님이 공원을 떠나서 따라가기를 멈췄어요`); }
   r.av.dispose(); remotes.delete(id);
 }
 /* Supabase Realtime adapter: same shape as the artifact room (presence, peers, onPeers, onConnection). */
@@ -1234,7 +1343,7 @@ function pushPresence(){
   const st = entered ? {
     n:me.nick, c:me.ci,
     p:[+me.av.pos.x.toFixed(2), +me.av.pos.z.toFixed(2), +me.av.ry.toFixed(2)],
-    sit:me.sit, e:me.emo, s:me.said
+    sit:me.sit, e:me.emo, s:me.said, rd:me.av.reading, ln:me.av.lantern ? 1 : 0
   } : {p:null};
   const js = JSON.stringify(st);
   if(js === lastPresence) return;
@@ -1336,6 +1445,11 @@ function placeName(x, z){
   return '잔디밭';
 }
 function statusOf(av){
+  const ln = av.lantern ? ' · 등불' : '';
+  if(av.reading >= 0 && av.sit) return `『${BOOKS[av.reading].title}』 읽는 중` + ln;
+  return statusCore(av) + ln;
+}
+function statusCore(av){
   if(av.sit === 1) return av.perch && av.perch.state === 'onHead' ? '벤치에서 참새랑 쉬는 중' : '벤치에서 쉬는 중';
   if(av.sit === 2) return '잔디에 앉아 있어요';
   if(av.shot && av.shot.k === 'dance') return '춤추는 중';
@@ -1365,11 +1479,19 @@ function renderRoster(){
       cam.yaw = Math.atan2(me.av.pos.x - r.av.pos.x, me.av.pos.z - r.av.pos.z);
       toast(`${r.av.name}님 쪽을 바라보고 있어요`);
     });
-    li.append(b); list.append(li);
+    li.append(b);
+    if(!r.mine){
+      const id = [...remotes.entries()].find(([k, v]) => v.av === r.av)?.[0];
+      const fb = document.createElement('button'); fb.type = 'button'; fb.className = 'fbtn' + (me.follow === id ? ' on' : '');
+      fb.textContent = me.follow === id ? '그만 따라가기' : '따라가기';
+      fb.addEventListener('click', () => followPeer(id));
+      li.append(fb);
+    }
+    list.append(li);
   }
   const waiting = room ? room.peers().filter(p => p.kind === 'viewer' && !p.sameTab && !(p.presence && Array.isArray(p.presence.p))).length : 0;
   $('#rcount').textContent = `${rows.length}명` + (waiting ? ` · 입장 준비 ${waiting}명` : '');
-  $('#rfoot').textContent = rows.length > 1 ? '이름을 누르면 그 사람 쪽을 바라봐요 · Tab으로 닫기' : (room ? '아직 혼자예요. 링크를 공유하면 친구가 여기에 보여요 · Tab으로 닫기' : '이 화면에서는 혼자 산책 중이에요 · Tab으로 닫기');
+  $('#rfoot').textContent = rows.length > 1 ? '이름을 누르면 그쪽을 바라보고, 따라가기를 누르면 졸졸 따라가요 · Tab으로 닫기' : (room ? '아직 혼자예요. 링크를 공유하면 친구가 여기에 보여요 · Tab으로 닫기' : '이 화면에서는 혼자 산책 중이에요 · Tab으로 닫기');
 }
 function toggleRoster(force){
   const el = $('#roster'), open = force !== undefined ? force : el.hidden;
@@ -1487,6 +1609,7 @@ function updateCoins(dt){
 function emoteEffects(av, k, mine){
   if(k === 'feed') throwSeeds(av, mine);
   if(k === 'coin') tossCoin(av, mine);
+  if(k === 'bubbles') blowBubbles(av);
   if(k === 'wave'){
     let shown = false;
     peacocks.forEach(p => { if(p.g.position.distanceTo(av.pos) < 6){ p.display = 1; p.displayT = 6; p.wait = 6; shown = true; } });
@@ -2029,15 +2152,432 @@ function updateContext(){
   if(me.av && entered && !me.sit){
     let nearBench = false;
     for(const b of benches) if(Math.hypot(b.x - me.av.pos.x, b.z - me.av.pos.z) < 2.4){ nearBench = true; break; }
-    if(nearBench){ key = 'bench'; html = '<kbd>E</kbd>벤치에 앉기 · 가만히 있으면 참새가 놀러 와요'; }
+    if(nearBench){ key = 'bench'; html = '<kbd>E</kbd>벤치에 앉기 · <kbd>T</kbd>책 읽기'; }
     else if(showCoin){ key = 'coin'; html = '<kbd>R</kbd>분수에 소원 동전 던지기 · <kbd>F</kbd>오리에게 모이 주기'; }
-  } else if(me.av && entered && me.sit === 1){ key = 'sitting'; html = '참새가 오길 기다려 보세요 · 움직이면 일어나요'; }
+  } else if(me.av && entered && me.sit === 1 && me.av.reading < 0){ key = 'sitting'; html = '<kbd>T</kbd>공원 문고에서 책 읽기 · 가만히 있으면 참새가 놀러 와요'; }
   if(key !== promptKey){
     promptKey = key;
     const el = $('#prompt');
     el.hidden = !key; if(key) el.innerHTML = html;
   }
   const cb = $('#coinBtn'); if(cb.hidden === showCoin) cb.hidden = !showCoin;
+}
+
+/* ---------------- time of day (shared clock: same for everyone) ---------------- */
+PRESETS.night = {top:'#101a3c', bottom:'#2b3763', hs:'#6273b4', hg:'#202a48', hi:0.46, sc:'#a8bbff', si:0.32, off:[-22, 42, -30], lamp:'#ffe7a0'};
+PRESETS.dawn = {top:'#93b6e3', bottom:'#ffd7c4', hs:'#ffe7dd', hg:'#9aa88f', hi:0.5, sc:'#ffc9a0', si:0.66, off:[42, 16, -12], lamp:'#fff0d0'};
+const DAY_KEYS = [[0, 'night'], [5, 'night'], [6, 'dawn'], [7.5, 'day'], [17, 'day'], [18.5, 'dusk'], [19.7, 'night'], [24, 'night']];
+const NIGHTNESS = {day:0, dusk:0.45, night:1, dawn:0.4};
+const CYCLE_MS = 20 * 60 * 1000;
+const TIME_MODES = [['auto', '자동'], ['day', '낮'], ['dusk', '노을'], ['night', '밤'], ['dawn', '아침']];
+const MODE_HOURS = {day:13, dusk:18.7, night:23, dawn:6.4};
+let timeMode = 'auto', lastHour = null;
+try{ const m = localStorage.getItem('cp.time'); if(MODE_HOURS[m]) timeMode = m; }catch(e){}
+function gameHour(){
+  if(timeMode !== 'auto') return MODE_HOURS[timeMode];
+  return ((Date.now() % CYCLE_MS) / CYCLE_MS * 24 + 9) % 24;
+}
+function phaseName(h){
+  if(h >= 5.5 && h < 7.5) return '아침';
+  if(h >= 7.5 && h < 17.5) return '낮';
+  if(h >= 17.5 && h < 19.5) return '노을';
+  return '밤';
+}
+function clockLabel(h){
+  const hh = Math.floor(h), mm = Math.floor((h - hh) * 60 / 10) * 10;
+  const ap = hh < 12 ? '오전' : '오후', h12 = hh % 12 === 0 ? 12 : hh % 12;
+  return `${ap} ${h12}:${String(mm).padStart(2, '0')}`;
+}
+const cur = {top:new THREE.Color(), bottom:new THREE.Color(), hs:new THREE.Color(), hg:new THREE.Color(), sc:new THREE.Color(), lamp:new THREE.Color(), hi:0.5, si:0.7, off:new THREE.Vector3(), night:0, init:false};
+const domWinMat = M('#7fa7b8');
+function updateDayCycle(dt){
+  const h = gameHour();
+  let i = 0; while(i < DAY_KEYS.length - 2 && h >= DAY_KEYS[i + 1][0]) i++;
+  const [h0, k0] = DAY_KEYS[i], [h1, k1] = DAY_KEYS[i + 1];
+  let t = h1 > h0 ? (h - h0) / (h1 - h0) : 0; t = t * t * (3 - 2 * t);
+  const a = PRESETS[k0], b = PRESETS[k1];
+  const k = cur.init ? Math.min(1, dt * 1.5) : 1; cur.init = true;
+  const go = (key) => cur[key].lerp(tmpC1.set(a[key]).lerp(tmpC2.set(b[key]), t), k);
+  go('top'); go('bottom'); go('hs'); go('hg'); go('sc'); go('lamp');
+  cur.hi += (a.hi + (b.hi - a.hi) * t - cur.hi) * k;
+  cur.si += (a.si + (b.si - a.si) * t - cur.si) * k;
+  cur.off.x += (a.off[0] + (b.off[0] - a.off[0]) * t - cur.off.x) * k;
+  cur.off.y += (a.off[1] + (b.off[1] - a.off[1]) * t - cur.off.y) * k;
+  cur.off.z += (a.off[2] + (b.off[2] - a.off[2]) * t - cur.off.z) * k;
+  cur.night += (NIGHTNESS[k0] + (NIGHTNESS[k1] - NIGHTNESS[k0]) * t - cur.night) * k;
+  skyU.top.value.copy(cur.top); skyU.bottom.value.copy(cur.bottom); scene.fog.color.copy(cur.bottom);
+  hemi.color.copy(cur.hs); hemi.groundColor.copy(cur.hg); hemi.intensity = cur.hi;
+  sun.color.copy(cur.sc); sun.intensity = cur.si; lighting.offCur.copy(cur.off);
+  lampMat.color.copy(cur.lamp);
+  domWinMat.emissive.setRGB(1, 0.78, 0.42).multiplyScalar(cur.night * 0.75);
+  if(timeMode === 'auto' && lastHour !== null && entered){
+    const crossed = x => (lastHour < x && h >= x) || (lastHour > 23 && h < 1 && x === 0);
+    if(crossed(6)){ toast('아침이 밝았어요'); logLine('', '닭장 쪽에서 우렁찬 꼬끼오 소리가 들려요.', '', true); const r = birds.find(b => b.rooster); if(r) sfx(r.g.position.x, r.g.position.z, SFX.crow); }
+    if(crossed(17.5)){ toast('노을이 지기 시작해요'); }
+    if(crossed(19.6)){ toast('밤이 되었어요. 가로등이 켜졌어요'); logLine('', '밤에는 L로 등불을 들 수 있어요. 보리수 길 큰 나무를 올려다보세요.', '', true); }
+  }
+  lastHour = h;
+  updateNightFx(dt, cur.night);
+}
+function renderClock(){
+  const h = gameHour();
+  $('#btnSky').textContent = `${clockLabel(h)} · ${phaseName(h)}` + (timeMode === 'auto' ? '' : ' 고정');
+}
+$('#btnSky').title = '누를 때마다 시간 흐름을 바꿔요 (자동 → 낮 → 노을 → 밤 → 아침)';
+$('#btnSky').addEventListener('click', () => {
+  const idx = TIME_MODES.findIndex(m => m[0] === timeMode);
+  timeMode = TIME_MODES[(idx + 1) % TIME_MODES.length][0];
+  try{ localStorage.setItem('cp.time', timeMode); }catch(e){}
+  toast(timeMode === 'auto' ? '시간이 다시 흘러요 (모두와 같은 시각)' : `${TIME_MODES.find(m => m[0] === timeMode)[1]}으로 고정했어요 (내 화면만)`);
+  renderClock();
+});
+
+/* ---------------- night effects ---------------- */
+const glowTex = (() => {
+  const c = document.createElement('canvas'); c.width = c.height = 64;
+  const g = c.getContext('2d'), gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.25, 'rgba(255,255,255,.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, 64, 64);
+  const t = new THREE.CanvasTexture(c); return t;
+})();
+const lampGlowMat = new THREE.SpriteMaterial({map:glowTex, color:'#ffd98a', transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, opacity:0});
+const poolMat = new THREE.MeshBasicMaterial({map:glowTex, color:'#ffcf7a', transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, opacity:0});
+const poolGeo = new THREE.PlaneGeometry(6, 6);
+for(const l of lampPosts){
+  const s = new THREE.Sprite(lampGlowMat); s.position.set(l.x, 3.15, l.z); s.scale.setScalar(2.6); s.renderOrder = 5; scene.add(s);
+  const p = new THREE.Mesh(poolGeo, poolMat); p.rotation.x = -Math.PI / 2; p.position.set(l.x, 0.05, l.z); p.renderOrder = 4; scene.add(p);
+}
+// stars & moon
+const starGeo = new THREE.BufferGeometry(), starPos = [];
+for(let i = 0; i < 700; i++){
+  const u = Math.random(), v = 0.08 + Math.random() * 0.92, th = u * Math.PI * 2, y = v;
+  const r = Math.sqrt(1 - y * y);
+  starPos.push(Math.cos(th) * r * 500, y * 500, Math.sin(th) * r * 500);
+}
+starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos, 3));
+const starMat = new THREE.PointsMaterial({color:'#ffffff', size:2.2, sizeAttenuation:false, transparent:true, opacity:0, fog:false, depthWrite:false});
+const stars = new THREE.Points(starGeo, starMat); stars.renderOrder = -1; scene.add(stars);
+const moon = new THREE.Mesh(new THREE.SphereGeometry(14, 24, 16), new THREE.MeshBasicMaterial({color:'#fff6dc', fog:false, transparent:true, opacity:0}));
+scene.add(moon);
+const moonGlow = new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex, color:'#cfd8ff', transparent:true, depthWrite:false, fog:false, blending:THREE.AdditiveBlending, opacity:0}));
+moonGlow.scale.setScalar(110); scene.add(moonGlow);
+// windows across the river
+const winGeo = new THREE.BufferGeometry(); winGeo.setAttribute('position', new THREE.Float32BufferAttribute(WINDOW_LIGHTS, 3));
+const winMat = new THREE.PointsMaterial({color:'#ffd27a', size:1.1, transparent:true, opacity:0, depthWrite:false});
+scene.add(new THREE.Points(winGeo, winMat));
+// fireflies
+const FF = 110, ffPos = new Float32Array(FF * 3), ffSeed = [];
+const ffSpots = [[POND.x, POND.z, 11], [-22, -10, 14], [-6, 18, 8], [GAZ.x, GAZ.z, 8], [0, 36, 18]];
+for(let i = 0; i < FF; i++){
+  const s = ffSpots[i % ffSpots.length], a = Math.random() * 6.28, r = Math.random() * s[2];
+  ffSeed.push({x:s[0] + Math.cos(a) * r, z:s[1] + Math.sin(a) * r, y:0.4 + Math.random() * 1.6, p:Math.random() * 10, sp:0.3 + Math.random() * 0.5});
+}
+const ffGeo = new THREE.BufferGeometry(); ffGeo.setAttribute('position', new THREE.BufferAttribute(ffPos, 3));
+const ffMat = new THREE.PointsMaterial({color:'#dfff7a', size:0.2, transparent:true, opacity:0, depthWrite:false, blending:THREE.AdditiveBlending});
+scene.add(new THREE.Points(ffGeo, ffMat));
+function updateNightFx(dt, n){
+  const lit = Math.max(0, Math.min(1, (n - 0.3) / 0.6));
+  lampGlowMat.opacity = lit * 0.85; poolMat.opacity = lit * 0.32;
+  starMat.opacity = Math.max(0, (n - 0.5) * 2);
+  winMat.opacity = lit;
+  stars.position.copy(camera.position);
+  const md = cur.off.clone().normalize();
+  moon.position.copy(camera.position).addScaledVector(md, 420);
+  moonGlow.position.copy(moon.position);
+  moon.material.opacity = Math.max(0, (n - 0.55) * 2.2); moonGlow.material.opacity = moon.material.opacity * 0.5;
+  moon.visible = moonGlow.visible = moon.material.opacity > 0.01;
+  ffMat.opacity = Math.max(0, (n - 0.6) * 2.5) * (0.65 + 0.35 * Math.sin(clock * 3.1));
+  if(ffMat.opacity > 0.01){
+    for(let i = 0; i < FF; i++){
+      const s = ffSeed[i], t = clock * s.sp + s.p;
+      ffPos[i * 3] = s.x + Math.sin(t * 1.3) * 1.4; ffPos[i * 3 + 1] = s.y + Math.sin(t * 2.1) * 0.35; ffPos[i * 3 + 2] = s.z + Math.cos(t) * 1.4;
+    }
+    ffGeo.attributes.position.needsUpdate = true;
+  }
+  updateOwl(dt, n);
+}
+
+/* ---------------- owl (night only) ---------------- */
+SPECIES.push({id:'owl', name:'부엉이', j:'와', hint:'밤이 되면 보리수 길 큰 나무 위에 나타나요. 나무 아래에서 뛰지 말고 조용히 기다려 보세요.', done:'고개를 갸웃하며 부엉부엉 인사했어요.'});
+renderBirdBook();
+SFX.hoot = (t, v) => { osc(t, 'sine', [[0, 390], [0.3, 350]], 0.42, 0.08 * v); osc(t + 0.6, 'sine', [[0, 380], [0.18, 360]], 0.22, 0.06 * v); osc(t + 0.9, 'sine', [[0, 375], [0.35, 330]], 0.45, 0.07 * v); };
+const owl = (() => {
+  const spot = treeSpots.filter(t => t.top > 5).sort((a, b) => Math.hypot(a.x + 18.6, a.z + 2) - Math.hypot(b.x + 18.6, b.z + 2))[0] || {x:-18.6, z:-2, top:6.3};
+  const g = new THREE.Group(); g.position.set(spot.x + 0.2, spot.top - 0.15, spot.z + 0.4); scene.add(g);
+  const body = add(new THREE.SphereGeometry(0.26, 14, 10), '#8a6a4a', 0, 0.28, 0, g); body.scale.set(0.9, 1.1, 0.85);
+  const belly = add(new THREE.SphereGeometry(0.2, 12, 10), '#d8c3a0', 0, 0.24, 0.07, g); belly.scale.set(0.85, 1, 0.7);
+  const head = new THREE.Group(); head.position.set(0, 0.6, 0); g.add(head);
+  add(new THREE.SphereGeometry(0.21, 14, 10), '#7d5f42', 0, 0, 0, head);
+  const face = add(new THREE.SphereGeometry(0.17, 14, 10), '#e7d5b5', 0, -0.01, 0.08, head); face.scale.set(1.1, 0.9, 0.6);
+  for(const sx of [1, -1]){
+    add(new THREE.SphereGeometry(0.055, 10, 8), basic('#ffd34d'), 0.075 * sx, 0.02, 0.17, head);
+    add(new THREE.SphereGeometry(0.028, 8, 6), basic('#1c1410'), 0.075 * sx, 0.02, 0.215, head);
+    const ear = add(new THREE.ConeGeometry(0.05, 0.14, 6), '#6b4f36', 0.13 * sx, 0.2, 0, head); ear.rotation.z = -sx * 0.35;
+  }
+  const bk = add(new THREE.ConeGeometry(0.025, 0.07, 6), '#5a4632', 0, -0.05, 0.2, head); bk.rotation.x = Math.PI / 2 + 0.4;
+  for(const sx of [1, -1]){ const w = add(new THREE.SphereGeometry(1, 10, 8), '#6b4f36', 0.21 * sx, 0.28, -0.02, g); w.scale.set(0.06, 0.2, 0.15); }
+  g.visible = false;
+  return {g, head, spot, calm:0, hootT:6, lookT:0};
+})();
+function updateOwl(dt, n){
+  const show = Math.max(0, Math.min(1, (n - 0.6) / 0.3));
+  owl.g.visible = show > 0.02;
+  if(!owl.g.visible) return;
+  owl.g.scale.setScalar(0.4 + 0.6 * show);
+  const tgt = me.av && entered ? me.av.pos : camera.position;
+  const dx = tgt.x - owl.g.position.x, dz = tgt.z - owl.g.position.z, dist = Math.hypot(dx, dz);
+  let want = dist < 18 ? Math.atan2(dx, dz) : Math.sin(clock * 0.4) * 1.6;
+  owl.head.rotation.y = lerpAngle(owl.head.rotation.y, want, Math.min(1, dt * 2.5));
+  owl.head.rotation.z = Math.sin(clock * 0.8) * (dist < 6 ? 0.25 : 0.06);
+  owl.hootT -= dt;
+  if(owl.hootT <= 0){ owl.hootT = 14 + Math.random() * 20; sfx(owl.g.position.x, owl.g.position.z, SFX.hoot); }
+  if(me.av && entered && show > 0.8 && Math.hypot(me.av.pos.x - owl.spot.x, me.av.pos.z - owl.spot.z) < 6 && me.av.curSpeed < 0.5){
+    owl.calm += dt;
+    if(owl.calm > 3 && !friends.owl){ befriend('owl'); sfx(owl.g.position.x, owl.g.position.z, SFX.hoot); }
+  } else owl.calm = 0;
+}
+
+/* ---------------- park library (reading) ---------------- */
+const BOOKS = [
+  {title:'공작새 루이의 아침', by:'공원 문고 · 동화', cover:'#2f6db5', pages:[
+    '크리스탈 공원에는 루이라는 공작새가 살아요. 루이는 아침마다 돔 앞 잔디밭으로 걸어 나와 꼬리를 한 번 털고, 이슬이 반짝이는 장미 정원을 한 바퀴 돌아요.',
+    '어느 날 루이는 꼬리를 펼치는 법을 잊어버렸어요. 아무리 힘을 줘도 깃털은 땅에 끌리기만 했지요. 비둘기들은 구구 웃었고, 참새들은 못 본 척 고개를 돌렸어요.',
+    '루이는 테라스 끝 벤치 옆에 앉아 강을 바라봤어요. 배 한 척이 느릿느릿 지나가고, 갈매기가 바람을 타고 빙글빙글 돌았어요. 그때 벤치에 앉아 있던 아이가 루이에게 손을 흔들었어요.',
+    '반가운 마음에 루이의 꼬리가 저절로 활짝 펴졌어요. 꼬리는 힘을 줘서 펴는 게 아니라, 마음이 반가울 때 펴지는 거였어요. 그래서 루이는 지금도 손 흔드는 사람을 보면 꼬리를 펼친답니다.',
+  ]},
+  {title:'도우루 강에게 보내는 편지', by:'공원 문고 · 편지', cover:'#3f9a7a', pages:[
+    '안녕, 도우루 강. 오늘도 테라스 난간에 기대어 너를 내려다봤어. 너는 늘 같은 자리에 있는데, 볼 때마다 조금씩 다른 색이야. 아침엔 은빛, 낮엔 초록빛, 노을 무렵엔 복숭아빛.',
+    '사람들은 바쁘게 다리를 건너고, 작은 배들은 너를 따라 바다로 내려가. 그 모습을 보고 있으면 마음이 느긋해져. 서두르지 않아도 결국 바다에 닿는다고 네가 알려 주는 것 같아서.',
+    '오늘은 친구에게 하지 못한 말이 있었어. 내일은 이 벤치에 같이 앉자고 해 볼게. 너를 보면서라면 어려운 말도 조금은 쉬워질 것 같거든.',
+    '그럼 또 올게. 갈매기들한테 안부 전해 줘.',
+  ]},
+  {title:'벤치 위의 시', by:'공원 문고 · 시 세 편', cover:'#d06c88', pages:[
+    '〈아침 잔디〉\n\n이슬 맺힌 잔디 위로\n비둘기 발자국이\n동그랗게 찍혀 있다\n누가 먼저 일어났는지\n다 들킨다',
+    '〈벤치〉\n\n먼저 앉은 사람이\n옆자리를\n손바닥으로 툭툭\n여기 앉아도 돼\n말보다 먼저 오는 말',
+    '〈가로등〉\n\n해가 지면\n하나씩 켜지는 가로등은\n집에 가는 길을\n미리 걸어 보는\n작은 달들',
+  ]},
+  {title:'정원사의 수첩', by:'공원 문고 · 공원 이야기', cover:'#8a6a4a', pages:[
+    '포르투의 크리스탈 궁전 정원은 1865년 포르투 국제 박람회를 위해 만들어졌어요. 그때는 런던의 수정궁을 본뜬, 유리와 철로 된 커다란 궁전이 이곳에 서 있었대요.',
+    '유리 궁전은 1950년대 초에 헐렸고, 그 자리에 지금의 커다란 돔 건물이 들어섰어요. 오늘날 이 돔에서는 공연과 운동 경기, 여러 행사가 열려요.',
+    '정원은 언덕을 따라 여러 개의 작은 정원으로 나뉘어 있어요. 보리수가 줄지어 선 산책길, 장미 정원, 연못, 그리고 도우루 강이 내려다보이는 전망대가 있지요.',
+    '이 정원의 진짜 주인은 새들일지도 몰라요. 공작새와 닭, 오리, 비둘기들이 사람들 사이를 자유롭게 걸어 다니거든요. 산책할 때는 새들이 놀라지 않게 천천히 걸어 주세요.',
+  ]},
+  {title:'밤 산책 안내서', by:'공원 문고 · 안내서', cover:'#3b4a7a', pages:[
+    '해가 지면 공원은 다른 얼굴이 돼요. 가로등이 하나둘 켜지고, 강 건너 언덕의 창문들이 반짝이기 시작해요. 하늘에는 별이, 연못가 풀숲에는 반딧불이가 떠올라요.',
+    '밤에는 등불을 들어 보세요(L). 멀리서도 친구가 당신을 알아볼 수 있어요. 친구와 떨어졌다면 Tab을 눌러 목록에서 따라가기를 눌러 보세요.',
+    '보리수 길 큰 나무에는 밤에만 나타나는 부엉이가 있다는 소문이 있어요. 나무 아래에서 조용히 기다리면 고개를 갸웃하며 인사해 줄지도 몰라요.',
+    '밤이 깊어지면 곧 아침이 와요. 첫 햇살이 비칠 때 정자 쪽에서 들리는 우렁찬 소리에 놀라지 마세요.',
+  ]},
+];
+const reader = {open:false, book:-1, page:0};
+function readerOpen(){ return reader.open; }
+function renderReader(){
+  const el = $('#reader');
+  el.hidden = !reader.open;
+  if(!reader.open) return;
+  const shelf = $('#shelf'), pageEl = $('#rpage');
+  if(reader.book < 0){
+    shelf.hidden = false; pageEl.hidden = true;
+    $('#rtitle').textContent = '공원 문고'; $('#rby').textContent = '벤치에 앉아 읽을 책을 골라 보세요';
+    shelf.textContent = '';
+    BOOKS.forEach((b, i) => {
+      const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'bookbtn';
+      btn.style.setProperty('--cv', b.cover);
+      const sp = document.createElement('span'); sp.className = 'spine';
+      const tx = document.createElement('span'); tx.className = 'bt';
+      const t1 = document.createElement('b'); t1.textContent = b.title;
+      const t2 = document.createElement('small'); t2.textContent = `${b.by} · ${b.pages.length}쪽`;
+      tx.append(t1, t2); btn.append(sp, tx);
+      btn.addEventListener('click', () => startReading(i));
+      shelf.append(btn);
+    });
+  } else {
+    const b = BOOKS[reader.book];
+    shelf.hidden = true; pageEl.hidden = false;
+    $('#rtitle').textContent = b.title; $('#rby').textContent = b.by;
+    $('#rtext').textContent = b.pages[reader.page];
+    $('#rnum').textContent = `${reader.page + 1} / ${b.pages.length}`;
+    $('#rprev').disabled = reader.page === 0;
+    $('#rnext').textContent = reader.page === b.pages.length - 1 ? '다 읽었어요' : '다음 쪽';
+  }
+}
+function toggleReader(){
+  if(!me.av) return;
+  if(reader.open){ closeReader(); return; }
+  reader.open = true; reader.book = -1; renderReader();
+}
+function startReading(i){
+  if(!me.sit) toggleSit();
+  reader.book = i; reader.page = 0; me.av.reading = i;
+  renderReader();
+}
+function stopReading(){ if(me.av) me.av.reading = -1; if(reader.book >= 0){ reader.book = -1; } }
+function closeReader(){ reader.open = false; stopReading(); renderReader(); }
+function turnPage(d){
+  if(reader.book < 0) return;
+  const b = BOOKS[reader.book], np = reader.page + d;
+  if(np >= b.pages.length){ toast(`『${b.title}』을 다 읽었어요`); closeReader(); return; }
+  if(np < 0) return;
+  reader.page = np; flipPage(me.av); renderReader();
+}
+$('#rprev').addEventListener('click', () => turnPage(-1));
+$('#rnext').addEventListener('click', () => turnPage(1));
+$('#rclose').addEventListener('click', () => closeReader());
+
+/* ---------------- props on avatars: book, lantern ---------------- */
+const pageMat = M('#fffaf0');
+function attachProps(av){
+  const p = av.p;
+  const book = new THREE.Group(); book.position.set(0, 0.63, 0.3); book.rotation.x = -0.95; p.inner.add(book);
+  const covers = [];
+  for(const sx of [1, -1]){
+    const c = add(new THREE.BoxGeometry(0.155, 0.014, 0.22), '#2f6db5', sx * 0.08, 0, 0, book, {cast:false}); c.rotation.z = -sx * 0.14; covers.push(c);
+    const pg = add(new THREE.BoxGeometry(0.14, 0.012, 0.2), pageMat, sx * 0.075, 0.012, 0, book, {cast:false}); pg.rotation.z = -sx * 0.14;
+  }
+  const flip = new THREE.Group(); flip.position.y = 0.022; book.add(flip);
+  const leaf = add(new THREE.BoxGeometry(0.14, 0.004, 0.2), pageMat, 0.072, 0, 0, flip, {cast:false});
+  flip.visible = false;
+  book.visible = false;
+  const lantern = new THREE.Group(); lantern.position.set(0, -0.4, 0.02); p.arms[0].add(lantern);
+  add(new THREE.TorusGeometry(0.045, 0.008, 6, 12, Math.PI), '#3d4d46', 0, 0.08, 0, lantern, {cast:false});
+  add(new THREE.CylinderGeometry(0.06, 0.06, 0.03, 10), '#3d4d46', 0, 0.065, 0, lantern, {cast:false});
+  add(new THREE.CylinderGeometry(0.055, 0.055, 0.12, 10), basic('#ffd77a'), 0, 0, 0, lantern, {cast:false});
+  add(new THREE.CylinderGeometry(0.065, 0.06, 0.025, 10), '#3d4d46', 0, -0.07, 0, lantern, {cast:false});
+  const glow = new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex, color:'#ffcf6a', transparent:true, depthWrite:false, blending:THREE.AdditiveBlending}));
+  glow.scale.setScalar(1.3); lantern.add(glow);
+  const pool = new THREE.Mesh(new THREE.PlaneGeometry(5, 5), new THREE.MeshBasicMaterial({map:glowTex, color:'#ffc965', transparent:true, depthWrite:false, blending:THREE.AdditiveBlending}));
+  pool.rotation.x = -Math.PI / 2; pool.position.y = 0.06; pool.renderOrder = 4; p.root.add(pool);
+  lantern.visible = false; pool.visible = false;
+  av.props = {book, covers, flip, lantern, glow, pool, flipT:0, nextFlip:4 + Math.random() * 6, coverBook:-1};
+}
+function flipPage(av){ if(av && av.props){ av.props.flipT = 0.001; av.props.flip.visible = true; } }
+function updateProps(av, dt){
+  const pr = av.props; if(!pr) return;
+  const reading = av.reading >= 0 && av.sit;
+  pr.book.visible = reading;
+  if(reading){
+    if(pr.coverBook !== av.reading){ pr.coverBook = av.reading; const m = M(BOOKS[av.reading].cover); pr.covers.forEach(c => c.material = m); }
+    if(!av.isMe){ pr.nextFlip -= dt; if(pr.nextFlip <= 0){ pr.nextFlip = 6 + Math.random() * 8; flipPage(av); } }
+    if(pr.flipT > 0){
+      pr.flipT += dt; const u = Math.min(1, pr.flipT / 0.55);
+      pr.flip.rotation.z = Math.PI * u * u * (3 - 2 * u);
+      if(u >= 1){ pr.flipT = 0; pr.flip.visible = false; pr.flip.rotation.z = 0; }
+    }
+  }
+  pr.lantern.visible = pr.pool.visible = !!av.lantern;
+  if(av.lantern){
+    const n = cur.night;
+    pr.glow.material.opacity = 0.35 + 0.6 * n + Math.sin(clock * 9 + av.t) * 0.05;
+    pr.pool.material.opacity = 0.08 + 0.32 * n;
+  }
+  const sub = reading ? `『${BOOKS[av.reading].title}』 읽는 중` : '';
+  if(sub !== av.subText){ av.subText = sub; av.sub.textContent = sub; av.sub.hidden = !sub; }
+}
+function toggleLantern(){
+  if(!me.av) return;
+  me.av.lantern = !me.av.lantern;
+  toast(me.av.lantern ? '등불을 들었어요' + (cur.night < 0.4 ? ' (밤에 더 밝게 빛나요)' : '') : '등불을 내려놓았어요');
+}
+
+/* ---------------- soap bubbles ---------------- */
+const bubbles = [];
+const bubbleGeo = new THREE.SphereGeometry(0.16, 16, 12);
+const bubbleMats = ['#bfe8ff', '#ffd1ec', '#e6d6ff', '#d4ffe9'].map(c => new THREE.MeshBasicMaterial({color:c, transparent:true, opacity:0.36, depthWrite:false}));
+const shineMat = new THREE.MeshBasicMaterial({color:'#ffffff', transparent:true, opacity:0.8});
+const shineGeo = new THREE.SphereGeometry(0.03, 6, 4);
+SFX.pop = (t, v) => { osc(t, 'sine', [[0, 900], [0.05, 1700]], 0.07, 0.05 * v); };
+function blowBubbles(av){
+  const fx = Math.sin(av.ry), fz = Math.cos(av.ry);
+  for(let i = 0; i < 12; i++){
+    const m = new THREE.Mesh(bubbleGeo, bubbleMats[i % bubbleMats.length]);
+    const sh = new THREE.Mesh(shineGeo, shineMat); sh.position.set(-0.06, 0.07, 0.11); m.add(sh);
+    const s = 0.6 + Math.random() * 0.9; m.scale.setScalar(s); m.visible = false; scene.add(m);
+    bubbles.push({m, s, t:-i * 0.12, life:5 + Math.random() * 4, x:av.pos.x + fx * 0.5, y:1.35, z:av.pos.z + fz * 0.5,
+      vx:fx * (0.5 + Math.random() * 0.6) + (Math.random() - 0.5) * 0.6, vy:0.25 + Math.random() * 0.45, vz:fz * (0.5 + Math.random() * 0.6) + (Math.random() - 0.5) * 0.6, pop:0, ph:Math.random() * 6});
+  }
+}
+function popBubble(b, mine){ if(b.pop) return; b.pop = 0.001; sfx(b.x, b.z, SFX.pop); if(mine){ me.popped = (me.popped || 0) + 1; if(me.popped === 10) toast('비눗방울 10개를 톡톡 터뜨렸어요'); } }
+function updateBubbles(dt){
+  for(let i = bubbles.length - 1; i >= 0; i--){
+    const b = bubbles[i]; b.t += dt;
+    if(b.t < 0) continue;
+    b.m.visible = true;
+    if(b.pop){
+      b.pop += dt; b.m.scale.setScalar(b.s * (1 + b.pop * 6));
+      if(b.pop > 0.12){ scene.remove(b.m); bubbles.splice(i, 1); }
+      continue;
+    }
+    b.vx *= 1 - dt * 0.4; b.vz *= 1 - dt * 0.4;
+    b.x += (b.vx + Math.sin(clock * 1.3 + b.ph) * 0.25) * dt; b.y += b.vy * dt; b.z += (b.vz + Math.cos(clock * 1.1 + b.ph) * 0.25) * dt;
+    b.m.position.set(b.x, b.y, b.z);
+    b.m.scale.set(b.s * (1 + Math.sin(clock * 6 + b.ph) * 0.04), b.s * (1 - Math.sin(clock * 6 + b.ph) * 0.04), b.s);
+    if(b.t > b.life) popBubble(b, false);
+  }
+}
+// click (tap) a bubble to pop it
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+let tapStart = null;
+cv.addEventListener('pointerdown', e => { tapStart = {x:e.clientX, y:e.clientY, t:performance.now()}; });
+cv.addEventListener('pointerup', e => {
+  if(!tapStart || Math.hypot(e.clientX - tapStart.x, e.clientY - tapStart.y) > 8 || performance.now() - tapStart.t > 400 || !bubbles.length) return;
+  ndc.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+  ray.setFromCamera(ndc, camera);
+  const live = bubbles.filter(b => b.m.visible && !b.pop);
+  const hit = ray.intersectObjects(live.map(b => b.m), false)[0];
+  if(hit){ const b = live.find(x => x.m === hit.object); if(b) popBubble(b, true); }
+});
+
+/* ---------------- follow a friend ---------------- */
+function followPeer(id){
+  const r = remotes.get(id); if(!r || !me.av) return;
+  if(me.follow === id){ me.follow = null; toast('따라가기를 멈췄어요'); }
+  else { me.follow = id; toast(`${r.av.name}님을 따라가요 · 방향키를 누르면 멈춰요`); }
+  renderRoster();
+}
+
+/* ---------------- photo mode ---------------- */
+SFX.shutter = (t, v) => { burst(t, 0.05, 0.3 * v, 3000, 'highpass'); burst(t + 0.08, 0.05, 0.25 * v, 2500, 'highpass'); };
+function takePhoto(){
+  if(!me.av) return;
+  renderer.render(scene, camera);
+  const src = renderer.domElement, c = document.createElement('canvas');
+  c.width = src.width; c.height = src.height;
+  const g = c.getContext('2d'); g.drawImage(src, 0, 0);
+  const k = c.width / innerWidth;
+  const avs = [me.av]; remotes.forEach(r => avs.push(r.av));
+  g.textAlign = 'center'; g.textBaseline = 'middle';
+  for(const av of avs){
+    const v = new THREE.Vector3(av.pos.x, av.pos.y + 1.95, av.pos.z).project(camera);
+    if(v.z > 1 || Math.abs(v.x) > 1 || Math.abs(v.y) > 1) continue;
+    const x = (v.x * 0.5 + 0.5) * c.width, y = (-v.y * 0.5 + 0.5) * c.height;
+    g.font = `700 ${16 * k}px Gaegu, 'Gowun Dodum', sans-serif`;
+    const w = g.measureText(av.name).width + 18 * k, h = 24 * k;
+    g.fillStyle = av.isMe ? CHARS[av.ci].tag : 'rgba(255,255,255,.9)';
+    g.beginPath(); if(g.roundRect) g.roundRect(x - w / 2, y - h / 2, w, h, h / 2); else g.rect(x - w / 2, y - h / 2, w, h); g.fill();
+    g.fillStyle = av.isMe ? '#ffffff' : CHARS[av.ci].tag; g.fillText(av.name, x, y + 1 * k);
+  }
+  const cap = `크리스탈 공원 · ${clockLabel(gameHour())} ${phaseName(gameHour())}`;
+  g.font = `700 ${20 * k}px Gaegu, 'Gowun Dodum', sans-serif`; g.textAlign = 'left';
+  g.fillStyle = 'rgba(255,255,255,.85)'; const cw = g.measureText(cap).width + 24 * k;
+  g.beginPath(); if(g.roundRect) g.roundRect(14 * k, c.height - 46 * k, cw, 32 * k, 10 * k); else g.rect(14 * k, c.height - 46 * k, cw, 32 * k); g.fill();
+  g.fillStyle = '#3f7a57'; g.fillText(cap, 26 * k, c.height - 29 * k);
+  let url = '';
+  try{ url = c.toDataURL('image/png'); }catch(e){ toast('사진을 만들 수 없었어요'); return; }
+  const fl = $('#flash'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
+  sfx(me.av.pos.x, me.av.pos.z, SFX.shutter);
+  $('#photoImg').src = url;
+  const d = new Date(), stamp = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}-${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}${String(d.getSeconds()).padStart(2, '0')}`;
+  const a = $('#photoSave'); a.href = url; a.download = `crystal-park-${stamp}.png`;
+  $('#photo').hidden = false;
+}
+$('#photoClose').addEventListener('click', () => { $('#photo').hidden = true; });
+$('#btnPhoto').addEventListener('click', () => takePhoto());
+
+function closePanels(){
+  if(!$('#photo').hidden){ $('#photo').hidden = true; return; }
+  if(reader.open){ closeReader(); return; }
+  if(!$('#roster').hidden){ toggleRoster(false); return; }
+  if(!$('#birdbook').hidden){ toggleBirdBook(false); return; }
 }
 
 /* ---------------- main loop ---------------- */
@@ -2059,14 +2599,24 @@ function frame(now){
       if(joy.active){ ix += joy.x; iz -= joy.y; }
     }
     const L = Math.hypot(ix, iz);
+    let dx = 0, dz = 0, n = 0, run = 4.2;
     if(L > 0.08){
-      if(me.sit){ me.sit = 0; me.av.sit = 0; }
-      const n = Math.min(1, L);
+      if(me.follow){ me.follow = null; toast('따라가기를 멈췄어요'); }
+      n = Math.min(1, L);
       ix /= L; iz /= L;
       const fx = -Math.sin(cam.yaw), fz = -Math.cos(cam.yaw);
       const rx = Math.cos(cam.yaw), rz = -Math.sin(cam.yaw);
-      const dx = fx * iz + rx * ix, dz = fz * iz + rz * ix;
-      const run = keys.has('shift') ? 7 : 4.2;
+      dx = fx * iz + rx * ix; dz = fz * iz + rz * ix;
+      run = keys.has('shift') ? 7 : 4.2;
+    } else if(me.follow && entered){
+      const fr = remotes.get(me.follow);
+      if(fr){
+        const ddx = fr.av.pos.x - me.av.pos.x, ddz = fr.av.pos.z - me.av.pos.z, dd = Math.hypot(ddx, ddz);
+        if(dd > 2.2){ dx = ddx / dd; dz = ddz / dd; n = 1; run = dd > 9 ? 7 : 4.2; }
+      }
+    }
+    if(n > 0){
+      if(me.sit){ me.sit = 0; me.av.sit = 0; stopReading(); if(reader.open) closeReader(); }
       speed = run * n;
       const pos = me.av.pos;
       pos.x += dx * speed * dt; pos.z += dz * speed * dt;
@@ -2129,6 +2679,7 @@ function frame(now){
   petGeo.attributes.position.needsUpdate = true;
 
   updateBirds(dt);
+  updateBubbles(dt);
   updateSeeds(dt);
   updateCoins(dt);
   updateContext();
@@ -2142,7 +2693,7 @@ function frame(now){
     fountainGain.gain.value = 0.11 * Math.max(0, 1 - d / 24);
   }
 
-  if(Math.floor(clock * 2) !== Math.floor((clock - dt) * 2)){ renderNet(); if(!$('#roster').hidden) renderRoster(); }
+  if(Math.floor(clock * 2) !== Math.floor((clock - dt) * 2)){ renderNet(); renderClock(); if(!$('#roster').hidden) renderRoster(); }
   renderer.render(scene, camera);
   requestAnimationFrame(frame);
 }
