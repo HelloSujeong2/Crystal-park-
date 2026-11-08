@@ -176,6 +176,20 @@ button,.emo{touch-action:manipulation}
 #hud{-webkit-user-select:none;user-select:none}
 @media (pointer:coarse){#pad{display:flex}.emo kbd,.pill kbd{display:none}#log{top:calc(112px + env(safe-area-inset-top,0px));bottom:auto;width:min(270px,calc(100vw - 28px))}#log .line:nth-last-child(n+4){display:none}#roster{top:calc(150px + env(safe-area-inset-top,0px))}#npcDlg{bottom:calc(250px + env(safe-area-inset-bottom,0px))}}
 @media (max-width:640px){#btnMenu{display:block}.tr{flex-direction:column;align-items:flex-end;max-width:none}.tr>.tbtn:not(#btnMenu){display:none}.tr.open>.tbtn{display:block}#quests,#birdbook{top:calc(110px + env(safe-area-inset-top,0px))}}
+#musicBox{position:absolute;top:calc(60px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:min(310px,calc(100vw - 28px));max-height:min(70vh,600px);overflow-y:auto;border-radius:20px;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.mnow{padding:10px 12px;border-radius:14px;background:var(--leaf-soft)}
+#mname{font-family:var(--font-display);font-weight:700;font-size:21px;color:var(--leaf);line-height:1.1}
+#mdesc{font-size:12.5px;color:var(--muted);margin-top:3px}
+.mctl{display:flex;gap:8px}
+.mvol{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted)}
+.mvol input{flex:1;accent-color:#3f7a57}
+#mlist{display:flex;flex-direction:column;gap:4px}
+.mtrack{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left;border:1px solid var(--glass-line);background:#fff;border-radius:12px;padding:7px 10px}
+.mtrack:hover{background:var(--leaf-soft)}
+.mtrack.on{border-color:var(--leaf);background:var(--leaf-soft)}
+.mtrack b{font-size:13.5px}
+.mtrack small{font-size:11.5px;color:var(--muted)}
+@media (max-width:640px){#musicBox{top:calc(110px + env(safe-area-inset-top,0px))}}
 #prompt{font-size:13px;padding:6px 12px;border-radius:999px;color:var(--ink)}
 #prompt kbd{font-family:inherit;font-weight:700;color:#fff;background:var(--leaf);border-radius:6px;padding:1px 6px;margin-right:6px}
 .pill{border:1px solid var(--glass-line);cursor:pointer;font-family:inherit}
@@ -220,6 +234,7 @@ button,.emo{touch-action:manipulation}
     <button class="tbtn" id="btnBirds" type="button" aria-controls="birdbook" aria-expanded="false">새 친구 0/6</button>
     <button class="tbtn" id="btnSky" type="button">오후 1:00 · 낮</button>
     <button class="tbtn" id="btnPhoto" type="button">사진 찍기</button>
+    <button class="tbtn" id="btnMusic" type="button" aria-controls="musicBox" aria-expanded="false">음악 꺼짐</button>
     <button class="tbtn" id="btnSound" type="button">새소리 켜기</button>
     <button class="tbtn" id="btnChar" type="button">캐릭터 바꾸기</button>
   </div>
@@ -243,7 +258,7 @@ button,.emo{touch-action:manipulation}
       <button type="submit">말하기</button>
     </form>
   </div>
-  <div id="hint" class="glass">WASD·방향키 이동 · Shift 달리기<br>드래그로 시점 · 휠로 확대<br>E 말 걸기·앉기 · Q 부탁 수첩<br>F 모이 · T 책 · L 등불 · P 사진<br>Tab 산책객 · B 새 친구 · Esc 닫기</div>
+  <div id="hint" class="glass">WASD·방향키 이동 · Shift 달리기<br>드래그로 시점 · 휠로 확대<br>E 말 걸기·앉기 · Q 부탁 수첩<br>F 모이 · T 책 · L 등불 · P 사진<br>M 음악 · Tab 산책객 · B 새 친구 · Esc 닫기</div>
   <div id="toast" class="glass"></div>
   <div id="roster" class="glass" hidden>
     <div class="phead"><b>공원에 있는 사람</b><span id="rcount"></span></div>
@@ -264,6 +279,14 @@ button,.emo{touch-action:manipulation}
     <p class="pfoot">저장이 안 되면 사진을 길게 누르거나 우클릭해서 저장하세요.</p>
   </div>
   <div id="flash"></div>
+  <div id="musicBox" class="glass" hidden>
+    <div class="phead"><b>공원 음악</b><span id="mstate"></span></div>
+    <div class="mnow"><div id="mname"></div><div id="mdesc"></div></div>
+    <div class="mctl"><button type="button" id="mplay" class="pbtn">음악 켜기</button><button type="button" id="mnext" class="pbtn ghost">다음 곡</button></div>
+    <label class="mvol" for="mvol">볼륨<input type="range" id="mvol" min="0" max="100" value="55"></label>
+    <div id="mlist"></div>
+    <p class="pfoot">다섯 곡 모두 이 게임을 위해 만든 곡을 브라우저가 실시간으로 연주해요. 음원 파일이 없어서 저작권 걱정이 없어요. M으로 끄고 켤 수 있어요.</p>
+  </div>
   <div id="npcDlg" class="glass" hidden>
     <div class="dhead"><b id="dname"></b><span id="drole"></span></div>
     <p id="dtext"></p>
@@ -1511,7 +1534,8 @@ addEventListener('keydown', e => {
   if(e.key === 'Escape'){ closePanels(); return; }
   if(reader.open && reader.book >= 0 && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')){ e.preventDefault(); turnPage(e.key === 'ArrowRight' ? 1 : -1); return; }
   const k = e.key.toLowerCase();
-  if(e.repeat && 'efrbtlpq12345'.includes(k)) return;
+  if(e.repeat && 'efrbtlpqm12345'.includes(k)) return;
+  if(k === 'm'){ toggleMusic(); return; }
   if(k === 'q'){ toggleQuests(); return; }
   if(k === 't'){ toggleReader(); return; }
   if(k === 'l'){ toggleLantern(); return; }
@@ -1674,6 +1698,7 @@ $('#enter').addEventListener('click', () => {
   }
   entered = true;
   applyRewards();
+  if(mus.on && !(mctx && mctx.state === 'running')){ musicStart(); if(!mus.started){ mus.started = true; logLine('', '잔잔한 음악이 흘러요. M이나 오른쪽 위 음악 버튼으로 끄고 켤 수 있어요.', '', true); } }
   $('#start').hidden = true; $('#hud').hidden = false;
   $('#enter').textContent = '공원으로 돌아가기';
   lastPresence = '';
@@ -3445,6 +3470,7 @@ function closeExtraPanels(){
   if(me.scope){ exitScope(); return true; }
   if(dlg){ closeDialog(); return true; }
   if(!$('#quests').hidden){ toggleQuests(false); return true; }
+  if(!$('#musicBox').hidden){ toggleMusicBox(false); return true; }
   if(!$('#trMenu').classList.contains('open')) return false;
   $('#trMenu').classList.remove('open'); return true;
 }
@@ -3469,6 +3495,270 @@ document.querySelectorAll('#trMenu .tbtn:not(#btnMenu)').forEach(b => b.addEvent
 spawnNPCs();
 
 for(const [x, y, z] of shopLights){ const sp = new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex, color:'#ffd38a', transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, opacity:0.55})); sp.position.set(x, y, z); sp.scale.setScalar(2.2); scene.add(sp); }
+/* ---------------- park music: five original tracks, played live by the browser (no audio files) ---------------- */
+const MUSIC = [
+  {name:'아침 장미 정원', desc:'이슬 맺힌 아침, 오르골과 부드러운 피아노', bpm:76, beats:4, root:60, bpc:2, loops:5,
+    prog:[[0, 4, 7, 11], [-3, 0, 4, 7], [-7, -3, 0, 4], [-5, -1, 2, 4]], scale:[0, 2, 4, 7, 9], mel:[72, 88],
+    rhythms:[[[0, 1.5], [1.5, 0.5], [2, 2]], [[0, 1], [1, 1], [2, 1], [3, 1]], [[0.5, 0.5], [1, 1.5], [3, 1]], [[0, 3], [3, 1]]], play:barRose},
+  {name:'보리수 길 산책', desc:'가볍게 걷는 오후, 기타와 휘파람', bpm:88, beats:4, root:55, bpc:1, loops:12,
+    prog:[[0, 4, 7, 11], [4, 7, 11, 14], [5, 9, 12, 16], [7, 11, 14, 16]], scale:[0, 2, 4, 7, 9], mel:[74, 88],
+    rhythms:[[[0, 1], [1, 0.5], [1.5, 1.5], [3, 1]], [[0, 2], [2, 1], [3, 1]], [[0.5, 1], [1.5, 0.5], [2, 2]], [[0, 4]]], play:barLime},
+  {name:'도우루 강의 오후', desc:'강물처럼 흐르는 느린 왈츠', bpm:64, beats:3, root:53, bpc:2, loops:6,
+    prog:[[0, 4, 7, 11], [-3, 0, 4, 7], [5, 9, 12, 16], [7, 12, 14, 17]], scale:[0, 2, 4, 7, 9], mel:[72, 86],
+    rhythms:[[[0, 2], [2, 1]], [[0, 1], [1, 1], [2, 1]], [[0, 3]], [[0, 1.5], [1.5, 1.5]]], play:barRiver},
+  {name:'책방의 오후', desc:'책장 넘기는 소리 같은 느긋한 그루브', bpm:70, beats:4, root:50, bpc:1, loops:10,
+    prog:[[0, 4, 7, 11, 14], [-3, 0, 4, 7], [2, 5, 9, 12, 16], [7, 11, 14, 17, 21]], scale:[0, 2, 4, 7, 9, 11], mel:[71, 86],
+    rhythms:[[[0.66, 0.34], [1, 1], [2.66, 0.34], [3, 1]], [[0, 1.66], [2, 2]], [[1, 0.66], [1.66, 1.34], [3.66, 0.34]], [[0, 4]]], play:barBook},
+  {name:'별이 뜨는 밤', desc:'잠들기 전에 듣는 오르골 자장가', bpm:56, beats:4, root:51, bpc:2, loops:4,
+    prog:[[0, 4, 7, 11], [-3, 0, 4, 7], [5, 9, 12, 16], [7, 12, 14, 19]], scale:[0, 2, 4, 7, 9], mel:[75, 91],
+    rhythms:[[[0, 1], [1, 1], [2, 2]], [[0, 2], [2, 1], [3, 1]], [[0, 1.5], [1.5, 0.5], [2, 2]], [[0, 4]]], play:barStar},
+];
+const mus = {on:true, vol:0.55, idx:0, cur:null, started:false};
+try{ const p = JSON.parse(localStorage.getItem('cp.music') || '{}'); if(typeof p.on === 'boolean') mus.on = p.on; if(typeof p.vol === 'number') mus.vol = Math.max(0, Math.min(1, p.vol)); }catch(e){}
+const saveMus = () => { try{ localStorage.setItem('cp.music', JSON.stringify({on:mus.on, vol:mus.vol})); }catch(e){} };
+let mctx = null, mOut = null, mRev = null, mNoise = null, mTimer = null;
+const mtof = m => 440 * Math.pow(2, (m - 69) / 12);
+function mInit(){
+  mctx = new (window.AudioContext || window.webkitAudioContext)();
+  mOut = mctx.createGain(); mOut.gain.value = mus.vol * 1.1;
+  const lp = mctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 7500;
+  const comp = mctx.createDynamicsCompressor(); comp.threshold.value = -16; comp.ratio.value = 3; comp.attack.value = 0.02; comp.release.value = 0.4;
+  mOut.connect(lp); lp.connect(comp); comp.connect(mctx.destination);
+  mRev = mctx.createConvolver();
+  const len = Math.floor(mctx.sampleRate * 3.2), ir = mctx.createBuffer(2, len, mctx.sampleRate);
+  for(let c = 0; c < 2; c++){ const d = ir.getChannelData(c); for(let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6); }
+  mRev.buffer = ir;
+  const wet = mctx.createGain(); wet.gain.value = 0.4; mRev.connect(wet); wet.connect(mOut);
+  mNoise = mctx.createBuffer(1, mctx.sampleRate, mctx.sampleRate);
+  const nd = mNoise.getChannelData(0); for(let i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1;
+}
+function newBus(){
+  const g = mctx.createGain(); g.gain.value = 0; g.connect(mOut);
+  const send = mctx.createGain(); send.gain.value = 1; g.connect(send); send.connect(mRev);
+  return g;
+}
+/* instruments */
+function env(g, t, peak, a, hold, rel){
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.linearRampToValueAtTime(peak, t + a);
+  g.gain.setValueAtTime(peak, t + a + hold);
+  g.gain.setTargetAtTime(0.0001, t + a + hold, rel / 3);
+}
+function vEP(bus, t, m, v){
+  const f = mtof(m), g = mctx.createGain(); g.connect(bus);
+  g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(v, t + 0.008);
+  g.gain.exponentialRampToValueAtTime(v * 0.28, t + 0.7); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.6);
+  const o1 = mctx.createOscillator(); o1.type = 'sine'; o1.frequency.value = f; o1.connect(g);
+  const o2 = mctx.createOscillator(); o2.type = 'sine'; o2.frequency.value = f * 2.002;
+  const g2 = mctx.createGain(); g2.gain.setValueAtTime(0.4, t); g2.gain.exponentialRampToValueAtTime(0.01, t + 0.45); o2.connect(g2); g2.connect(g);
+  o1.start(t); o2.start(t); o1.stop(t + 2.7); o2.stop(t + 2.7);
+}
+function vBox(bus, t, m, v){
+  const f = mtof(m), g = mctx.createGain(); g.connect(bus);
+  g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(v, t + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.8);
+  const o1 = mctx.createOscillator(); o1.type = 'sine'; o1.frequency.value = f; o1.connect(g);
+  const o2 = mctx.createOscillator(); o2.type = 'sine'; o2.frequency.value = f * 4;
+  const g2 = mctx.createGain(); g2.gain.setValueAtTime(0.18, t); g2.gain.exponentialRampToValueAtTime(0.002, t + 0.25); o2.connect(g2); g2.connect(g);
+  const o3 = mctx.createOscillator(); o3.type = 'sine'; o3.frequency.value = f * 2.76;
+  const g3 = mctx.createGain(); g3.gain.setValueAtTime(0.08, t); g3.gain.exponentialRampToValueAtTime(0.002, t + 0.6); o3.connect(g3); g3.connect(g);
+  for(const o of [o1, o2, o3]){ o.start(t); o.stop(t + 1.9); }
+}
+function vPluck(bus, t, m, v){
+  const f = mtof(m), g = mctx.createGain(), lp = mctx.createBiquadFilter();
+  lp.type = 'lowpass'; lp.Q.value = 1.2; lp.frequency.setValueAtTime(2800, t); lp.frequency.exponentialRampToValueAtTime(480, t + 0.35);
+  g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(v, t + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.2);
+  const o = mctx.createOscillator(); o.type = 'triangle'; o.frequency.value = f;
+  const o2 = mctx.createOscillator(); o2.type = 'sawtooth'; o2.frequency.value = f * 1.003;
+  const g2 = mctx.createGain(); g2.gain.value = 0.25;
+  o.connect(lp); o2.connect(g2); g2.connect(lp); lp.connect(g); g.connect(bus);
+  o.start(t); o2.start(t); o.stop(t + 1.3); o2.stop(t + 1.3);
+}
+function vBass(bus, t, m, dur, v){
+  const f = mtof(m), g = mctx.createGain(), lp = mctx.createBiquadFilter();
+  lp.type = 'lowpass'; lp.frequency.value = 520;
+  env(g, t, v, 0.03, Math.max(0.05, dur - 0.2), 0.4);
+  const o = mctx.createOscillator(); o.type = 'sine'; o.frequency.value = f;
+  const o2 = mctx.createOscillator(); o2.type = 'triangle'; o2.frequency.value = f;
+  const g2 = mctx.createGain(); g2.gain.value = 0.35;
+  o.connect(lp); o2.connect(g2); g2.connect(lp); lp.connect(g); g.connect(bus);
+  o.start(t); o2.start(t); o.stop(t + dur + 0.6); o2.stop(t + dur + 0.6);
+}
+function vPad(bus, t, notes, dur, v){
+  const lp = mctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1100; lp.connect(bus);
+  const g = mctx.createGain(); env(g, t, v, 1.3, Math.max(0.1, dur - 1.3), 2.2); g.connect(lp);
+  for(const n of notes){
+    for(const det of [-7, 7]){
+      const o = mctx.createOscillator(); o.type = 'triangle'; o.frequency.value = mtof(n); o.detune.value = det;
+      o.connect(g); o.start(t); o.stop(t + dur + 2.6);
+    }
+  }
+}
+function vFlute(bus, t, m, dur, v){
+  const f = mtof(m), g = mctx.createGain(); g.connect(bus);
+  env(g, t, v, 0.09, Math.max(0.05, dur - 0.15), 0.3);
+  const o = mctx.createOscillator(); o.type = 'sine'; o.frequency.value = f; o.connect(g);
+  const lfo = mctx.createOscillator(); lfo.frequency.value = 5.2;
+  const lg = mctx.createGain(); lg.gain.setValueAtTime(0, t); lg.gain.linearRampToValueAtTime(f * 0.005, t + 0.35);
+  lfo.connect(lg); lg.connect(o.frequency);
+  const h = mctx.createOscillator(); h.type = 'sine'; h.frequency.value = f * 2;
+  const hg = mctx.createGain(); hg.gain.value = 0.12; h.connect(hg); hg.connect(g);
+  for(const x of [o, lfo, h]){ x.start(t); x.stop(t + dur + 0.6); }
+}
+function vBrush(bus, t, v){
+  const s = mctx.createBufferSource(); s.buffer = mNoise;
+  const bp = mctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 7000; bp.Q.value = 0.8;
+  const g = mctx.createGain(); g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.07);
+  s.connect(bp); bp.connect(g); g.connect(bus); s.start(t, Math.random() * 0.8); s.stop(t + 0.09);
+}
+function vThump(bus, t, v){
+  const o = mctx.createOscillator(), g = mctx.createGain();
+  o.frequency.setValueAtTime(120, t); o.frequency.exponentialRampToValueAtTime(48, t + 0.14);
+  g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.28);
+  o.connect(g); g.connect(bus); o.start(t); o.stop(t + 0.3);
+}
+/* a gentle melody that walks the scale and lands on chord tones */
+function melody(S, tr, t, bd, chord, play, rest){
+  const [lo, hi] = tr.mel;
+  if(!S.list){ S.list = []; for(let m = lo; m <= hi; m++) if(tr.scale.includes(((m - tr.root) % 12 + 12) % 12)) S.list.push(m); S.idx = Math.floor(S.list.length / 2); }
+  const pcs = chord.map(n => ((n % 12) + 12) % 12), steps = [-2, -1, -1, 0, 1, 1, 2, -3, 3];
+  for(const [pos, len] of S.motif){
+    if(S.rng() < rest) continue;
+    const strong = pos === 0 || pos === 2;
+    let idx = S.idx;
+    for(let k = 0; k < 8; k++){
+      idx = Math.max(0, Math.min(S.list.length - 1, S.idx + steps[Math.floor(S.rng() * steps.length)]));
+      if(!strong || pcs.includes(S.list[idx] % 12) || k > 5) break;
+    }
+    if(S.idx > S.list.length - 3) idx = Math.max(0, idx - 2);
+    if(S.idx < 2) idx = Math.min(S.list.length - 1, idx + 2);
+    S.idx = idx;
+    play(t + pos * bd, S.list[idx], len * bd);
+  }
+}
+function barRose(S, bus, t, bd, ch, bar, cb, tr){
+  if(cb === 0) vPad(bus, t, ch, bd * 8, 0.022);
+  const pat = cb === 0 ? [0, 1, 2, 3, 2, 1, 2, 3] : [0, 2, 3, -1, 1, 2, -1, 3];
+  pat.forEach((k, j) => { if(k >= 0) vEP(bus, t + j * bd / 2, ch[k], j % 2 ? 0.035 : 0.045); });
+  vBass(bus, t, ch[0] - 24, bd * 1.8, 0.11); vBass(bus, t + bd * 2, ch[0] - 17, bd * 1.8, 0.08);
+  if(bar >= 4) melody(S, tr, t, bd, ch, (tt, m) => vBox(bus, tt, m, 0.055), 0.3);
+}
+function barLime(S, bus, t, bd, ch, bar, cb, tr){
+  const b = ch[0] - 12;
+  vPluck(bus, t, b, 0.11); vPluck(bus, t + bd * 2, b + 7, 0.09);
+  for(const pos of [0.5, 1.5, 2.5, 3.5]) ch.slice(1).forEach((n, k) => vPluck(bus, t + pos * bd + k * 0.014, n, 0.04));
+  for(let j = 0; j < 8; j++) vBrush(bus, t + j * bd / 2, j % 2 ? 0.01 : 0.016);
+  if(bar >= 4) melody(S, tr, t, bd, ch, (tt, m, d) => vFlute(bus, tt, m, d, 0.045), 0.35);
+}
+function barRiver(S, bus, t, bd, ch, bar, cb, tr){
+  if(cb === 0) vPad(bus, t, ch.slice(1), bd * 6, 0.018);
+  vEP(bus, t, ch[0] - 12, 0.08);
+  for(const pos of [1, 2]) ch.slice(1).forEach(n => vEP(bus, t + pos * bd, n, 0.026));
+  if(bar >= 2) melody(S, tr, t, bd, ch, (tt, m, d) => vFlute(bus, tt, m, d, 0.05), 0.25);
+}
+function barBook(S, bus, t, bd, ch, bar, cb, tr){
+  vThump(bus, t, 0.09); vThump(bus, t + bd * 2, 0.07);
+  for(let j = 0; j < 4; j++){ vBrush(bus, t + j * bd, 0.014); vBrush(bus, t + (j + 0.66) * bd, 0.009); }
+  ch.forEach(n => vEP(bus, t, n, 0.03));
+  ch.slice(-3).forEach(n => vEP(bus, t + bd * 1.66, n, 0.022));
+  vBass(bus, t, ch[0] - 12, bd * 1.5, 0.1); vBass(bus, t + bd * 2.66, ch[0] - 5, bd * 1.2, 0.08);
+  if(bar >= 4) melody(S, tr, t, bd, ch, (tt, m) => vEP(bus, tt, m, 0.04), 0.45);
+}
+function barStar(S, bus, t, bd, ch, bar, cb, tr){
+  if(cb === 0){ vPad(bus, t, ch, bd * 8, 0.024); vBass(bus, t, ch[0] - 12, bd * 7.5, 0.07); }
+  if(bar >= 2) melody(S, tr, t, bd, ch, (tt, m) => vBox(bus, tt, m, 0.06), 0.25);
+  if(S.rng() < 0.45) vBox(bus, t + Math.floor(S.rng() * 8) * bd / 2, ch[Math.floor(S.rng() * ch.length)] + 24, 0.018);
+}
+/* playback */
+function startTrack(idx){
+  const now = mctx.currentTime;
+  if(mus.cur){
+    const old = mus.cur.bus;
+    old.gain.cancelScheduledValues(now); old.gain.setValueAtTime(old.gain.value, now); old.gain.linearRampToValueAtTime(0, now + 1.2);
+    setTimeout(() => { try{ old.disconnect(); }catch(e){} }, 5000);
+  }
+  const tr = MUSIC[idx], bus = newBus(), t0 = now + 0.2;
+  bus.gain.setValueAtTime(0, t0); bus.gain.linearRampToValueAtTime(1, t0 + 2.5);
+  mus.idx = idx;
+  mus.cur = {tr, bus, t:t0, bar:0, total:tr.loops * tr.prog.length * tr.bpc, S:{rng:mulberry32((Math.random() * 1e9) | 0), motif:tr.rhythms[0]}};
+  renderMusic();
+  if(entered && mus.on) toast(`지금 흐르는 곡: ${tr.name}`);
+}
+function musicTick(){
+  if(!mctx || !mus.on || !mus.cur || mctx.state !== 'running') return;
+  const c = mus.cur, tr = c.tr, bd = 60 / tr.bpm;
+  let guard = 0;
+  while(c.t < mctx.currentTime + 1.6 && guard++ < 16){
+    if(c.bar >= c.total){ startTrack((mus.idx + 1) % MUSIC.length); return; }
+    const ci = Math.floor(c.bar / tr.bpc) % tr.prog.length, cb = c.bar % tr.bpc;
+    const ch = tr.prog[ci].map(n => tr.root + n);
+    if(c.bar % 4 === 0) c.S.motif = tr.rhythms[Math.floor(c.S.rng() * tr.rhythms.length)];
+    try{ tr.play(c.S, c.bus, c.t, bd, ch, c.bar, cb, tr); }catch(e){}
+    if(c.bar === c.total - 2){ c.bus.gain.setValueAtTime(1, c.t); c.bus.gain.linearRampToValueAtTime(0, c.t + tr.beats * bd * 2 + 1); }
+    c.t += tr.beats * bd; c.bar++;
+  }
+}
+function phaseTrack(){
+  if(me.av && inShop(me.av.pos.x, me.av.pos.z)) return 3;
+  return {아침:0, 낮:1, 노을:2, 밤:4}[phaseName(gameHour())] ?? 1;
+}
+function musicStart(idx){
+  try{
+    if(!mctx) mInit();
+    mus.on = true; saveMus();
+    mOut.gain.cancelScheduledValues(mctx.currentTime); mOut.gain.setTargetAtTime(mus.vol * 1.1, mctx.currentTime, 0.2);
+    const go = () => {
+      if(idx !== undefined) startTrack(idx);
+      else if(!mus.cur) startTrack(phaseTrack());
+      if(!mTimer) mTimer = setInterval(musicTick, 200);
+      musicTick(); renderMusic();
+    };
+    if(mctx.state !== 'running') mctx.resume().then(go, go); else go();
+  }catch(e){ toast('이 브라우저에서는 음악을 틀 수 없어요'); }
+}
+function musicStop(){
+  mus.on = false; saveMus(); renderMusic();
+  if(!mctx) return;
+  mOut.gain.cancelScheduledValues(mctx.currentTime); mOut.gain.setTargetAtTime(0, mctx.currentTime, 0.15);
+  setTimeout(() => { if(!mus.on && mctx.state === 'running') mctx.suspend(); }, 700);
+}
+function toggleMusic(){ if(mus.on && mctx && mctx.state === 'running') musicStop(); else musicStart(); }
+function renderMusic(){
+  const playing = mus.on && !!mctx && !!mus.cur;
+  $('#btnMusic').textContent = playing ? '음악 켜짐' : '음악 꺼짐';
+  const tr = mus.cur ? mus.cur.tr : MUSIC[mus.idx];
+  $('#mname').textContent = tr.name; $('#mdesc').textContent = tr.desc;
+  $('#mstate').textContent = playing ? `${mus.idx + 1} / ${MUSIC.length}` : '꺼짐';
+  $('#mplay').textContent = playing ? '음악 끄기' : '음악 켜기';
+  $('#mvol').value = String(Math.round(mus.vol * 100));
+  const list = $('#mlist'); list.textContent = '';
+  MUSIC.forEach((m, i) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'mtrack' + (playing && i === mus.idx ? ' on' : '');
+    const n = document.createElement('b'); n.textContent = m.name;
+    const d = document.createElement('small'); d.textContent = m.desc;
+    b.append(n, d);
+    b.addEventListener('click', () => { if(mctx && mus.on && mctx.state === 'running') startTrack(i); else musicStart(i); });
+    list.append(b);
+  });
+}
+function toggleMusicBox(force){
+  const el = $('#musicBox'), open = force !== undefined ? force : el.hidden;
+  el.hidden = !open; $('#btnMusic').setAttribute('aria-expanded', String(open));
+  if(open) renderMusic();
+}
+$('#btnMusic').addEventListener('click', () => toggleMusicBox());
+$('#mplay').addEventListener('click', () => toggleMusic());
+$('#mnext').addEventListener('click', () => { if(mctx && mus.on && mctx.state === 'running') startTrack((mus.idx + 1) % MUSIC.length); else musicStart((mus.idx + 1) % MUSIC.length); });
+$('#mvol').addEventListener('input', e => {
+  mus.vol = Math.max(0, Math.min(1, Number(e.target.value) / 100)); saveMus();
+  if(mctx && mus.on) mOut.gain.setTargetAtTime(mus.vol * 1.1, mctx.currentTime, 0.1);
+});
+document.addEventListener('visibilitychange', () => {
+  if(!mctx) return;
+  if(document.hidden){ if(mctx.state === 'running') mctx.suspend(); }
+  else if(mus.on) mctx.resume();
+});
+renderMusic();
+
 /* ---------------- main loop ---------------- */
 const fwd = new THREE.Vector3();
 let last = performance.now();
