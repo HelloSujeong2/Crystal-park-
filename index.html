@@ -174,7 +174,7 @@ h1 span{color:var(--rose)}
 #btnMenu{display:none}
 button,.emo{touch-action:manipulation}
 #hud{-webkit-user-select:none;user-select:none}
-@media (pointer:coarse){#pad{display:flex}.emo kbd,.pill kbd{display:none}#log{top:calc(112px + env(safe-area-inset-top,0px));bottom:auto;width:min(270px,calc(100vw - 28px))}#log .line:nth-last-child(n+4){display:none}#roster{top:calc(150px + env(safe-area-inset-top,0px))}#npcDlg{bottom:calc(250px + env(safe-area-inset-bottom,0px))}}
+@media (pointer:coarse){#pad{display:flex}.emo kbd,.pill kbd{display:none}#log{top:calc(152px + env(safe-area-inset-top,0px));bottom:auto;width:min(270px,calc(100vw - 28px))}#log .line:nth-last-child(n+4){display:none}#roster{top:calc(150px + env(safe-area-inset-top,0px))}#npcDlg{bottom:calc(250px + env(safe-area-inset-bottom,0px))}}
 @media (max-width:640px){#btnMenu{display:block}.tr{flex-direction:column;align-items:flex-end;max-width:none}.tr>.tbtn:not(#btnMenu){display:none}.tr.open>.tbtn{display:block}#quests,#birdbook{top:calc(110px + env(safe-area-inset-top,0px))}}
 #musicBox{position:absolute;top:calc(60px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:min(310px,calc(100vw - 28px));max-height:min(70vh,600px);overflow-y:auto;border-radius:20px;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
 .mnow{padding:10px 12px;border-radius:14px;background:var(--leaf-soft)}
@@ -190,6 +190,24 @@ button,.emo{touch-action:manipulation}
 .mtrack b{font-size:13.5px}
 .mtrack small{font-size:11.5px;color:var(--muted)}
 @media (max-width:640px){#musicBox{top:calc(110px + env(safe-area-inset-top,0px))}}
+.tlrow{display:flex;gap:6px}
+#bag,#travel{position:absolute;width:min(330px,calc(100vw - 28px));max-height:min(66vh,580px);overflow-y:auto;border-radius:20px;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px}
+#bag{top:calc(60px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px))}
+#travel{top:calc(150px + env(safe-area-inset-top,0px));left:max(14px,env(safe-area-inset-left,0px))}
+#blist2,#tlist{display:flex;flex-direction:column;gap:6px}
+.item{display:grid;grid-template-columns:40px 1fr;gap:4px 10px;padding:9px;border-radius:14px;background:#fff;border:1px solid var(--glass-line)}
+.iicon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:20px;color:#5a4632;grid-row:span 2}
+.itext{display:flex;flex-direction:column;gap:2px;min-width:0}
+.itext b{font-size:14px}
+.itext small{font-size:11.8px;color:var(--muted);line-height:1.45}
+.iacts{display:flex;gap:5px;flex-wrap:wrap}
+#albumBox{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 28px));max-height:80vh;overflow-y:auto;border-radius:22px;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+#agrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.athumb{border:none;background:#fff;border-radius:12px;padding:4px;display:flex;flex-direction:column;gap:3px}
+.athumb img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:9px}
+.athumb small{font-size:11px;color:var(--muted)}
+#roster{top:calc(150px + env(safe-area-inset-top,0px)) !important}
+@media (max-width:640px){#bag{top:calc(110px + env(safe-area-inset-top,0px))}#agrid{grid-template-columns:repeat(2,1fr)}}
 #prompt{font-size:13px;padding:6px 12px;border-radius:999px;color:var(--ink)}
 #prompt kbd{font-family:inherit;font-weight:700;color:#fff;background:var(--leaf);border-radius:6px;padding:1px 6px;margin-right:6px}
 .pill{border:1px solid var(--glass-line);cursor:pointer;font-family:inherit}
@@ -227,10 +245,12 @@ button,.emo{touch-action:manipulation}
   <div class="tl">
     <div class="place glass">크리스탈 공원</div>
     <button class="pill glass" id="netPill" type="button" aria-controls="roster" aria-expanded="false"><span class="dot" id="netDot"></span><span id="netText">혼자 산책 중</span><kbd>Tab</kbd></button>
+    <div class="tlrow"><button class="pill glass" id="btnHome" type="button">처음 자리로<kbd>H</kbd></button><button class="pill glass" id="btnTravel" type="button">이동<kbd>G</kbd></button></div>
   </div>
   <div class="tr" id="trMenu">
     <button class="tbtn" id="btnMenu" type="button">메뉴</button>
     <button class="tbtn" id="btnQuest" type="button" aria-controls="quests" aria-expanded="false">부탁 수첩</button>
+    <button class="tbtn" id="btnBag" type="button" aria-controls="bag" aria-expanded="false">가방</button>
     <button class="tbtn" id="btnBirds" type="button" aria-controls="birdbook" aria-expanded="false">새 친구 0/6</button>
     <button class="tbtn" id="btnSky" type="button">오후 1:00 · 낮</button>
     <button class="tbtn" id="btnPhoto" type="button">사진 찍기</button>
@@ -258,7 +278,7 @@ button,.emo{touch-action:manipulation}
       <button type="submit">말하기</button>
     </form>
   </div>
-  <div id="hint" class="glass">WASD·방향키 이동 · Shift 달리기<br>드래그로 시점 · 휠로 확대<br>E 말 걸기·앉기 · Q 부탁 수첩<br>F 모이 · T 책 · L 등불 · P 사진<br>M 음악 · Tab 산책객 · B 새 친구 · Esc 닫기</div>
+  <div id="hint" class="glass">WASD·방향키 이동 · Shift 달리기<br>드래그로 시점 · 휠로 확대<br>E 말 걸기·앉기 · Q 부탁 · I 가방<br>H 처음 자리 · G 이동<br>F 모이 · T 책 · L 등불 · P 사진<br>M 음악 · Tab 산책객 · B 새 친구 · Esc 닫기</div>
   <div id="toast" class="glass"></div>
   <div id="roster" class="glass" hidden>
     <div class="phead"><b>공원에 있는 사람</b><span id="rcount"></span></div>
@@ -279,6 +299,20 @@ button,.emo{touch-action:manipulation}
     <p class="pfoot">저장이 안 되면 사진을 길게 누르거나 우클릭해서 저장하세요.</p>
   </div>
   <div id="flash"></div>
+  <div id="bag" class="glass" hidden>
+    <div class="phead"><b>가방</b><span id="bagcount"></span></div>
+    <div id="blist2"></div>
+    <button type="button" class="fbtn" id="bagbooks">책가방 열기</button>
+    <p class="pfoot">I로 열고 닫아요 · 부탁을 들어주면 선물이 생겨요</p>
+  </div>
+  <div id="travel" class="glass" hidden>
+    <div class="phead"><b>어디로 갈까요?</b><span>G</span></div>
+    <div id="tlist"></div>
+  </div>
+  <div id="albumBox" class="glass" hidden>
+    <div class="phead"><b>공원 사진첩</b><button type="button" class="rx" id="aclose">닫기</button></div>
+    <div id="agrid"></div>
+  </div>
   <div id="musicBox" class="glass" hidden>
     <div class="phead"><b>공원 음악</b><span id="mstate"></span></div>
     <div class="mnow"><div id="mname"></div><div id="mdesc"></div></div>
@@ -333,6 +367,9 @@ const CHARS = [
   {npc:'antonio', name:'안토니오', sex:'남', skin:'#ecc3a1', hair:'#cfcac2', style:'short', cap:'#6b5b4b', mustache:'#cfcac2', top:'#8a6a4a', legs:'#5b5550', shoe:'#3d2f25', tag:'#8a6a4a', scale:0.95},
   {npc:'joao', name:'주앙', sex:'남', skin:'#d9a27c', hair:'#3a2b26', style:'short', sailor:'#ffffff', mustache:'#3a2b26', top:'#2f4f7f', legs:'#e8e0d0', shoe:'#2d2d2d', tag:'#2f4f7f', scale:1.04},
   {npc:'luis', name:'루이스', sex:'남', skin:'#f0cdb2', hair:'#5a4a42', style:'short', glasses:true, vest:'#7a2f35', mustache:'#5a4a42', top:'#f4efe6', legs:'#3b3a3a', shoe:'#2d2d2d', tag:'#9c2b35', scale:1.0},
+  {npc:'olga', name:'올가', sex:'여', skin:'#f3d2bb', hair:'#e8e2da', style:'bob', band:'#7fc8b6', glasses:true, top:'#9ad0c2', legs:'#5b6b7a', shoe:'#4a3a32', apron:'#ffffff', tag:'#3f9a8a', scale:0.95},
+  {npc:'tiago', name:'티아구', sex:'남', skin:'#e8b891', hair:'#2b2230', style:'curly', top:'#f2b24b', legs:'#4f6f8f', shoe:'#e56b6f', tag:'#d9822b', scale:0.8},
+  {npc:'rafael', name:'라파엘', sex:'남', skin:'#f0cdb2', hair:'#6b4430', style:'beanie', beanie:'#3f4a5c', top:'#c9443c', legs:'#e6d6b8', shoe:'#2d2d2d', backpack:'#5a3826', tag:'#c9443c', scale:1.0},
   {npc:'camila', name:'카밀라', sex:'여', skin:'#e7b98f', hair:'#4a2f25', style:'ponytail', tie:'#f2b24b', apron:'#ffffff', top:'#e07a5f', legs:'#3f4a5c', shoe:'#5b4636', tag:'#d9643f', scale:0.97},
 ];
 const PLAYABLE = CHARS.filter(c => !c.npc).length;
@@ -1433,7 +1470,7 @@ const lerpAngle = (a, b, t) => { let d = ((b - a + Math.PI) % (Math.PI * 2) + Ma
 
 class Avatar {
   constructor(ci, name, isMe){
-    this.isMe = isMe; this.pos = new THREE.Vector3(); this.ry = 0; this.walk = 0; this.moveAmt = 0; this.sit = 0; this.shot = null; this.t = Math.random() * 10; this.curSpeed = 0; this.sitTime = 0; this.perch = null; this.disposed = false; this.reading = -1; this.lantern = false; this.subText = '';
+    this.isMe = isMe; this.pos = new THREE.Vector3(); this.ry = 0; this.walk = 0; this.moveAmt = 0; this.sit = 0; this.shot = null; this.t = Math.random() * 10; this.curSpeed = 0; this.sitTime = 0; this.perch = null; this.disposed = false; this.reading = -1; this.lantern = false; this.subText = ''; this.held = ''; this.feather = false; this.kite = false;
     this.label = document.createElement('div'); this.label.className = 'tag' + (isMe ? ' me' : '');
     this.bubble = document.createElement('div'); this.bubble.className = 'bubble'; this.bubble.hidden = true;
     this.nameEl = document.createElement('div'); this.nameEl.className = 'name';
@@ -1450,7 +1487,7 @@ class Avatar {
   say(t){ this.bubble.textContent = t; this.bubble.hidden = false; this.bubble.style.animation = 'none'; void this.bubble.offsetWidth; this.bubble.style.animation = ''; this.sayUntil = clock + 7; }
   emote(k){
     if(k === 'heart') spawnHearts(this);
-    else this.shot = {k, t:0, dur:{wave:2.2, jump:0.65, feed:0.6, coin:0.75, dance:4, bubbles:1.6}[k] || 0.65};
+    else this.shot = {k, t:0, dur:{wave:2.2, jump:0.65, feed:0.6, coin:0.75, dance:4, bubbles:1.6, skip:0.75, orb:1.5, eat:1.2, smell:1.2, shake:1.0}[k] || 0.65};
   }
   update(dt, speed){
     this.t += dt;
@@ -1468,6 +1505,8 @@ class Avatar {
       if(this.reading >= 0){ armL = armR = -1.15; armLZ = -0.35; armRZ = 0.35; }
     }
     if(this.lantern && !(this.reading >= 0 && this.sit)){ armL = -0.55; armLZ = 0.15; }
+    if(this.kite && !this.sit){ armR = -1.9; armRZ = -0.2; }
+    else if(this.held && !(this.reading >= 0 && this.sit)){ armR = -0.75; armRZ = -0.05; }
     if(this.shot){
       const sh = this.shot; sh.t += dt;
       if(sh.k === 'wave'){ armRZ = -2.5 + Math.sin(sh.t * 12) * 0.35; armR = 0; }
@@ -1476,6 +1515,10 @@ class Avatar {
       if(sh.k === 'feed'){ armR = -1.4 * Math.sin(Math.PI * u); armRZ = -0.3; }
       if(sh.k === 'coin'){ armR = -2.5 * Math.sin(Math.PI * u); }
       if(sh.k === 'bubbles'){ armR = -1.5; armRZ = -0.1; }
+      if(sh.k === 'skip'){ armR = -1.2 * Math.sin(Math.PI * u); armRZ = -1.1 * Math.sin(Math.PI * u); }
+      if(sh.k === 'orb'){ armLZ = 1.3; armRZ = -1.3; armL = armR = -0.6; }
+      if(sh.k === 'eat' || sh.k === 'smell'){ armR = -2.1; armRZ = 0.45; }
+      if(sh.k === 'shake'){ armR = -1.6; armRZ = -0.3 + Math.sin(sh.t * 22) * 0.35; }
       if(sh.k === 'dance'){
         const w = sh.t * 8;
         armLZ = 2.3 + Math.sin(w) * 0.5; armRZ = -2.3 + Math.sin(w + Math.PI) * 0.5; armL = armR = 0;
@@ -1534,7 +1577,10 @@ addEventListener('keydown', e => {
   if(e.key === 'Escape'){ closePanels(); return; }
   if(reader.open && reader.book >= 0 && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')){ e.preventDefault(); turnPage(e.key === 'ArrowRight' ? 1 : -1); return; }
   const k = e.key.toLowerCase();
-  if(e.repeat && 'efrbtlpqm12345'.includes(k)) return;
+  if(e.repeat && 'efrbtlpqmihg12345'.includes(k)) return;
+  if(k === 'i'){ toggleBag(); return; }
+  if(k === 'h'){ respawn(); return; }
+  if(k === 'g'){ toggleTravel(); return; }
   if(k === 'm'){ toggleMusic(); return; }
   if(k === 'q'){ toggleQuests(); return; }
   if(k === 't'){ toggleReader(); return; }
@@ -1782,9 +1828,10 @@ function upsertPeer(p){
   r.av.reading = Math.round(num(pr.rd, -1, BOOKS.length - 1, -1));
   r.av.lantern = pr.ln === 1;
   r.av.crown = pr.cr === 1; r.av.title = pr.tt === 1;
+  r.av.held = (pr.hd === 'rose' || pr.hd === 'tart') ? pr.hd : ''; r.av.feather = pr.fw === 1; r.av.kite = pr.kt === 1; r.av.kiteTail = pr.kl === 1;
   const e = pr.e && typeof pr.e === 'object' ? pr.e : null;
   if(e && typeof e.i === 'number'){
-    if(r.emoI !== null && e.i !== r.emoI && ['wave', 'jump', 'heart', 'feed', 'coin', 'dance', 'bubbles'].includes(e.k)){ r.av.emote(e.k); emoteEffects(r.av, e.k, false); }
+    if(r.emoI !== null && e.i !== r.emoI && ['wave', 'jump', 'heart', 'feed', 'coin', 'dance', 'bubbles', 'skip', 'orb', 'eat', 'smell', 'shake'].includes(e.k)){ r.av.emote(e.k); emoteEffects(r.av, e.k, false); }
     r.emoI = e.i;
   }
   const s = pr.s && typeof pr.s === 'object' ? pr.s : null;
@@ -1889,7 +1936,7 @@ function pushPresence(){
   const st = entered ? {
     n:me.nick, c:me.ci,
     p:[+me.av.pos.x.toFixed(2), +me.av.pos.z.toFixed(2), +me.av.ry.toFixed(2)],
-    sit:me.sit, e:me.emo, s:me.said, rd:me.av.reading, ln:me.av.lantern ? 1 : 0, cr:me.av.crown ? 1 : 0, tt:me.av.title ? 1 : 0
+    sit:me.sit, e:me.emo, s:me.said, rd:me.av.reading, ln:me.av.lantern ? 1 : 0, cr:me.av.crown ? 1 : 0, tt:me.av.title ? 1 : 0, hd:me.av.held || '', fw:me.av.feather ? 1 : 0, kt:me.av.kite ? 1 : 0, kl:items.kitetail ? 1 : 0
   } : {p:null};
   const js = JSON.stringify(st);
   if(js === lastPresence) return;
@@ -1991,7 +2038,7 @@ function placeName(x, z){
   return '잔디밭';
 }
 function statusOf(av){
-  const ln = (av.lantern ? ' · 등불' : '') + (av.title ? ' · 명예 산책가' : av.crown ? ' · 꽃 화관' : '');
+  const ln = (av.lantern ? ' · 등불' : '') + (av.kite ? ' · 연 날리는 중' : '') + (av.title ? ' · 명예 산책가' : av.crown ? ' · 꽃 화관' : '');
   if(av.reading >= 0 && av.sit) return `『${BOOKS[av.reading].title}』 읽는 중` + ln;
   return statusCore(av) + ln;
 }
@@ -2156,6 +2203,14 @@ function emoteEffects(av, k, mine){
   if(k === 'feed') throwSeeds(av, mine);
   if(k === 'coin') tossCoin(av, mine);
   if(k === 'bubbles') blowBubbles(av);
+  if(k === 'skip') skipStone(av, mine);
+  if(k === 'orb'){ for(let i = 0; i < 3; i++) setTimeout(() => { if(!av.disposed) sparkleBurst(av.pos.x, 1.4, av.pos.z, RAINBOW, 16, 2); }, i * 250); sfx(av.pos.x, av.pos.z, SFX.chime); if(mine) bumpStat('orb'); }
+  if(k === 'eat' || k === 'smell') spawnHearts(av);
+  if(k === 'shake') sparkleBurst(av.pos.x, 1.5, av.pos.z, ['#ffd36e', '#ffffff'], 10, 0.8);
+  if(k === 'wave' && me.av && entered){
+    if(mine){ me.lastWave = clock; remotes.forEach(r => { if(clock - (r.av.lastWave || -9) < 2.5 && Math.hypot(r.av.pos.x - me.av.pos.x, r.av.pos.z - me.av.pos.z) < 3.5) highFive(r.av); }); }
+    else { av.lastWave = clock; if(clock - (me.lastWave || -9) < 2.5 && Math.hypot(av.pos.x - me.av.pos.x, av.pos.z - me.av.pos.z) < 3.5) highFive(av); }
+  }
   if(k === 'wave'){
     let shown = false;
     peacocks.forEach(p => { if(p.g.position.distanceTo(av.pos) < 6){ p.display = 1; p.displayT = 6; p.wait = 6; shown = true; } });
@@ -2940,7 +2995,10 @@ function toggleReader(){
 function shelfList(){ return BOOKS.map((b, i) => i).filter(i => reader.mode === 'store' ? BOOKS[i].shop : (!BOOKS[i].shop || bag.includes(i))); }
 function startReading(i){
   if(!me.sit) toggleSit();
-  reader.book = i; reader.page = 0; me.av.reading = i;
+  let pages = {}; try{ pages = JSON.parse(localStorage.getItem('cp.pages') || '{}'); }catch(e){}
+  const resume = items.bookmark && itemOpts.bookmark && pages[i] > 0 && pages[i] < BOOKS[i].pages.length;
+  reader.book = i; reader.page = resume ? pages[i] : 0; me.av.reading = i;
+  if(resume) toast(`책갈피 덕분에 ${pages[i] + 1}쪽부터 이어 읽어요`);
   renderReader();
 }
 function stopReading(){ if(me.av) me.av.reading = -1; if(reader.book >= 0){ reader.book = -1; } }
@@ -2948,9 +3006,10 @@ function closeReader(){ reader.open = false; stopReading(); renderReader(); }
 function turnPage(d){
   if(reader.book < 0) return;
   const b = BOOKS[reader.book], np = reader.page + d;
-  if(np >= b.pages.length){ toast(`『${b.title}』을 다 읽었어요`); bumpStat('read'); closeReader(); return; }
+  if(np >= b.pages.length){ toast(`『${b.title}』을 다 읽었어요`); bumpStat('read'); try{ const pg = JSON.parse(localStorage.getItem('cp.pages') || '{}'); delete pg[reader.book]; localStorage.setItem('cp.pages', JSON.stringify(pg)); }catch(e){} closeReader(); return; }
   if(np < 0) return;
   reader.page = np; flipPage(me.av); renderReader();
+  try{ const pg = JSON.parse(localStorage.getItem('cp.pages') || '{}'); pg[reader.book] = np; localStorage.setItem('cp.pages', JSON.stringify(pg)); }catch(e){}
 }
 $('#rprev').addEventListener('click', () => turnPage(-1));
 $('#rnext').addEventListener('click', () => turnPage(1));
@@ -3004,6 +3063,7 @@ function updateProps(av, dt){
   }
   if(av.crown && !pr.crown) pr.crown = makeCrown(av);
   if(pr.crown) pr.crown.visible = !!av.crown;
+  updateItemProps(av, dt);
   const sub = reading ? `『${BOOKS[av.reading].title}』 읽는 중` : (av.role || '');
   if(sub !== av.subText){ av.subText = sub; av.sub.textContent = sub; av.sub.hidden = !sub; }
 }
@@ -3097,6 +3157,7 @@ function takePhoto(){
   g.fillStyle = '#3f7a57'; g.fillText(cap, 26 * k, c.height - 29 * k);
   let url = '';
   try{ url = c.toDataURL('image/png'); }catch(e){ toast('사진을 만들 수 없었어요'); return; }
+  afterPhoto(c);
   const fl = $('#flash'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
   sfx(me.av.pos.x, me.av.pos.z, SFX.shutter);
   if(me.av.pos.z > 29 && me.av.pos.x > -26 && me.av.pos.x < 26 && (phaseName(gameHour()) === '노을' || phaseName(gameHour()) === '밤')) bumpStat('photoEve');
@@ -3316,6 +3377,7 @@ function openDialog(n){
     txt.textContent = q.offer; yes.textContent = '좋아요, 해 볼게요'; no.textContent = '다음에 할게요';
     yes.onclick = () => {
       qs[q.id] = {s:1, b:Object.assign({}, stats)}; saveQs();
+      if(q.onAccept) q.onAccept();
       txt.textContent = q.hint; yes.hidden = true; no.textContent = '알겠어요';
       logLine('', `새 부탁: ${q.title} (${q.goal})`, '', true);
       questTick();
@@ -3324,6 +3386,7 @@ function openDialog(n){
     txt.textContent = q.done; yes.textContent = `${q.reward} 받기`; no.hidden = true;
     yes.onclick = () => {
       qs[q.id].s = 3; saveQs();
+      giveItem(REWARD_ITEM[q.id]);
       n.av.emote('heart');
       const c = stampCount();
       logLine('', `${q.name}에게 '${q.reward}'을(를) 받았어요. 도장 ${c}/${QUESTS.length}`, '', true);
@@ -3337,7 +3400,7 @@ function openDialog(n){
     const [a, b] = q.prog(qs[q.id].b);
     txt.textContent = `${q.hint} (${a}/${b})`; yes.hidden = true; no.textContent = '알겠어요';
   } else {
-    txt.textContent = `${q.reward}, 잘 간직하고 있지요? ${GREET[phaseName(gameHour())]} 천천히 둘러보다 가요.`; yes.hidden = true; no.textContent = '고마워요';
+    txt.textContent = questExtra(q) || `${q.reward}, 잘 간직하고 있지요? ${GREET[phaseName(gameHour())]} 천천히 둘러보다 가요.`; yes.hidden = true; no.textContent = '고마워요';
   }
   no.onclick = () => closeDialog();
   $('#npcDlg').hidden = false;
@@ -3471,6 +3534,9 @@ function closeExtraPanels(){
   if(dlg){ closeDialog(); return true; }
   if(!$('#quests').hidden){ toggleQuests(false); return true; }
   if(!$('#musicBox').hidden){ toggleMusicBox(false); return true; }
+  if(!$('#albumBox').hidden){ toggleAlbum(false); return true; }
+  if(!$('#bag').hidden){ toggleBag(false); return true; }
+  if(!$('#travel').hidden){ toggleTravel(false); return true; }
   if(!$('#trMenu').classList.contains('open')) return false;
   $('#trMenu').classList.remove('open'); return true;
 }
@@ -3492,7 +3558,6 @@ tapButton($('#padFeed'), () => doEmote('feed'));
 tapButton($('#btnMenu'), () => $('#trMenu').classList.toggle('open'));
 document.querySelectorAll('#trMenu .tbtn:not(#btnMenu)').forEach(b => b.addEventListener('click', () => $('#trMenu').classList.remove('open')));
 
-spawnNPCs();
 
 for(const [x, y, z] of shopLights){ const sp = new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex, color:'#ffd38a', transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, opacity:0.55})); sp.position.set(x, y, z); sp.scale.setScalar(2.2); scene.add(sp); }
 /* ---------------- park music: five original tracks, played live by the browser (no audio files) ---------------- */
@@ -3759,6 +3824,434 @@ document.addEventListener('visibilitychange', () => {
 });
 renderMusic();
 
+/* ================= getting unstuck: back to start + quick travel ================= */
+const PLACES = [
+  ['전망 테라스 (처음 자리)', 0, 35, Math.PI], ['장미 정원', -4, 13, Math.PI], ['분수 연못', 18, 19.5, Math.PI],
+  ['보리수 길', -22, 12, Math.PI], ['렐루 서점', -99, 0, -Math.PI / 2], ['피크닉 잔디밭', 74, 2, Math.PI / 2],
+  ['강 전망 데크', 69, 44, 0], ['유리 온실', 80, -25, Math.PI],
+];
+function teleport(x, z, ry, label){
+  if(!me.av || !entered) return;
+  if(me.scope) exitScope();
+  if(reader.open) closeReader();
+  if(dlg) closeDialog();
+  me.sit = 0; me.av.sit = 0; me.follow = null;
+  me.av.pos.set(x + (Math.random() - 0.5) * 1.5, 0, z + (Math.random() - 0.5) * 1.5); me.av.ry = ry;
+  cam.yaw = ry + Math.PI; cam.tx = me.av.pos.x; cam.tz = me.av.pos.z;
+  const fl = $('#flash'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
+  toast(label ? `${label}(으)로 이동했어요` : '처음 자리로 돌아왔어요');
+  $('#travel').hidden = true;
+}
+function respawn(){ teleport(PLACES[0][1], PLACES[0][2], PLACES[0][3]); }
+function renderTravel(){
+  const list = $('#tlist'); list.textContent = '';
+  PLACES.forEach(([name, x, z, ry], i) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'mtrack';
+    const n = document.createElement('b'); n.textContent = name;
+    const d = document.createElement('small'); d.textContent = i === 0 ? '어딘가에 끼었을 때 여기로 돌아와요 (H)' : (me.av ? `지금 위치에서 ${Math.round(Math.hypot(x - me.av.pos.x, z - me.av.pos.z))}m` : '');
+    b.append(n, d);
+    b.addEventListener('click', () => i === 0 ? respawn() : teleport(x, z, ry, name));
+    list.append(b);
+  });
+}
+function toggleTravel(force){
+  const el = $('#travel'), open = force !== undefined ? force : el.hidden;
+  el.hidden = !open; if(open) renderTravel();
+}
+$('#btnHome').addEventListener('click', () => respawn());
+$('#btnTravel').addEventListener('click', () => toggleTravel());
+
+/* ================= sparkles (shared little effect) ================= */
+const sparkles = [];
+function sparkleBurst(x, y, z, colors, n, spread){
+  for(let i = 0; i < (n || 14); i++){
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex, color:colors[i % colors.length], transparent:true, depthWrite:false, blending:THREE.AdditiveBlending}));
+    s.position.set(x, y, z); s.scale.setScalar(0.35 + Math.random() * 0.3); scene.add(s);
+    const a = Math.random() * 6.28, sp = (spread || 1.2) * (0.4 + Math.random() * 0.8);
+    sparkles.push({s, vx:Math.cos(a) * sp, vz:Math.sin(a) * sp, vy:0.8 + Math.random() * 1.6, t:0, life:1 + Math.random() * 0.8});
+  }
+}
+function updateSparkles(dt){
+  for(let i = sparkles.length - 1; i >= 0; i--){
+    const p = sparkles[i]; p.t += dt;
+    p.s.position.x += p.vx * dt; p.s.position.y += p.vy * dt; p.s.position.z += p.vz * dt; p.vy -= 0.6 * dt;
+    p.s.material.opacity = Math.max(0, 1 - p.t / p.life);
+    if(p.t > p.life){ scene.remove(p.s); p.s.material.dispose(); sparkles.splice(i, 1); }
+  }
+}
+const RAINBOW = ['#ff8fa3', '#ffd36e', '#a8f0a0', '#8fd3ff', '#c7a7f0'];
+SFX.chime = (t, v) => { [0, 4, 7, 12].forEach((n, i) => osc(t + i * 0.08, 'sine', [[0, 880 * Math.pow(2, n / 12)], [0.3, 880 * Math.pow(2, n / 12)]], 0.35, 0.04 * v)); };
+
+/* ================= the bag: quest rewards you can use ================= */
+const ITEMS = {
+  rose:{name:'첫 장미', from:'마르타', desc:'정원에서 가장 먼저 핀 장미예요. 손에 들면 다른 사람에게도 보여요.', acts:[['hold', '손에 들기'], ['smell', '향기 맡기']]},
+  pebble:{name:'반짝이는 조약돌', from:'소피아', desc:'납작하고 매끈한 조약돌. 연못 근처에서 물수제비를 떠 보세요.', acts:[['skip', '물수제비 뜨기']]},
+  sketch:{name:'테라스 스케치', from:'이네스', desc:'이네스가 그려 준 테라스 풍경 스케치예요.', acts:[['view', '펼쳐 보기']]},
+  feather:{name:'부엉이 깃털', from:'안토니오', desc:'밤의 손님이 남긴 깃털. 머리에 꽂을 수 있어요.', acts:[['wear', '머리에 꽂기']]},
+  knot:{name:'행운의 매듭', from:'주앙', desc:'뱃사람들의 행운 매듭. 흔들면 오늘의 운을 알려 줘요.', acts:[['shake', '흔들어 보기']]},
+  bookmark:{name:'렐루 책갈피', from:'루이스', desc:'꽂아 두면 책을 덮었다 다시 펼쳐도 읽던 쪽부터 이어 읽어요.', acts:[['mark', '책갈피 쓰기']]},
+  tart:{name:'따끈한 에그타르트', from:'카밀라', desc:'바삭한 파이에 달콤한 커스터드. 카밀라에게 가면 하나씩 더 구워 줘요.', acts:[['eat', '먹기'], ['hold', '손에 들기'], ['crumb', '비둘기와 나눠 먹기']]},
+  orb:{name:'작은 수정 구슬', from:'올가', desc:'옛 수정궁의 조각으로 만든 구슬. 빛내면 무지개 빛이 퍼져요.', acts:[['orb', '빛내기']]},
+  kite:{name:'바람개비 연', from:'티아구', desc:'바람이 잘 부는 동쪽 잔디밭에서 날리면 높이 올라가요.', acts:[['kite', '날리기']]},
+  kitetail:{name:'무지개 연꼬리', from:'티아구', desc:'연에 달린 무지개 꼬리. 가지고 있으면 연이 더 화려해져요.', acts:[]},
+  album:{name:'공원 사진첩', from:'라파엘', desc:'공원에서 찍은 사진이 모이는 사진첩이에요 (최근 9장).', acts:[['album', '펼쳐 보기']]},
+};
+const REWARD_ITEM = {marta:'rose', sofia:'pebble', ines:'sketch', antonio:'feather', joao:'knot', luis:'bookmark', camila:'tart', olga:'orb', tiago:'kitetail', rafael:'album'};
+let items = {};
+try{ items = JSON.parse(localStorage.getItem('cp.items') || '{}') || {}; }catch(e){ items = {}; }
+let itemOpts = {bookmark:true};
+try{ Object.assign(itemOpts, JSON.parse(localStorage.getItem('cp.itemopts') || '{}')); }catch(e){}
+const saveItems = () => { try{ localStorage.setItem('cp.items', JSON.stringify(items)); localStorage.setItem('cp.itemopts', JSON.stringify(itemOpts)); }catch(e){} };
+function giveItem(id, n){
+  if(!ITEMS[id]) return;
+  items[id] = (items[id] || 0) + (n || 1); saveItems();
+  toast(`가방에 '${ITEMS[id].name}'을(를) 넣었어요 (I)`);
+  if(!$('#bag').hidden) renderBag();
+}
+function useItem(id, act){
+  const av = me.av; if(!av || !items[id]) return;
+  if(act === 'hold'){ av.held = av.held === id ? '' : id; toast(av.held ? `${ITEMS[id].name}을(를) 손에 들었어요` : '손에 든 것을 가방에 넣었어요'); }
+  else if(act === 'smell'){ sayMine('음~ 장미 향기가 정말 좋다'); doEmote('smell'); }
+  else if(act === 'skip'){ if(!nearPond(av)){ toast('연못 근처에서 던질 수 있어요'); return; } doEmote('skip'); }
+  else if(act === 'view'){ showImage(sketchImage(), '테라스 스케치 · 이네스'); }
+  else if(act === 'wear'){ av.feather = !av.feather; toast(av.feather ? '부엉이 깃털을 머리에 꽂았어요' : '깃털을 가방에 넣었어요'); }
+  else if(act === 'shake'){
+    if(clock < (me.knotCD || 0)) return; me.knotCD = clock + 4;
+    doEmote('shake');
+    const luck = ['오늘의 운: 맑음. 좋아하는 길로 걸어 보세요.', '오늘의 운: 무지개. 새 친구를 만날 것 같아요.', '오늘의 운: 산들바람. 벤치에서 쉬어 가면 좋아요.', '오늘의 운: 햇살. 먼저 인사하면 좋은 일이 생겨요.', '오늘의 운: 별빛. 밤 산책에서 행운을 만나요.', '오늘의 운: 달콤함. 에그타르트가 행운을 불러요.'];
+    logLine('', luck[Math.floor(Math.random() * luck.length)], '', true);
+  }
+  else if(act === 'mark'){ itemOpts.bookmark = !itemOpts.bookmark; saveItems(); toast(itemOpts.bookmark ? '책갈피를 꽂았어요. 읽던 쪽부터 이어 읽어요' : '책갈피를 뺐어요. 책을 처음부터 읽어요'); }
+  else if(act === 'eat'){
+    items.tart--; if(items.tart <= 0) delete items.tart; if(av.held === 'tart' && !items.tart) av.held = '';
+    saveItems(); sayMine('냠! 바삭하고 달콤해'); doEmote('eat'); bumpStat('tart');
+  }
+  else if(act === 'crumb'){
+    items.tart--; if(items.tart <= 0) delete items.tart; if(av.held === 'tart' && !items.tart) av.held = '';
+    saveItems(); doEmote('feed'); sayMine('타르트 부스러기 나눠 줄게');
+  }
+  else if(act === 'orb'){ if(clock < (me.orbCD || 0)) return; me.orbCD = clock + 2; doEmote('orb'); }
+  else if(act === 'kite'){
+    if(inShop(av.pos.x, av.pos.z)){ toast('실내에서는 연을 날릴 수 없어요'); return; }
+    av.kite = !av.kite; toast(av.kite ? (av.pos.x > 62 ? '연이 바람을 타고 올라가요!' : '연을 날려요. 동쪽 잔디밭이 바람이 제일 좋아요') : '연을 거두었어요');
+  }
+  else if(act === 'album'){ toggleAlbum(true); }
+  renderBag();
+}
+function sayMine(t){ me.said = {t, i:me.said.i + 1}; me.av.say(t); logLine(me.nick, t, CHARS[me.ci].tag); }
+function actLabel(id, act, label){
+  const av = me.av;
+  if(act === 'hold' && av && av.held === id) return '가방에 넣기';
+  if(act === 'wear' && av && av.feather) return '깃털 빼기';
+  if(act === 'mark') return itemOpts.bookmark ? '책갈피 빼기' : '책갈피 쓰기';
+  if(act === 'kite' && av && av.kite) return '연 거두기';
+  return label;
+}
+function renderBag(){
+  const list = $('#blist2'); list.textContent = '';
+  const ids = Object.keys(ITEMS).filter(id => items[id] > 0);
+  $('#bagcount').textContent = `${ids.length}가지`;
+  if(!ids.length){
+    const p = document.createElement('p'); p.className = 'pfoot';
+    p.textContent = '아직 가방이 비어 있어요. 머리 위에 ! 가 뜬 사람에게 말을 걸어 부탁을 들어주면 선물을 받아요.';
+    list.append(p);
+  }
+  for(const id of ids){
+    const it = ITEMS[id];
+    const d = document.createElement('div'); d.className = 'item';
+    const ic = document.createElement('div'); ic.className = 'iicon'; ic.style.background = ITEM_COLOR[id] || '#dcefe2'; ic.textContent = ({rose:'꽃', pebble:'돌', sketch:'그', feather:'깃', knot:'매', bookmark:'책', tart:'타', orb:'구', kite:'연', kitetail:'꼬', album:'첩'})[id] || it.name[0];
+    const tx = document.createElement('div'); tx.className = 'itext';
+    const n = document.createElement('b'); n.textContent = it.name + (items[id] > 1 ? ` ×${items[id]}` : '');
+    const s = document.createElement('small'); s.textContent = `${it.from}의 선물 · ${it.desc}`;
+    tx.append(n, s);
+    const acts = document.createElement('div'); acts.className = 'iacts';
+    for(const [act, label] of it.acts){
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'fbtn'; b.textContent = actLabel(id, act, label);
+      b.addEventListener('click', () => useItem(id, act));
+      acts.append(b);
+    }
+    d.append(ic, tx, acts); list.append(d);
+  }
+  $('#bagbooks').textContent = `책가방에 책 ${shelfCountBag()}권 · T로 꺼내 읽기`;
+}
+const ITEM_COLOR = {rose:'#f7c1cc', pebble:'#d9e3ea', sketch:'#f4ead2', feather:'#e3d3bd', knot:'#f2dca8', bookmark:'#f0c9c9', tart:'#ffe2a0', orb:'#d6ecff', kite:'#ffd3b5', kitetail:'#e6d6ff', album:'#d9efe3'};
+function shelfCountBag(){ return BOOKS.filter((b, i) => !b.shop || bag.includes(i)).length; }
+function toggleBag(force){
+  const el = $('#bag'), open = force !== undefined ? force : el.hidden;
+  el.hidden = !open; $('#btnBag').setAttribute('aria-expanded', String(open));
+  if(open) renderBag();
+}
+$('#btnBag').addEventListener('click', () => toggleBag());
+$('#bagbooks').addEventListener('click', () => { toggleBag(false); toggleReader(); });
+
+/* image viewer reuse (photo panel) */
+function showImage(url, caption){
+  $('#photoImg').src = url;
+  const a = $('#photoSave'); a.href = url; a.download = `crystal-park-${Date.now()}.png`;
+  $('#photo').hidden = false;
+  if(caption) toast(caption);
+}
+function sketchImage(){
+  const c = document.createElement('canvas'); c.width = 720; c.height = 480;
+  const g = c.getContext('2d'); const r = mulberry32(42);
+  g.fillStyle = '#f7f1e3'; g.fillRect(0, 0, 720, 480);
+  g.strokeStyle = 'rgba(70,60,50,.75)'; g.lineCap = 'round';
+  const line = (pts, w) => { g.lineWidth = w || 1.6; g.beginPath(); pts.forEach(([x, y], i) => { const jx = x + (r() - 0.5) * 2, jy = y + (r() - 0.5) * 2; i ? g.lineTo(jx, jy) : g.moveTo(jx, jy); }); g.stroke(); };
+  line([[0, 300], [180, 270], [380, 285], [560, 255], [720, 270]], 2);
+  for(let x = 10; x < 720; x += 28 + r() * 20){ const y = 250 - r() * 70, w = 18 + r() * 14, h = 16 + r() * 20; line([[x, y + h], [x, y], [x + w, y], [x + w, y + h]]); line([[x - 3, y], [x + w / 2, y - 12 - r() * 6], [x + w + 3, y]], 1.8); }
+  g.strokeStyle = 'rgba(70,90,110,.5)';
+  for(let y = 315; y < 380; y += 7){ line([[r() * 60, y], [200 + r() * 200, y + (r() - 0.5) * 3], [500 + r() * 220, y]], 1); }
+  g.strokeStyle = 'rgba(70,60,50,.8)';
+  line([[60, 230], [60, 330]], 2); line([[60, 230], [300, 205], [380, 210]], 3);
+  for(let i = 0; i < 5; i++) line([[90 + i * 60, 225 - i * 5], [90 + i * 60, 330]], 1.2);
+  line([[560, 430], [700, 430]], 2.4); for(let x = 560; x <= 700; x += 14) line([[x, 395], [x, 440]], 1.4); line([[556, 395], [704, 395]], 2.4);
+  g.strokeStyle = 'rgba(230,150,90,.6)'; g.lineWidth = 2; g.beginPath(); g.arc(560, 120, 34, 0, 6.29); g.stroke();
+  for(let i = 0; i < 6; i++){ const a = i / 6 * 6.28; line([[560 + Math.cos(a) * 44, 120 + Math.sin(a) * 44], [560 + Math.cos(a) * 58, 120 + Math.sin(a) * 58]], 1.4); }
+  g.strokeStyle = 'rgba(70,60,50,.55)'; line([[220, 110], [235, 100], [250, 110]], 1.5); line([[270, 90], [282, 82], [294, 90]], 1.5);
+  g.fillStyle = 'rgba(70,60,50,.8)'; g.font = 'italic 22px Georgia, serif'; g.fillText('Inês · Jardins do Palácio de Cristal', 24, 462);
+  return c.toDataURL('image/png');
+}
+
+/* ================= photo album ================= */
+let album = [];
+try{ album = JSON.parse(localStorage.getItem('cp.album') || '[]'); if(!Array.isArray(album)) album = []; }catch(e){ album = []; }
+function afterPhoto(c){
+  // peacock photo check
+  for(const p of peacocks){
+    if((p.tailRoot.userData.k || 0) < 0.6) continue;
+    const v = new THREE.Vector3(p.g.position.x, 0.9, p.g.position.z);
+    if(v.distanceTo(camera.position) > 16) continue;
+    v.project(camera);
+    if(v.z < 1 && Math.abs(v.x) < 0.9 && Math.abs(v.y) < 0.9){ bumpStat('photoPeacock'); toast('공작새가 꼬리를 펼친 순간을 찍었어요!'); break; }
+  }
+  try{
+    const t = document.createElement('canvas'); t.width = 360; t.height = Math.round(360 * c.height / c.width);
+    t.getContext('2d').drawImage(c, 0, 0, t.width, t.height);
+    album.unshift({img:t.toDataURL('image/jpeg', 0.72), when:clockLabel(gameHour()) + ' ' + phaseName(gameHour())});
+    album = album.slice(0, 9);
+    localStorage.setItem('cp.album', JSON.stringify(album));
+  }catch(e){ album = album.slice(0, 4); }
+}
+function toggleAlbum(force){
+  const el = $('#albumBox'), open = force !== undefined ? force : el.hidden;
+  el.hidden = !open;
+  if(!open) return;
+  const g = $('#agrid'); g.textContent = '';
+  if(!album.length){ const p = document.createElement('p'); p.className = 'pfoot'; p.textContent = '아직 사진이 없어요. P를 눌러 공원을 찍어 보세요.'; g.append(p); }
+  album.forEach(a => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'athumb';
+    const im = document.createElement('img'); im.src = a.img; im.alt = `${a.when}에 찍은 사진`;
+    const s = document.createElement('small'); s.textContent = a.when;
+    b.append(im, s); b.addEventListener('click', () => showImage(a.img));
+    g.append(b);
+  });
+}
+$('#aclose').addEventListener('click', () => toggleAlbum(false));
+
+/* ================= item props on avatars ================= */
+function updateItemProps(av, dt){
+  const pr = av.props;
+  const want = av.held || '';
+  if(pr.heldId !== want){
+    if(pr.heldMesh){ pr.heldMesh.parent.remove(pr.heldMesh); pr.heldMesh = null; }
+    pr.heldId = want;
+    if(want){
+      const g = new THREE.Group(); g.position.set(0, -0.37, 0.05);
+      if(want === 'rose'){
+        add(new THREE.CylinderGeometry(0.012, 0.012, 0.34, 5), '#4f8f4f', 0, 0.14, 0.03, g, {cast:false}).rotation.x = 0.3;
+        for(let i = 0; i < 5; i++){ const a = i / 5 * 6.28; add(new THREE.SphereGeometry(0.04, 8, 6), '#d9334a', Math.cos(a) * 0.03, 0.31, 0.08 + Math.sin(a) * 0.03, g, {cast:false}); }
+        add(new THREE.SphereGeometry(0.035, 8, 6), '#b8233a', 0, 0.34, 0.08, g, {cast:false});
+      } else if(want === 'tart'){
+        add(new THREE.CylinderGeometry(0.075, 0.06, 0.04, 14), '#c98a3c', 0, 0.02, 0.06, g, {cast:false});
+        add(new THREE.CylinderGeometry(0.06, 0.06, 0.015, 14), '#f7c948', 0, 0.045, 0.06, g, {cast:false});
+        add(new THREE.SphereGeometry(0.02, 6, 4), '#a8551f', 0.015, 0.055, 0.07, g, {cast:false});
+      }
+      av.p.arms[1].add(g); pr.heldMesh = g;
+    }
+  }
+  if(av.feather && !pr.feather){
+    const f = new THREE.Group(); f.position.set(0.3, 0.28, -0.05); f.rotation.set(0.2, 0, -0.5);
+    const blade = add(new THREE.SphereGeometry(1, 10, 6), '#a07850', 0, 0.16, 0, f, {cast:false}); blade.scale.set(0.045, 0.2, 0.012);
+    for(let i = 0; i < 3; i++) add(new THREE.BoxGeometry(0.08, 0.012, 0.014), '#5a3d28', 0, 0.06 + i * 0.09, 0.006, f, {cast:false});
+    av.p.head.add(f); pr.feather = f;
+  }
+  if(pr.feather) pr.feather.visible = !!av.feather;
+  // kite
+  const flying = !!av.kite && !inShop(av.pos.x, av.pos.z);
+  if(flying && !pr.kite){
+    const k = new THREE.Group();
+    const shape = new THREE.Shape(); shape.moveTo(0, 0.9); shape.lineTo(0.6, 0); shape.lineTo(0, -1.1); shape.lineTo(-0.6, 0); shape.closePath();
+    const body = new THREE.Mesh(new THREE.ShapeGeometry(shape), new THREE.MeshBasicMaterial({color:'#e56b6f', side:THREE.DoubleSide}));
+    k.add(body);
+    const cross = new THREE.Mesh(new THREE.ShapeGeometry((() => { const s2 = new THREE.Shape(); s2.moveTo(0, 0.9); s2.lineTo(0.6, 0); s2.lineTo(0, 0); s2.closePath(); return s2; })()), new THREE.MeshBasicMaterial({color:'#ffd36e', side:THREE.DoubleSide}));
+    cross.position.z = 0.01; k.add(cross);
+    const tail = [];
+    for(let i = 0; i < 8; i++){ const t = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.16), new THREE.MeshBasicMaterial({color:RAINBOW[i % 5], side:THREE.DoubleSide})); t.visible = false; k.add(t); tail.push(t); }
+    scene.add(k);
+    const lineGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]);
+    const line = new THREE.Line(lineGeo, new THREE.LineBasicMaterial({color:'#f4efe6'})); scene.add(line);
+    pr.kite = {k, tail, line, pos:new THREE.Vector3(av.pos.x, 2, av.pos.z), t:Math.random() * 10};
+  }
+  if(pr.kite){
+    const K = pr.kite;
+    K.k.visible = K.line.visible = flying;
+    if(flying){
+      K.t += dt;
+      const windy = av.pos.x > 62 ? 1 : 0.6;
+      const tx = av.pos.x + Math.sin(K.t * 0.5) * 2, ty = 4 + 7 * windy + Math.sin(K.t * 0.8) * 0.8, tz = av.pos.z + 7 + Math.cos(K.t * 0.4) * 1.5;
+      K.pos.x += (tx - K.pos.x) * Math.min(1, dt * 1.2); K.pos.y += (ty - K.pos.y) * Math.min(1, dt * 0.8); K.pos.z += (tz - K.pos.z) * Math.min(1, dt * 1.2);
+      K.k.position.copy(K.pos);
+      K.k.lookAt(av.pos.x, K.pos.y - 2, av.pos.z); K.k.rotateZ(Math.sin(K.t * 2.2) * 0.25);
+      const rainbow = av.isMe ? !!items.kitetail : !!av.kiteTail;
+      K.tail.forEach((t, i) => { t.visible = rainbow; t.position.set(Math.sin(K.t * 3 + i * 0.7) * 0.15 * i, -1.2 - i * 0.24, 0); t.rotation.z = Math.sin(K.t * 3 + i) * 0.5; });
+      const hp = av.p.arms[1].localToWorld(new THREE.Vector3(0, -0.36, 0));
+      const arr = K.line.geometry.attributes.position.array;
+      arr[0] = hp.x; arr[1] = hp.y; arr[2] = hp.z; arr[3] = K.pos.x; arr[4] = K.pos.y - 1; arr[5] = K.pos.z;
+      K.line.geometry.attributes.position.needsUpdate = true;
+    } else K.pos.set(av.pos.x, 2, av.pos.z);
+  }
+}
+
+/* ================= stone skipping ================= */
+const stones = [];
+function skipStone(av, mine){
+  const vx = POND.x - av.pos.x, vz = POND.z - av.pos.z, L = Math.hypot(vx, vz) || 1;
+  const dx = vx / L, dz = vz / L;
+  const r = Math.random(), hops = r < 0.15 ? 1 : r < 0.35 ? 2 : r < 0.6 ? 3 : r < 0.8 ? 4 : r < 0.93 ? 5 : r < 0.98 ? 6 : 8;
+  const m = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.02, 10), M('#c9d3da')); m.visible = false; scene.add(m);
+  const startD = Math.max(0, L - 7.1);
+  const pts = []; let d = startD + 1.4, len = 2.4;
+  for(let i = 0; i < hops; i++){ d += len; len *= 0.72; pts.push(d); }
+  stones.push({m, av, dx, dz, sx:av.pos.x, sz:av.pos.z, pts, i:-1, t:-0.3, mine, hops, from:startD});
+}
+function updateStones(dt){
+  for(let s = stones.length - 1; s >= 0; s--){
+    const st = stones[s]; st.t += dt;
+    if(st.t < 0) continue;
+    st.m.visible = true;
+    const seg = st.i < 0 ? 0.5 : 0.32 * Math.pow(0.85, st.i);
+    const a = st.i < 0 ? 0 : st.pts[st.i], b = st.pts[st.i + 1] !== undefined ? st.pts[st.i + 1] : null;
+    const from = st.i < 0 ? 0.4 : a, to = st.i < 0 ? st.pts[0] : b;
+    const u = Math.min(1, st.t / seg);
+    const dist = from + (to - from) * u, h = st.i < 0 ? 1.1 * (1 - u) + Math.sin(Math.PI * u) * 0.5 + 0.1 * u : Math.sin(Math.PI * u) * 0.35 * Math.pow(0.8, st.i) + 0.1;
+    st.m.position.set(st.sx + st.dx * dist, h, st.sz + st.dz * dist);
+    st.m.rotation.y += dt * 20;
+    if(u >= 1){
+      st.i++; st.t = 0;
+      const px = st.sx + st.dx * to, pz = st.sz + st.dz * to;
+      const inWater = Math.hypot(px - POND.x, pz - POND.z) < 7;
+      if(inWater) splash(px, pz);
+      if(st.i >= st.pts.length - 1 || !inWater){
+        scene.remove(st.m); stones.splice(s, 1);
+        if(st.mine){
+          const n = st.pts.length;
+          if(n > (stats.bestSkip || 0)){ stats.bestSkip = n; try{ localStorage.setItem('cp.stats', JSON.stringify(stats)); }catch(e){} }
+          toast(n >= 6 ? `와! 물수제비 ${n}번! (최고 ${stats.bestSkip}번)` : `물수제비 ${n}번 (최고 ${stats.bestSkip}번)`);
+          bumpStat('skip');
+        }
+      }
+    }
+  }
+}
+
+/* ================= crystal shards (exploration) ================= */
+const SHARDS = [[0, -36.5], [31, -9.6], [-22, -51], [-11.5, 27.5], [-109.5, 4.5], [-95, 5.6], [72.6, 51.2], [87, 18]];
+let shardsGot = [];
+try{ shardsGot = JSON.parse(localStorage.getItem('cp.shards') || '[]'); if(!Array.isArray(shardsGot)) shardsGot = []; }catch(e){ shardsGot = []; }
+const shardMeshes = SHARDS.map(([x, z], i) => {
+  const g = new THREE.Group(); g.position.set(x, 0.9, z); scene.add(g);
+  const m = new THREE.Mesh(new THREE.OctahedronGeometry(0.28, 0), new THREE.MeshBasicMaterial({color:'#bfe9ff', transparent:true, opacity:0.85}));
+  m.scale.set(0.8, 1.3, 0.8); g.add(m);
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex, color:'#a8dcff', transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, opacity:0.7}));
+  s.scale.setScalar(1.6); g.add(s);
+  g.visible = !shardsGot.includes(i);
+  return g;
+});
+function updateShards(){
+  for(let i = 0; i < shardMeshes.length; i++){
+    const g = shardMeshes[i]; if(!g.visible) continue;
+    g.rotation.y = clock * 1.4 + i; g.position.y = 0.9 + Math.sin(clock * 2 + i) * 0.12;
+    if(me.av && entered && Math.hypot(me.av.pos.x - g.position.x, me.av.pos.z - g.position.z) < 1.3){
+      g.visible = false; shardsGot.push(i);
+      try{ localStorage.setItem('cp.shards', JSON.stringify(shardsGot)); }catch(e){}
+      sparkleBurst(g.position.x, g.position.y, g.position.z, ['#bfe9ff', '#ffffff', '#c7a7f0'], 16);
+      sfx(g.position.x, g.position.z, SFX.chime);
+      toast(shardsGot.length >= SHARDS.length ? '수정 조각을 모두 모았어요! 올가에게 가 보세요' : `수정 조각을 찾았어요 (${shardsGot.length}/${SHARDS.length})`);
+      questTick();
+    }
+  }
+}
+
+/* ================= together: high five, bench mates ================= */
+let hiCD = {};
+function highFive(other){
+  const key = other.name; if(clock < (hiCD[key] || 0)) return; hiCD[key] = clock + 5;
+  const mx = (me.av.pos.x + other.pos.x) / 2, mz = (me.av.pos.z + other.pos.z) / 2;
+  sparkleBurst(mx, 1.6, mz, ['#ffd36e', '#ffffff', '#ff8fa3'], 18, 1.6);
+  sfx(mx, mz, SFX.chime);
+  toast(`${other.name}님과 하이파이브!`);
+  bumpStat('highfive');
+}
+let mateT = 0;
+function checkBenchMates(dt){
+  mateT -= dt; if(mateT > 0) return; mateT = 1;
+  remotes.forEach(r => {
+    const close = me.av && entered && me.sit === 1 && r.av.sit === 1 && Math.hypot(r.av.pos.x - me.av.pos.x, r.av.pos.z - me.av.pos.z) < 1.15;
+    if(close && !r.mate){ r.mate = true; spawnHearts(me.av); spawnHearts(r.av); toast(`${r.av.name}님과 나란히 앉았어요`); bumpStat('benchmate'); }
+    if(!close) r.mate = false;
+  });
+}
+
+/* ================= kite time in the meadow ================= */
+let kiteAcc = 0;
+function updateKiteStat(dt){
+  if(!me.av || !me.av.kite || me.av.pos.x < 62) return;
+  kiteAcc += dt;
+  if(kiteAcc >= 1){ kiteAcc -= 1; bumpStat('kiteSec'); }
+}
+
+/* ================= three more neighbours with requests ================= */
+QUESTS.push(
+  {id:'olga', name:'올가', role:'유리 온실의 수정 박사', look:'olga', x:80, z:-29.3, ry:0, where:'유리 온실',
+    title:'수정궁의 조각', goal:'공원 곳곳의 수정 조각 8개 찾기',
+    offer:'이 공원에는 옛날에 유리로 된 커다란 궁전이 있었어요. 그 반짝이는 조각들이 아직 공원 곳곳에 숨어 있답니다. 여덟 개를 모두 찾아 줄 수 있나요?',
+    hint:'돔 뒤, 정자, 보리수 길 끝, 장미 정원, 렐루 서점 안, 책방 거리, 강 전망 데크, 동쪽 잔디밭을 둘러보세요. 가까이 가면 저절로 주워요.',
+    prog:() => [Math.min(8, shardsGot.length), 8],
+    done:'세상에, 여덟 조각을 다 모았네요! 조각들을 녹여 작은 구슬을 만들었어요. 빛내면 옛 수정궁처럼 무지개가 퍼진답니다.', reward:'작은 수정 구슬'},
+  {id:'tiago', name:'티아구', role:'잔디밭의 꼬마', look:'tiago', x:77, z:13, ry:-2.5, where:'피크닉 잔디밭',
+    title:'바람을 타는 연', goal:'동쪽 잔디밭에서 연을 20초 동안 날리기',
+    offer:'형아, 누나! 내 연 좀 같이 날려 줄래? 혼자서는 자꾸 떨어져. 이 잔디밭에서 연을 20초만 날려 줘!',
+    hint:'가방(I)에서 연을 꺼내 날려 봐! 꼭 이 잔디밭 쪽에서 날려야 해.',
+    onAccept:() => { if(!items.kite) giveItem('kite'); },
+    prog:b => [Math.min(20, (stats.kiteSec || 0) - (b.kiteSec || 0)), 20],
+    done:'우와, 진짜 높이 올라갔다! 그 연은 이제 형아 누나 거야. 이건 내가 만든 무지개 꼬리야, 달아 줘!', reward:'무지개 연꼬리'},
+  {id:'rafael', name:'라파엘', role:'공원 사진 동호회', look:'rafael', x:-4.5, z:-7.4, ry:Math.PI, where:'돔 앞 잔디밭',
+    title:'꼬리를 펼친 순간', goal:'공작새가 꼬리를 펼친 모습을 사진 찍기',
+    offer:'공작새가 꼬리를 활짝 펼친 순간을 찍는 게 제 오랜 소원이에요. 혹시 그 순간을 사진으로 남겨 줄 수 있을까요?',
+    hint:'공작새 근처에서 손을 흔들면(1) 꼬리를 펼쳐요. 그때 P를 눌러 찍어 주세요!',
+    prog:b => [Math.min(1, (stats.photoPeacock || 0) - (b.photoPeacock || 0)), 1],
+    done:'와, 이 각도 정말 멋져요! 이 사진첩을 드릴게요. 공원에서 찍은 사진들이 차곡차곡 모일 거예요.', reward:'공원 사진첩'}
+);
+for(const q of QUESTS) if(qState(q) === 3 && REWARD_ITEM[q.id] && !items[REWARD_ITEM[q.id]] && q.id !== 'camila') items[REWARD_ITEM[q.id]] = 1;
+if(QUESTS.some(q => q.id === 'camila' && qState(q) === 3) && items.tart === undefined) items.tart = 1;
+if(QUESTS.some(q => q.id === 'tiago' && qState(q) >= 1) && !items.kite) items.kite = 1;
+saveItems();
+let tartCD = 0;
+function questExtra(q){
+  if(q.id === 'camila'){
+    if(clock > tartCD){ tartCD = clock + 90; giveItem('tart'); return '마침 에그타르트가 막 나왔어요. 하나 더 가져가요! 비둘기들도 부스러기를 좋아한답니다.'; }
+    return '다음 판이 오븐에서 구워지고 있어요. 조금 있다가 다시 와요.';
+  }
+  if(q.id === 'sofia') return `물수제비 최고 기록이 ${stats.bestSkip || 0}번이야? 나는 다섯 번까지 해 봤어!`;
+  if(q.id === 'olga') return '수정 구슬을 빛내면 옛날 수정궁의 빛이 잠깐 돌아오는 것 같아요.';
+  return null;
+}
+
+function updateItems(dt){
+  updateSparkles(dt); updateStones(dt); updateShards(); checkBenchMates(dt); updateKiteStat(dt);
+}
+spawnNPCs();
+
 /* ---------------- main loop ---------------- */
 const fwd = new THREE.Vector3();
 let last = performance.now();
@@ -3861,6 +4354,7 @@ function frame(now){
   updateBirds(dt);
   updateBubbles(dt);
   updateNPCs(dt);
+  updateItems(dt);
   updateSeeds(dt);
   updateCoins(dt);
   updateContext();
