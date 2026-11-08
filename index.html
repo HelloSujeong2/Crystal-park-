@@ -145,11 +145,42 @@ h1 span{color:var(--rose)}
 .fbtn{font-size:11.5px;padding:5px 9px;border-radius:999px;border:1px solid var(--glass-line);background:#fff;white-space:nowrap}
 .fbtn.on{background:var(--leaf);color:#fff;border-color:var(--leaf)}
 @media (max-width:640px){.emotes{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;max-width:100%;scrollbar-width:none;padding-bottom:2px}.emotes::-webkit-scrollbar{display:none}.emo{flex:none}#reader{top:auto;bottom:calc(150px + env(safe-area-inset-bottom,0px));transform:none;max-height:46vh}}
+#npcDlg{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(150px + env(safe-area-inset-bottom,0px));width:min(460px,calc(100vw - 28px));border-radius:20px;padding:14px 16px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;background:rgba(255,252,244,.95)}
+.dhead{display:flex;align-items:baseline;gap:8px}
+.dhead b{font-family:var(--font-display);font-size:22px;color:var(--leaf);line-height:1}
+.dhead span{font-size:12px;color:var(--muted)}
+#dtext{margin:0;font-size:14.5px;line-height:1.7;word-break:keep-all}
+.dact{display:flex;gap:8px;justify-content:flex-end}
+#quests{position:absolute;top:calc(60px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:min(320px,calc(100vw - 28px));max-height:min(64vh,560px);overflow-y:auto;border-radius:20px;padding:14px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px}
+.quest{display:grid;grid-template-columns:1fr auto;gap:2px 8px;padding:8px 6px;border-top:1px solid var(--glass-line)}
+.quest:first-child{border-top:none}
+.quest .qt{font-weight:700;font-size:14px}
+.quest .qs{font-size:11.5px;padding:2px 8px;border-radius:999px;background:#eef1ee;color:var(--muted);align-self:start;font-variant-numeric:tabular-nums}
+.quest.ready .qs{background:#f2b24b;color:#fff}
+.quest.done .qs{background:var(--leaf);color:#fff}
+.quest .qh{grid-column:1 / -1;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.tag .mark{width:22px;height:22px;border-radius:50%;background:#f2b24b;color:#fff;font-weight:700;font-size:15px;display:grid;place-items:center;box-shadow:0 2px 6px rgba(0,0,0,.15);animation:bob 1.4s ease-in-out infinite}
+.tag .mark.ready{background:var(--leaf)}
+@keyframes bob{50%{transform:translateY(-4px)}}
+.tag.npc .name{background:rgba(255,248,230,.95)}
+#scopeUI{position:fixed;inset:0;pointer-events:none}
+.scopeRing{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,transparent 0,transparent 34vmin,rgba(10,14,20,.92) 36vmin)}
+.scopeCap{position:absolute;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);font-size:13px;padding:7px 14px;border-radius:999px;white-space:nowrap}
+#pad{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(150px + env(safe-area-inset-bottom,0px));display:none;align-items:flex-end;gap:10px}
+.pb{width:64px;height:64px;border-radius:50%;border:1.5px solid rgba(255,255,255,.85);background:rgba(255,255,255,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13px;font-weight:700;color:var(--ink);touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.pb.big{width:80px;height:80px;font-size:15px;background:rgba(63,122,87,.85);color:#fff}
+.pb.small{width:52px;height:52px;font-size:12px}
+.pb.down,.emo.down{transform:scale(.92);filter:brightness(.95)}
+#btnMenu{display:none}
+button,.emo{touch-action:manipulation}
+#hud{-webkit-user-select:none;user-select:none}
+@media (pointer:coarse){#pad{display:flex}.emo kbd,.pill kbd{display:none}#log{top:calc(112px + env(safe-area-inset-top,0px));bottom:auto;width:min(270px,calc(100vw - 28px))}#log .line:nth-last-child(n+4){display:none}#roster{top:calc(150px + env(safe-area-inset-top,0px))}#npcDlg{bottom:calc(250px + env(safe-area-inset-bottom,0px))}}
+@media (max-width:640px){#btnMenu{display:block}.tr{flex-direction:column;align-items:flex-end;max-width:none}.tr>.tbtn:not(#btnMenu){display:none}.tr.open>.tbtn{display:block}#quests,#birdbook{top:calc(110px + env(safe-area-inset-top,0px))}}
 #prompt{font-size:13px;padding:6px 12px;border-radius:999px;color:var(--ink)}
 #prompt kbd{font-family:inherit;font-weight:700;color:#fff;background:var(--leaf);border-radius:6px;padding:1px 6px;margin-right:6px}
 .pill{border:1px solid var(--glass-line);cursor:pointer;font-family:inherit}
 .pill kbd{font-family:inherit;font-size:11px;color:var(--muted)}
-#joy{position:absolute;left:max(22px,env(safe-area-inset-left,0px));bottom:calc(150px + env(safe-area-inset-bottom,0px));width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.35);border:1.5px solid rgba(255,255,255,.7);display:none;touch-action:none}
+#joy{position:absolute;left:max(22px,env(safe-area-inset-left,0px));bottom:calc(150px + env(safe-area-inset-bottom,0px));width:128px;height:128px;border-radius:50%;background:rgba(255,255,255,.35);border:1.5px solid rgba(255,255,255,.7);display:none;touch-action:none}
 #knob{position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:rgba(255,255,255,.9);box-shadow:0 3px 10px rgba(0,0,0,.12)}
 @media (pointer:coarse){#joy{display:block}#hint{display:none}#log{bottom:calc(270px + env(safe-area-inset-bottom,0px))}}
 @media (max-width:640px){#hint{display:none}.place{font-size:22px}}
@@ -183,7 +214,9 @@ h1 span{color:var(--rose)}
     <div class="place glass">크리스탈 공원</div>
     <button class="pill glass" id="netPill" type="button" aria-controls="roster" aria-expanded="false"><span class="dot" id="netDot"></span><span id="netText">혼자 산책 중</span><kbd>Tab</kbd></button>
   </div>
-  <div class="tr">
+  <div class="tr" id="trMenu">
+    <button class="tbtn" id="btnMenu" type="button">메뉴</button>
+    <button class="tbtn" id="btnQuest" type="button" aria-controls="quests" aria-expanded="false">부탁 수첩</button>
     <button class="tbtn" id="btnBirds" type="button" aria-controls="birdbook" aria-expanded="false">새 친구 0/6</button>
     <button class="tbtn" id="btnSky" type="button">오후 1:00 · 낮</button>
     <button class="tbtn" id="btnPhoto" type="button">사진 찍기</button>
@@ -210,7 +243,7 @@ h1 span{color:var(--rose)}
       <button type="submit">말하기</button>
     </form>
   </div>
-  <div id="hint" class="glass">WASD·방향키 이동 · Shift 달리기<br>드래그로 시점 · 휠로 확대<br>F 모이 · T 책 · L 등불 · P 사진<br>Tab 산책객 · B 새 친구 · Esc 닫기<br>비눗방울은 눌러서 터뜨려요</div>
+  <div id="hint" class="glass">WASD·방향키 이동 · Shift 달리기<br>드래그로 시점 · 휠로 확대<br>E 말 걸기·앉기 · Q 부탁 수첩<br>F 모이 · T 책 · L 등불 · P 사진<br>Tab 산책객 · B 새 친구 · Esc 닫기</div>
   <div id="toast" class="glass"></div>
   <div id="roster" class="glass" hidden>
     <div class="phead"><b>공원에 있는 사람</b><span id="rcount"></span></div>
@@ -231,6 +264,18 @@ h1 span{color:var(--rose)}
     <p class="pfoot">저장이 안 되면 사진을 길게 누르거나 우클릭해서 저장하세요.</p>
   </div>
   <div id="flash"></div>
+  <div id="npcDlg" class="glass" hidden>
+    <div class="dhead"><b id="dname"></b><span id="drole"></span></div>
+    <p id="dtext"></p>
+    <div class="dact"><button type="button" id="dyes" class="pbtn">좋아요</button><button type="button" id="dno" class="pbtn ghost">다음에</button></div>
+  </div>
+  <div id="quests" class="glass" hidden>
+    <div class="phead"><b>부탁 수첩</b><span id="qcount"></span></div>
+    <div id="qlist"></div>
+    <p class="pfoot" id="qfoot"></p>
+  </div>
+  <div id="scopeUI" hidden><div class="scopeRing"></div><div class="scopeCap glass">라벨루 배를 구경하는 중 · E나 Esc, 또는 움직이면 그만 봐요</div></div>
+  <div id="pad"><button type="button" id="padFeed" class="pb small">모이</button><button type="button" id="padAct" class="pb">앉기</button><button type="button" id="padJump" class="pb big">점프</button></div>
   <div id="birdbook" class="glass" hidden>
     <div class="phead"><b>새 친구 도감</b><span id="bcount"></span></div>
     <div class="meter"><i id="bmeter" style="width:0%"></i></div>
@@ -259,7 +304,15 @@ const CHARS = [
   {name:'준서', sex:'남', desc:'뜨개 모자 책벌레', skin:'#f6d6bd', hair:'#5a4032', style:'beanie', beanie:'#7fa0c9', top:'#e9c46a', legs:'#7a6a58', shoe:'#5b4636', tag:'#b88a1c', scale:0.99},
   {name:'하린', sex:'여', desc:'헤어밴드 단발', skin:'#f9dccb', hair:'#6b4430', style:'bob', band:'#7fc8b6', top:'#fff1c2', legs:'#f9dccb', shoe:'#e07a5f', dress:'#f6c453', tag:'#c98d10', scale:0.97},
   {name:'유나', sex:'여', desc:'포니테일 러너', skin:'#efc7a8', hair:'#3b2a2f', style:'ponytail', tie:'#e56b8a', top:'#8fd1c4', legs:'#4b6584', shoe:'#ffffff', tag:'#2f9c8a', scale:0.98},
+  {npc:'marta', name:'마르타', sex:'여', skin:'#f1cdb0', hair:'#dcd7cf', style:'bun', top:'#7a9a6b', legs:'#f1cdb0', shoe:'#6b4b3a', dress:'#6f8f60', apron:'#f4efe6', glasses:true, tag:'#5f8f4f', scale:0.92},
+  {npc:'sofia', name:'소피아', sex:'여', skin:'#f6d3b8', hair:'#a0622f', style:'buns', top:'#ffd36e', legs:'#f6d3b8', shoe:'#e56b8a', skirt:'#f28fa8', tag:'#d9822b', scale:0.78},
+  {npc:'ines', name:'이네스', sex:'여', skin:'#e9c09e', hair:'#2b2230', style:'long', beret:'#c9443c', top:'#f4efe6', legs:'#3f4a5c', shoe:'#2d2d2d', tag:'#c9443c', scale:0.98},
+  {npc:'antonio', name:'안토니오', sex:'남', skin:'#ecc3a1', hair:'#cfcac2', style:'short', cap:'#6b5b4b', mustache:'#cfcac2', top:'#8a6a4a', legs:'#5b5550', shoe:'#3d2f25', tag:'#8a6a4a', scale:0.95},
+  {npc:'joao', name:'주앙', sex:'남', skin:'#d9a27c', hair:'#3a2b26', style:'short', sailor:'#ffffff', mustache:'#3a2b26', top:'#2f4f7f', legs:'#e8e0d0', shoe:'#2d2d2d', tag:'#2f4f7f', scale:1.04},
+  {npc:'luis', name:'루이스', sex:'남', skin:'#f0cdb2', hair:'#5a4a42', style:'short', glasses:true, vest:'#7a2f35', mustache:'#5a4a42', top:'#f4efe6', legs:'#3b3a3a', shoe:'#2d2d2d', tag:'#9c2b35', scale:1.0},
+  {npc:'camila', name:'카밀라', sex:'여', skin:'#e7b98f', hair:'#4a2f25', style:'ponytail', tie:'#f2b24b', apron:'#ffffff', top:'#e07a5f', legs:'#3f4a5c', shoe:'#5b4636', tag:'#d9643f', scale:0.97},
 ];
+const PLAYABLE = CHARS.filter(c => !c.npc).length;
 
 /* ---------------- renderer / scene ---------------- */
 const app = $('#app');
@@ -516,12 +569,14 @@ const waterAnim = {};
 
 /* --- terrace wall & railing, cliff --- */
 {
-  add(new THREE.BoxGeometry(110, 0.55, 0.6), '#ddd5c4', 0, 0.27, 42.1, null, {recv:true});
+  for(const [a, b] of [[-61, 64.4], [73.6, 93]]){
+    add(new THREE.BoxGeometry(b - a, 0.55, 0.6), '#ddd5c4', (a + b) / 2, 0.27, 42.1, null, {recv:true});
+    add(new THREE.BoxGeometry(b - a, 0.08, 0.08), '#3d4d46', (a + b) / 2, 1.4, 42.1);
+    add(new THREE.BoxGeometry(b - a, 0.05, 0.05), '#3d4d46', (a + b) / 2, 0.95, 42.1, null, {cast:false});
+  }
   const posts = [];
-  for(let x = -54; x <= 54; x += 2) posts.push({x, y:0.95, z:42.1, s:[1, 1, 1], c:'#3d4d46'});
+  for(let x = -61; x <= 93; x += 2){ if(x > 64 && x < 74) continue; posts.push({x, y:0.95, z:42.1, s:[1, 1, 1], c:'#3d4d46'}); }
   inst(new THREE.CylinderGeometry(0.05, 0.05, 0.9, 6), posts);
-  add(new THREE.BoxGeometry(110, 0.08, 0.08), '#3d4d46', 0, 1.4, 42.1);
-  add(new THREE.BoxGeometry(110, 0.05, 0.05), '#3d4d46', 0, 0.95, 42.1, null, {cast:false});
 }
 
 /* --- trees --- */
@@ -585,7 +640,7 @@ for(let z = -6; z <= 28; z += 0.6){
 
 // scattered trees
 for(let tries = 0, placed = 0; tries < 2600 && placed < 120; tries++){
-  const x = BOUNDS.x0 + rnd() * (BOUNDS.x1 - BOUNDS.x0), z = BOUNDS.z0 + rnd() * (30 - BOUNDS.z0);
+  const x = -56 + rnd() * 112, z = -64 + rnd() * 94;
   if(blocked(x, z, 2.2)) continue;
   if(Math.hypot(x - POND.x, z - POND.z) < 12) continue;
   if(Math.abs(x) < 9 && z > -6 && z < 30) continue; // keep the lawn by the main walk open
@@ -595,24 +650,23 @@ for(let tries = 0, placed = 0; tries < 2600 && placed < 120; tries++){
   placed++;
 }
 // border hedges and woods
-for(let x = -62; x <= 62; x += 1.6){ hedges.push({x, y:0.55, z:-68, s:[1.1, 0.9, 1.0], c:pick(['#6aac72', '#5e9e66'])}); }
-for(let z = -68; z <= 40; z += 1.6){
-  for(const sx of [-1, 1]) hedges.push({x:sx * 61, y:0.55, z, s:[1.0, 0.9, 1.1], c:pick(['#6aac72', '#5e9e66'])});
+for(let x = -124; x <= 94; x += 1.6){ hedges.push({x, y:0.55, z:-68, s:[1.1, 0.9, 1.0], c:pick(['#6aac72', '#5e9e66'])}); }
+for(let z = -68; z <= 41; z += 1.6){
+  if(Math.abs(z) > 3.6) hedges.push({x:-61, y:0.55, z, s:[1.0, 0.9, 1.1], c:pick(['#6aac72', '#5e9e66'])});
+  if(z < 20) hedges.push({x:61, y:0.55, z, s:[1.0, 0.9, 1.1], c:pick(['#6aac72', '#5e9e66'])});
+  hedges.push({x:93, y:0.55, z, s:[1.0, 0.9, 1.1], c:pick(['#6aac72', '#5e9e66'])});
 }
-for(let i = 0; i < 160; i++){
+for(let i = 0; i < 220; i++){
   const side = rnd();
   let x, z;
-  if(side < 0.4){ x = -63 - rnd() * 60; z = -100 + rnd() * 138; }
-  else if(side < 0.8){ x = 63 + rnd() * 60; z = -100 + rnd() * 138; }
-  else { x = -120 + rnd() * 240; z = -70 - rnd() * 40; }
+  if(side < 0.22){ x = -128 - rnd() * 50; z = -100 + rnd() * 140; }
+  else if(side < 0.38){ x = -124 + rnd() * 62; z = -20 - rnd() * 80; }
+  else if(side < 0.48){ x = -124 + rnd() * 62; z = 19 + rnd() * 21; }
+  else if(side < 0.74){ x = 96 + rnd() * 50; z = -100 + rnd() * 140; }
+  else { x = -124 + rnd() * 268; z = -71 - rnd() * 40; }
   tree(x, z, rnd() < 0.2 ? 'cypress' : 'round', 1.1 + rnd() * 0.7);
   colliders.pop();
 }
-inst(new THREE.CylinderGeometry(0.18, 0.26, 1, 7), trunks);
-inst(new THREE.IcosahedronGeometry(1, 1), blobs, instMatFlat);
-inst(new THREE.ConeGeometry(0.5, 1, 8), cones, instMatFlat);
-inst(new THREE.SphereGeometry(1, 10, 8), hedges, instMat, {cast:true});
-inst(new THREE.IcosahedronGeometry(1, 0), flowers, instMatFlat, {cast:false});
 
 /* --- benches & lamps --- */
 const benches = [];
@@ -648,9 +702,383 @@ for(let z = -2; z <= 28; z += 10){ lamp(-3.2, z + 5); lamp(3.2, z); }
 for(let i = 0; i < 6; i++){ const a = i / 6 * Math.PI * 2 + 0.3; lamp(DOME.x + Math.cos(a) * 13.9, DOME.z + Math.sin(a) * 13.9); }
 for(let z = -48; z <= 28; z += 12) lamp(-20, z);
 for(const x of [-24, -6, 6, 24]) lamp(x, 31);
+/* ================= expanded world: book street (west), meadow & river deck (east) ================= */
+const WINDOW_LIGHTS = [];
+const WALLS = [];
+function wall(ax, az, bx, bz){ WALLS.push({ax, az, bx, bz}); }
+const seats = [];
+const SHOP = {x0:-123, x1:-103, z0:-10, z1:10, h:10};
+function inShop(x, z){ return x > SHOP.x0 && x < SHOP.x1 && z > SHOP.z0 && z < SHOP.z1; }
+const DECK = {x0:64.4, x1:73.6, z1:52};
+const TELESCOPE = {x:69, z:50.6};
+const SHELF_SPOTS = [{x:-121.6, z:-3}, {x:-121.6, z:0}, {x:-121.6, z:3}, {x:-116, z:-8.6}, {x:-116, z:8.6}, {x:-109, z:8.6}];
+function texCanvas(w, h, draw, rep){
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  draw(c.getContext('2d'), w, h);
+  const t = new THREE.CanvasTexture(c);
+  if(rep){ t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(rep[0], rep[1]); }
+  return t;
+}
+const toonTex = (tex, extra) => new THREE.MeshToonMaterial(Object.assign({color:'#ffffff', map:tex, gradientMap:grad}, extra || {}));
+const cobbleTex = texCanvas(128, 128, (g, w, h) => {
+  g.fillStyle = '#a99d8b'; g.fillRect(0, 0, w, h);
+  const cols = ['#d8cdbb', '#cfc3b0', '#e0d6c6', '#c8bca8'];
+  for(let r = 0; r < 8; r++) for(let c = 0; c < 6; c++){
+    const x = c * 22 + (r % 2) * 11 - 4, y = r * 16;
+    g.fillStyle = cols[(r * 7 + c * 3) % cols.length];
+    g.beginPath(); if(g.roundRect) g.roundRect(x + 1.5, y + 1.5, 19, 13, 5); else g.rect(x + 1.5, y + 1.5, 19, 13); g.fill();
+  }
+}, [10, 4]);
+const tileTex = (base, ink) => texCanvas(64, 64, (g, w, h) => {
+  g.fillStyle = base; g.fillRect(0, 0, w, h);
+  g.strokeStyle = ink; g.fillStyle = ink; g.lineWidth = 3;
+  for(const [cx, cy] of [[0, 0], [64, 0], [0, 64], [64, 64]]){ g.beginPath(); g.arc(cx, cy, 14, 0, 6.29); g.fill(); }
+  g.beginPath(); g.arc(32, 32, 12, 0, 6.29); g.stroke();
+  g.beginPath(); g.moveTo(32, 14); g.lineTo(50, 32); g.lineTo(32, 50); g.lineTo(14, 32); g.closePath(); g.stroke();
+  g.beginPath(); g.arc(32, 32, 4, 0, 6.29); g.fill();
+  g.strokeStyle = 'rgba(0,0,0,.12)'; g.lineWidth = 1; g.strokeRect(0.5, 0.5, 63, 63);
+});
+const ginghamTex = (c) => texCanvas(64, 64, (g) => {
+  g.fillStyle = '#fffaf2'; g.fillRect(0, 0, 64, 64);
+  g.fillStyle = c; g.globalAlpha = 0.55;
+  for(let i = 0; i < 4; i++){ g.fillRect(i * 16, 0, 8, 64); g.fillRect(0, i * 16, 64, 8); }
+}, [3, 3]);
+const plankTex = texCanvas(128, 128, (g) => {
+  const cols = ['#8a5a3c', '#7d5034', '#94623f', '#83553a'];
+  for(let i = 0; i < 8; i++){ g.fillStyle = cols[i % 4]; g.fillRect(0, i * 16, 128, 16); g.fillStyle = 'rgba(0,0,0,.18)'; g.fillRect(0, i * 16 + 15, 128, 1); g.fillRect((i * 37) % 128, i * 16, 1, 16); }
+}, [6, 6]);
+const deckTex = texCanvas(128, 128, (g) => {
+  const cols = ['#b88757', '#ad7c4c', '#c2905e'];
+  for(let i = 0; i < 8; i++){ g.fillStyle = cols[i % 3]; g.fillRect(i * 16, 0, 16, 128); g.fillStyle = 'rgba(0,0,0,.2)'; g.fillRect(i * 16 + 15, 0, 1, 128); }
+}, [3, 3]);
+const glassTex = texCanvas(256, 160, (g, w, h) => {
+  const pal = ['#f2c14e', '#e0654f', '#4f8fc0', '#6fb38a', '#c06fae', '#f7e3a1', '#5b6fc9'];
+  for(let y = 0; y < h; y += 20) for(let x = 0; x < w; x += 20){
+    g.fillStyle = pal[(x * 7 + y * 3 + ((x * y) % 5)) % pal.length]; g.fillRect(x, y, 20, 20);
+  }
+  g.strokeStyle = '#3a2a22'; g.lineWidth = 3;
+  for(let y = 0; y <= h; y += 20){ g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+  for(let x = 0; x <= w; x += 20){ g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
+  g.lineWidth = 6; g.strokeRect(3, 3, w - 6, h - 6);
+  g.beginPath(); g.ellipse(w / 2, h / 2, 50, 34, 0, 0, 6.29); g.stroke();
+});
+const signTex = texCanvas(512, 96, (g, w, h) => {
+  g.fillStyle = '#2f2a26'; g.fillRect(0, 0, w, h);
+  g.fillStyle = '#e8d6a8'; g.font = 'bold 58px Georgia, serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.fillText('L I V R A R I A', w / 2, h / 2 + 3);
+  g.strokeStyle = '#c9a85a'; g.lineWidth = 4; g.strokeRect(8, 8, w - 16, h - 16);
+});
+
+/* --- connecting path and garden gate --- */
+seg(-24, 0, -61, 0, 4);
+for(const sz of [-1, 1]){
+  add(new THREE.BoxGeometry(0.9, 3.2, 0.9), '#e3dccd', -61, 1.6, sz * 3.4, null, {recv:true});
+  add(new THREE.SphereGeometry(0.4, 12, 8), '#e3dccd', -61, 3.5, sz * 3.4);
+  colliders.push({x:-61, z:sz * 3.4, r:0.6});
+}
+{ const arch = add(new THREE.TorusGeometry(3.4, 0.16, 6, 24, Math.PI), '#3d4d46', -61, 3.2, 0); arch.rotation.y = Math.PI / 2; }
+
+/* --- book street: cobbles, tiled houses, café --- */
+{
+  const street = new THREE.Mesh(new THREE.PlaneGeometry(42, 15.2), toonTex(cobbleTex, {polygonOffset:true, polygonOffsetFactor:-1, polygonOffsetUnits:-1}));
+  street.rotation.x = -Math.PI / 2; street.position.set(-82, 0.02, 0); street.receiveShadow = true; scene.add(street);
+  const winList = [], frameList = [], balc = [];
+  const tiles = [tileTex('#f4f1ea', '#2f5fa8'), tileTex('#f2efe6', '#3d74b8'), tileTex('#fbf6ea', '#c9822d')];
+  const tileMats = tiles.map(t => { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(3, 5); return toonTex(t); });
+  const pastel = ['#f4d9a8', '#e8b9b0', '#cfe0d0', '#f7eedd', '#d8cfe8', '#f2c98f'];
+  for(const dir of [1, -1]){
+    let x = -101.5;
+    while(x < -63){
+      const w = 3.8 + rnd() * 1.6, h = 7 + rnd() * 4, d = 6;
+      const cx = x + w / 2, zf = dir * -7.6, cz = zf - dir * d / 2;
+      const mat = rnd() < 0.5 ? tileMats[Math.floor(rnd() * tileMats.length)] : M(pick(pastel));
+      const body = new THREE.Mesh(new THREE.BoxGeometry(w - 0.12, h, d), mat);
+      body.position.set(cx, h / 2, cz); body.castShadow = true; body.receiveShadow = true; scene.add(body);
+      const roof = add(new THREE.CylinderGeometry(d * 0.62, d * 0.62, w - 0.05, 3), '#c96a45', cx, h + d * 0.28, cz);
+      roof.rotation.set(0, 0, Math.PI / 2); roof.scale.set(1, 1, 0.55);
+      add(new THREE.BoxGeometry(w - 0.12, 0.3, 0.25), '#efe9dc', cx, h - 0.1, zf + dir * 0.1, null, {cast:false});
+      const floors = Math.floor((h - 1) / 2.4);
+      for(let f = 0; f < floors; f++){
+        const wy = 1.5 + f * 2.4;
+        for(const ox of (w > 4.6 ? [-1.1, 0, 1.1] : [-0.75, 0.75])){
+          if(f === 0 && ox === (w > 4.6 ? 0 : -0.75)){
+            winList.push({x:cx + ox, y:1.2, z:zf + dir * 0.05, s:[0.95, 2.3, 0.1], c:'#5a3b2a'});
+            continue;
+          }
+          frameList.push({x:cx + ox, y:wy, z:zf + dir * 0.03, s:[0.95, 1.55, 0.06], c:'#ffffff'});
+          winList.push({x:cx + ox, y:wy, z:zf + dir * 0.07, s:[0.72, 1.3, 0.06], c:'#4f6f80'});
+        }
+        if(f === 1) balc.push({x:cx, y:wy - 0.8, z:zf + dir * 0.35, s:[w * 0.7, 0.08, 0.6], c:'#3d4d46'});
+      }
+      x += w;
+    }
+    wall(-60.5, dir * -7.6, -103, dir * -7.6);
+  }
+  inst(new THREE.BoxGeometry(1, 1, 1), frameList, instMat, {cast:false});
+  inst(new THREE.BoxGeometry(1, 1, 1), winList, instMat, {cast:false});
+  inst(new THREE.BoxGeometry(1, 1, 1), balc, instMat, {cast:true});
+  for(const WX of WINDOW_LIGHTS_STREET(winList)) WINDOW_LIGHTS.push(...WX);
+  // café tables
+  [[-70, 4.6], [-76.5, 4.6], [-83, -4.6]].forEach(([tx, tz], i) => {
+    add(new THREE.CylinderGeometry(0.55, 0.55, 0.05, 18), '#ffffff', tx, 0.78, tz);
+    add(new THREE.CylinderGeometry(0.05, 0.05, 0.78, 6), '#3d4d46', tx, 0.39, tz);
+    add(new THREE.CylinderGeometry(0.06, 0.06, 2.4, 6), '#e9e1d2', tx, 1.2, tz, null, {cast:false});
+    const um = add(new THREE.ConeGeometry(1.7, 0.7, 8), ['#e56b6f', '#6bb7c9', '#f2b24b'][i], tx, 2.5, tz); um.castShadow = true;
+    add(new THREE.CylinderGeometry(0.06, 0.08, 0.08, 10), '#ffffff', tx + 0.15, 0.85, tz + 0.1, null, {cast:false});
+    colliders.push({x:tx, z:tz, r:0.6});
+    for(const side of [-1, 1]){
+      const cxp = tx + side * 1.0, ry = side > 0 ? -Math.PI / 2 : Math.PI / 2;
+      const g = new THREE.Group(); g.position.set(cxp, 0, tz); g.rotation.y = ry; scene.add(g);
+      add(new THREE.BoxGeometry(0.5, 0.06, 0.5), '#3d4d46', 0, 0.46, 0, g);
+      add(new THREE.BoxGeometry(0.5, 0.5, 0.05), '#3d4d46', 0, 0.72, -0.24, g);
+      for(const lx of [-0.2, 0.2]) for(const lz of [-0.2, 0.2]) add(new THREE.CylinderGeometry(0.02, 0.02, 0.46, 4), '#3d4d46', lx, 0.23, lz, g, {cast:false});
+      seats.push({x:cxp, z:tz, ry, kind:1});
+    }
+  });
+  for(let x = -66; x >= -98; x -= 10){ lamp(x, 6.6); lamp(x - 5, -6.6); }
+}
+function WINDOW_LIGHTS_STREET(list){
+  const out = [];
+  for(const w of list) if(w.c === '#4f6f80' && rnd() < 0.7) out.push([w.x, w.y, w.z + (w.z > 0 ? -0.05 : 0.05)]);
+  return out;
+}
+
+/* --- the bookstore (inspired by Porto's famous Livraria Lello) --- */
+const shopLights = [];
+{
+  const S = SHOP, W = S.x1 - S.x0, D = S.z1 - S.z0, cx = (S.x0 + S.x1) / 2;
+  const cream = M('#efe6d4', {shadowSide:THREE.DoubleSide});
+  const plane = (w, h, mat, x, y, z, ry, rx) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
+    m.position.set(x, y, z); m.rotation.set(rx || 0, ry || 0, 0, 'YXZ'); m.castShadow = true; m.receiveShadow = true; scene.add(m); return m;
+  };
+  // exterior shell (faces outward)
+  const EH = 12;
+  plane(D, EH, cream, S.x0, EH / 2, 0, -Math.PI / 2);
+  plane(W, EH, cream, cx, EH / 2, S.z0, Math.PI);
+  plane(W, EH, cream, cx, EH / 2, S.z1, 0);
+  plane(8.2, EH, cream, S.x1, EH / 2, -5.9, Math.PI / 2);
+  plane(8.2, EH, cream, S.x1, EH / 2, 5.9, Math.PI / 2);
+  plane(3.6, EH - 3.6, cream, S.x1, 3.6 + (EH - 3.6) / 2, 0, Math.PI / 2);
+  plane(W, D, M('#7d6d5f', {shadowSide:THREE.DoubleSide}), cx, EH, 0, 0, -Math.PI / 2);
+  // facade ornaments
+  const F = S.x1 + 0.15;
+  for(const z of [-9.6, -4.4, 4.4, 9.6]){
+    add(new THREE.BoxGeometry(0.4, EH + 0.6, 0.7), '#e6dcc6', F, (EH + 0.6) / 2, z);
+    add(new THREE.ConeGeometry(0.4, 1.4, 4), '#e6dcc6', F, EH + 1.2, z).rotation.y = Math.PI / 4;
+  }
+  add(new THREE.BoxGeometry(0.3, 0.5, D + 0.4), '#e6dcc6', F, EH - 0.2, 0);
+  add(new THREE.BoxGeometry(0.25, 3.8, 0.35), '#5a3b2a', F, 1.9, -1.9); add(new THREE.BoxGeometry(0.25, 3.8, 0.35), '#5a3b2a', F, 1.9, 1.9);
+  add(new THREE.BoxGeometry(0.25, 0.35, 4.1), '#5a3b2a', F, 3.75, 0);
+  const sign = new THREE.Mesh(new THREE.PlaneGeometry(7.2, 1.35), new THREE.MeshBasicMaterial({map:signTex}));
+  sign.rotation.y = Math.PI / 2; sign.position.set(F + 0.05, 4.6, 0); scene.add(sign);
+  const bigWin = add(new THREE.BoxGeometry(0.12, 3.6, 3.4), '#4f6f80', F, 7.4, 0, null, {cast:false});
+  const archTop = add(new THREE.CylinderGeometry(1.7, 1.7, 0.12, 20, 1, false, 0, Math.PI), '#4f6f80', F, 9.2, 0, null, {cast:false});
+  archTop.rotation.set(Math.PI / 2, Math.PI / 2, 0);
+  for(const z of [-0.6, 0.6]) add(new THREE.BoxGeometry(0.14, 3.6, 0.08), '#efe6d4', F + 0.02, 7.4, z, null, {cast:false});
+  for(const z of [-7, 7]){
+    add(new THREE.BoxGeometry(0.12, 3, 1.8), '#b9a07a', F, 7.4, z, null, {cast:false});
+    add(new THREE.SphereGeometry(0.35, 10, 8), '#d9c49a', F + 0.08, 8.3, z, null, {cast:false});
+    add(new THREE.BoxGeometry(0.1, 1.5, 0.7), '#8a6f52', F + 0.08, 7.2, z, null, {cast:false});
+    add(new THREE.BoxGeometry(0.12, 1.6, 1.3), '#4f6f80', F, 2.2, z, null, {cast:false});
+  }
+  // interior shell (faces inward)
+  const wood = M('#6b4530', {shadowSide:THREE.DoubleSide});
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(W, D), toonTex(plankTex, {polygonOffset:true, polygonOffsetFactor:-2, polygonOffsetUnits:-2}));
+  floor.rotation.x = -Math.PI / 2; floor.position.set(cx, 0.03, 0); floor.receiveShadow = true; scene.add(floor);
+  plane(D, S.h, wood, S.x0 + 0.02, S.h / 2, 0, Math.PI / 2);
+  plane(W, S.h, wood, cx, S.h / 2, S.z0 + 0.02, 0);
+  plane(W, S.h, wood, cx, S.h / 2, S.z1 - 0.02, Math.PI);
+  plane(8.2, S.h, wood, S.x1 - 0.02, S.h / 2, -5.9, -Math.PI / 2);
+  plane(8.2, S.h, wood, S.x1 - 0.02, S.h / 2, 5.9, -Math.PI / 2);
+  plane(3.6, S.h - 3.6, wood, S.x1 - 0.02, 3.6 + (S.h - 3.6) / 2, 0, -Math.PI / 2);
+  plane(W, D, M('#4a2f22', {shadowSide:THREE.DoubleSide}), cx, S.h, 0, 0, Math.PI / 2);
+  const sky = new THREE.Mesh(new THREE.PlaneGeometry(9, 6), new THREE.MeshBasicMaterial({map:glassTex}));
+  sky.rotation.x = Math.PI / 2; sky.position.set(cx, S.h - 0.05, 0); scene.add(sky);
+  // shelves and books
+  const boards = [], books = [];
+  const BC = ['#7a2630', '#2f4f3f', '#2b3b63', '#b8893a', '#6b4530', '#d9cbb0', '#4f3a5a', '#8a5a2c', '#335c67', '#a3462f'];
+  const shelfRun = (x0, z0, x1, z1, inward, y0, y1) => {
+    const len = Math.hypot(x1 - x0, z1 - z0), ux = (x1 - x0) / len, uz = (z1 - z0) / len;
+    const th = Math.atan2(-uz, ux);
+    for(let y = y0; y <= y1; y += 0.6){
+      boards.push({x:(x0 + x1) / 2 + inward[0] * 0.2, y, z:(z0 + z1) / 2 + inward[1] * 0.2, s:[len, 0.05, 0.42], ry:th, c:'#5a3826'});
+      let t = 0.1;
+      while(t < len - 0.1){
+        const bw = 0.11 + rnd() * 0.12, bh = 0.32 + rnd() * 0.18;
+        if(rnd() < 0.06){ t += 0.3; continue; }
+        books.push({x:x0 + ux * (t + bw / 2) + inward[0] * 0.2, y:y + 0.03 + bh / 2, z:z0 + uz * (t + bw / 2) + inward[1] * 0.2, s:[bw, bh, 0.3], ry:th, c:BC[Math.floor(rnd() * BC.length)]});
+        t += bw + 0.01;
+      }
+    }
+  };
+  const runs = [
+    [S.x0 + 0.05, S.z0 + 0.3, S.x0 + 0.05, S.z1 - 0.3, [1, 0]],
+    [S.x0 + 0.3, S.z0 + 0.05, S.x1 - 2.5, S.z0 + 0.05, [0, 1]],
+    [S.x0 + 0.3, S.z1 - 0.05, S.x1 - 0.3, S.z1 - 0.05, [0, -1]],
+  ];
+  for(const [x0, z0, x1, z1, inw] of runs){ shelfRun(x0, z0, x1, z1, inw, 0.45, 4.05); shelfRun(x0, z0, x1, z1, inw, 5.85, 9.45); }
+  shelfRun(S.x1 - 0.05, S.z0 + 0.3, S.x1 - 0.05, -2.2, [-1, 0], 5.85, 9.45);
+  shelfRun(S.x1 - 0.05, 2.2, S.x1 - 0.05, S.z1 - 0.3, [-1, 0], 5.85, 9.45);
+  inst(new THREE.BoxGeometry(1, 1, 1), boards, instMat, {cast:false});
+  inst(new THREE.BoxGeometry(1, 1, 1), books, instMat, {cast:false});
+  // gallery balcony
+  const gal = [];
+  const gy = 5.0, gd = 1.6;
+  gal.push({x:S.x0 + gd / 2, y:gy, z:0, s:[gd, 0.25, D], c:'#5a3826'});
+  gal.push({x:cx, y:gy, z:S.z0 + gd / 2, s:[W, 0.25, gd], c:'#5a3826'});
+  gal.push({x:cx, y:gy, z:S.z1 - gd / 2, s:[W, 0.25, gd], c:'#5a3826'});
+  gal.push({x:S.x1 - gd / 2, y:gy, z:0, s:[gd, 0.25, D], c:'#5a3826'});
+  gal.push({x:S.x0 + gd, y:gy + 0.6, z:0, s:[0.08, 0.08, D - gd * 2], c:'#3a2418'});
+  gal.push({x:cx, y:gy + 0.6, z:S.z0 + gd, s:[W - gd * 2, 0.08, 0.08], c:'#3a2418'});
+  gal.push({x:cx, y:gy + 0.6, z:S.z1 - gd, s:[W - gd * 2, 0.08, 0.08], c:'#3a2418'});
+  gal.push({x:S.x1 - gd, y:gy + 0.6, z:0, s:[0.08, 0.08, D - gd * 2], c:'#3a2418'});
+  for(const [px, pz] of [[S.x0 + gd, S.z0 + gd], [S.x0 + gd, S.z1 - gd], [S.x1 - gd, S.z0 + gd], [S.x1 - gd, S.z1 - gd]]){
+    gal.push({x:px, y:gy / 2, z:pz, s:[0.4, gy, 0.4], c:'#5a3826'});
+    colliders.push({x:px, z:pz, r:0.35});
+  }
+  for(let z = S.z0 + gd + 0.6; z < S.z1 - gd; z += 0.6){ gal.push({x:S.x0 + gd, y:gy + 0.35, z, s:[0.05, 0.5, 0.05], c:'#3a2418'}); gal.push({x:S.x1 - gd, y:gy + 0.35, z, s:[0.05, 0.5, 0.05], c:'#3a2418'}); }
+  for(let x = S.x0 + gd + 0.6; x < S.x1 - gd; x += 0.6){ gal.push({x, y:gy + 0.35, z:S.z0 + gd, s:[0.05, 0.5, 0.05], c:'#3a2418'}); gal.push({x, y:gy + 0.35, z:S.z1 - gd, s:[0.05, 0.5, 0.05], c:'#3a2418'}); }
+  inst(new THREE.BoxGeometry(1, 1, 1), gal, instMat, {cast:true});
+  // the red forked staircase
+  const steps = [], sides = [];
+  const RED = '#b3323d', DARK = '#3a2418';
+  for(let i = 0; i < 9; i++){
+    const x = -106.8 - i * 0.6, y = 0.1 + i * 0.19;
+    steps.push({x, y, z:0, s:[0.62, 0.2, 2.4], c:RED});
+    steps.push({x, y:y / 2, z:0, s:[0.62, y, 2.2], c:'#8f2730'});
+    sides.push({x, y:y + 0.45, z:1.25, s:[0.08, 0.75, 0.08], c:DARK}, {x, y:y + 0.45, z:-1.25, s:[0.08, 0.75, 0.08], c:DARK});
+  }
+  steps.push({x:-112.6, y:1.85, z:0, s:[1.8, 0.25, 3.2], c:RED});
+  sides.push({x:-112.6, y:0.9, z:0, s:[0.8, 1.8, 0.8], c:DARK});
+  for(const sd of [1, -1]){
+    const N = 16;
+    for(let i = 0; i < N; i++){
+      const t = (i + 0.5) / N, a = t * Math.PI * 0.62;
+      const x = -116 + Math.cos(a) * 3.1, z = sd * Math.sin(a) * 6.1, y = 2.0 + t * 2.9;
+      const tx = -Math.sin(a) * 3.1, tz = sd * Math.cos(a) * 6.1, ry = Math.atan2(tx, tz);
+      steps.push({x, y, z, s:[1.5, 0.18, 0.5], ry, c:RED});
+      steps.push({x, y:y - 0.25, z, s:[1.5, 0.3, 0.52], ry, c:'#8f2730'});
+      const ox = Math.cos(a) * 0.75, oz = sd * Math.sin(a) * 0.75;
+      sides.push({x:x + ox * 1.0, y:y + 0.45, z:z + oz * 1.0, s:[0.07, 0.75, 0.07], c:DARK});
+    }
+    steps.push({x:-117.1, y:4.95, z:sd * 7.2, s:[1.6, 0.22, 2.6], c:RED});
+  }
+  inst(new THREE.BoxGeometry(1, 1, 1), steps, instMat, {cast:true});
+  inst(new THREE.BoxGeometry(1, 1, 1), sides, instMat, {cast:false});
+  wall(-106.4, -1.35, -112.4, -1.35); wall(-106.4, 1.35, -112.4, 1.35); wall(-106.4, -1.35, -106.4, 1.35);
+  colliders.push({x:-112.8, z:0, r:1.7});
+  for(const sd of [1, -1]) for(let i = 0; i < 5; i++){ const a = (i + 0.5) / 16 * Math.PI * 0.62; colliders.push({x:-116 + Math.cos(a) * 3.1, z:sd * Math.sin(a) * 6.1, r:0.8}); }
+  // counter, armchairs, warm lamps
+  add(new THREE.BoxGeometry(2.8, 1.0, 0.9), '#5a3826', -106.8, 0.5, -7.2);
+  add(new THREE.BoxGeometry(3.0, 0.08, 1.1), '#3a2418', -106.8, 1.04, -7.2);
+  add(new THREE.BoxGeometry(0.4, 0.3, 0.3), '#c9a14a', -106.0, 1.23, -7.2);
+  wall(-108.3, -6.7, -105.3, -6.7);
+  [[-121.6, -6.6, Math.PI / 2], [-121.6, 6.6, Math.PI / 2], [-109.2, 8.3, Math.PI], [-112.6, 8.3, Math.PI]].forEach(([x, z, ry]) => {
+    const g = new THREE.Group(); g.position.set(x, 0, z); g.rotation.y = ry; scene.add(g);
+    add(new THREE.BoxGeometry(0.8, 0.22, 0.75), '#9c2b35', 0, 0.38, 0, g);
+    add(new THREE.BoxGeometry(0.8, 0.75, 0.18), '#9c2b35', 0, 0.75, -0.32, g);
+    for(const sx of [-1, 1]) add(new THREE.BoxGeometry(0.14, 0.32, 0.72), '#8a2430', sx * 0.4, 0.55, 0, g);
+    for(const lx of [-0.32, 0.32]) for(const lz of [-0.3, 0.3]) add(new THREE.CylinderGeometry(0.03, 0.03, 0.28, 5), '#3a2418', lx, 0.14, lz, g, {cast:false});
+    seats.push({x, z, ry, kind:1});
+  });
+  for(const [x, z] of [[-121, -9], [-121, 9], [-105, 9], [-105, -9], [-114, -8.8], [-114, 8.8]]){
+    add(new THREE.SphereGeometry(0.16, 10, 8), basic('#ffe2a0'), x, 4.3, z, null, {cast:false});
+    shopLights.push([x, 4.3, z]);
+  }
+  wall(S.x1, S.z0, S.x1, -1.8); wall(S.x1, 1.8, S.x1, S.z1);
+  wall(S.x0, S.z0, S.x0, S.z1); wall(S.x0, S.z0, S.x1, S.z0); wall(S.x0, S.z1, S.x1, S.z1);
+}
+
+/* --- east meadow: picnic blankets, little glasshouse, river deck --- */
+{
+  seg(40, 26, 62, 28, 2.6); seg(62, 28, 69, 40.5, 2.6);
+  [[73, 8, 0.3, '#e56b6f'], [83, -6, -0.4, '#6bb7c9'], [70, -18, 0.9, '#7fb069']].forEach(([x, z, ry, c]) => {
+    const bl = new THREE.Mesh(new THREE.PlaneGeometry(2.8, 2.3), toonTex(ginghamTex(c), {polygonOffset:true, polygonOffsetFactor:-1, polygonOffsetUnits:-1}));
+    bl.rotation.set(-Math.PI / 2, 0, ry); bl.position.set(x, 0.03, z); bl.receiveShadow = true; scene.add(bl);
+    add(new THREE.BoxGeometry(0.5, 0.3, 0.35), '#c9955a', x + Math.cos(ry) * 0.9, 0.15, z - Math.sin(ry) * 0.9);
+    add(new THREE.TorusGeometry(0.2, 0.025, 6, 12, Math.PI), '#a8794f', x + Math.cos(ry) * 0.9, 0.3, z - Math.sin(ry) * 0.9).rotation.y = -ry;
+    for(const side of [-1, 1]){
+      const sx = x + Math.sin(ry) * 0.5 * side, sz = z + Math.cos(ry) * 0.5 * side;
+      seats.push({x:sx, z:sz, ry:ry + (side > 0 ? Math.PI : 0), kind:2});
+    }
+    BEDS.push({x, z, r:2});
+  });
+  // glasshouse (a small nod to the old crystal palace)
+  const gx = 80, gz = -36, gw = 7, gd = 9, gh = 4;
+  const glass = new THREE.MeshBasicMaterial({color:'#cfeef5', transparent:true, opacity:0.28, depthWrite:false, side:THREE.DoubleSide});
+  const gbox = new THREE.Mesh(new THREE.BoxGeometry(gw, gh, gd), glass); gbox.position.set(gx, gh / 2, gz); scene.add(gbox);
+  const groof = new THREE.Mesh(new THREE.CylinderGeometry(gw / 2, gw / 2, gd, 16, 1, true, -Math.PI / 2, Math.PI), glass);
+  groof.rotation.x = Math.PI / 2; groof.position.set(gx, gh, gz); scene.add(groof);
+  const frame = [];
+  for(const sx of [-1, 1]) for(const sz of [-1, 1]) frame.push({x:gx + sx * gw / 2, y:gh / 2, z:gz + sz * gd / 2, s:[0.12, gh, 0.12], c:'#ffffff'});
+  for(let z = -gd / 2; z <= gd / 2 + 0.01; z += gd / 4){ for(const sx of [-1, 1]) frame.push({x:gx + sx * gw / 2, y:gh / 2, z:gz + z, s:[0.08, gh, 0.08], c:'#ffffff'}); }
+  for(let i = 0; i <= 8; i++){ const a = i / 8 * Math.PI; frame.push({x:gx + Math.cos(a) * gw / 2, y:gh + Math.sin(a) * gw / 2, z:gz, s:[0.08, 0.08, gd], c:'#ffffff'}); }
+  inst(new THREE.BoxGeometry(1, 1, 1), frame, instMat, {cast:true});
+  for(let i = 0; i < 6; i++){
+    const px = gx - 2 + (i % 3) * 2, pz = gz - 2.5 + Math.floor(i / 3) * 5;
+    add(new THREE.CylinderGeometry(0.35, 0.28, 0.5, 10), '#c96a45', px, 0.25, pz);
+    add(new THREE.IcosahedronGeometry(0.55, 1), pick(GREENS), px, 0.95, pz);
+  }
+  wall(gx - gw / 2, gz - gd / 2, gx + gw / 2, gz - gd / 2); wall(gx - gw / 2, gz + gd / 2, gx + gw / 2, gz + gd / 2);
+  wall(gx - gw / 2, gz - gd / 2, gx - gw / 2, gz + gd / 2); wall(gx + gw / 2, gz - gd / 2, gx + gw / 2, gz + gd / 2);
+  BEDS.push({x:gx, z:gz, r:6.5});
+  // river viewing deck over the cliff
+  const deck = new THREE.Mesh(new THREE.BoxGeometry(DECK.x1 - DECK.x0 + 0.4, 0.3, DECK.z1 - 41.6), toonTex(deckTex));
+  deck.position.set((DECK.x0 + DECK.x1) / 2, -0.13, (41.6 + DECK.z1) / 2); deck.receiveShadow = true; deck.castShadow = true; scene.add(deck);
+  for(const px of [DECK.x0 + 0.4, DECK.x1 - 0.4]) for(const pz of [44, 48, 51.5]) add(new THREE.CylinderGeometry(0.18, 0.22, 14, 8), '#8a6440', px, -7.2, pz, null, {cast:false});
+  const rail = [];
+  for(let z = 42.2; z <= DECK.z1; z += 1){ rail.push({x:DECK.x0, y:0.5, z, s:[0.08, 1, 0.08], c:'#3d4d46'}, {x:DECK.x1, y:0.5, z, s:[0.08, 1, 0.08], c:'#3d4d46'}); }
+  for(let x = DECK.x0; x <= DECK.x1; x += 1) rail.push({x, y:0.5, z:DECK.z1, s:[0.08, 1, 0.08], c:'#3d4d46'});
+  rail.push({x:DECK.x0, y:1.0, z:(42 + DECK.z1) / 2, s:[0.1, 0.08, DECK.z1 - 42], c:'#3d4d46'}, {x:DECK.x1, y:1.0, z:(42 + DECK.z1) / 2, s:[0.1, 0.08, DECK.z1 - 42], c:'#3d4d46'}, {x:(DECK.x0 + DECK.x1) / 2, y:1.0, z:DECK.z1, s:[DECK.x1 - DECK.x0, 0.08, 0.1], c:'#3d4d46'});
+  inst(new THREE.BoxGeometry(1, 1, 1), rail, instMat, {cast:false});
+  wall(DECK.x0, 41.5, DECK.x0, DECK.z1); wall(DECK.x1, 41.5, DECK.x1, DECK.z1); wall(DECK.x0, DECK.z1, DECK.x1, DECK.z1);
+  // telescope
+  const tg = new THREE.Group(); tg.position.set(TELESCOPE.x, 0, TELESCOPE.z); scene.add(tg);
+  for(let i = 0; i < 3; i++){ const a = i / 3 * Math.PI * 2; const leg = add(new THREE.CylinderGeometry(0.025, 0.025, 1.25, 5), '#3d4d46', Math.cos(a) * 0.22, 0.6, Math.sin(a) * 0.22, tg); leg.rotation.set(Math.sin(a) * 0.18, 0, -Math.cos(a) * 0.18); }
+  const tube = add(new THREE.CylinderGeometry(0.07, 0.1, 0.9, 12), '#c9a14a', 0, 1.3, 0.15, tg); tube.rotation.x = Math.PI / 2 - 0.15;
+  colliders.push({x:TELESCOPE.x, z:TELESCOPE.z, r:0.35});
+  bench(71.6, 44.6, 0);
+  lamp(60, 27); lamp(66.5, 36);
+  // meadow trees and flowers
+  for(let tries = 0, placed = 0; tries < 900 && placed < 34; tries++){
+    const x = 64 + rnd() * 26, z = -62 + rnd() * 84;
+    if(blocked(x, z, 2.5) || BEDS.some(b => Math.hypot(b.x - x, b.z - z) < b.r + 2.5)) continue;
+    if(treeSpots.some(t => Math.hypot(t.x - x, t.z - z) < 4.5)) continue;
+    tree(x, z, rnd() < 0.25 ? 'blossom' : 'round'); placed++;
+  }
+  for(let i = 0; i < 26; i++){
+    const cx = 64 + rnd() * 26, cz = -60 + rnd() * 80;
+    if(blocked(cx, cz, 1) || BEDS.some(b => Math.hypot(b.x - cx, b.z - cz) < b.r + 1)) continue;
+    const col = pick(FLOWER_C);
+    for(let j = 0; j < 9; j++) flowers.push({x:cx + (rnd() - 0.5) * 2.2, y:0.18, z:cz + (rnd() - 0.5) * 2.2, s:0.08 + rnd() * 0.04, c:col});
+  }
+}
+
+/* --- movement limits for the bigger world --- */
+function clampMe(pos){
+  for(const w of WALLS){
+    const dx = w.bx - w.ax, dz = w.bz - w.az, L2 = dx * dx + dz * dz || 1;
+    const t = Math.max(0, Math.min(1, ((pos.x - w.ax) * dx + (pos.z - w.az) * dz) / L2));
+    const px = w.ax + dx * t, pz = w.az + dz * t, ox = pos.x - px, oz = pos.z - pz, d = Math.hypot(ox, oz);
+    if(d < 0.34){
+      if(d > 1e-4){ pos.x = px + ox / d * 0.34; pos.z = pz + oz / d * 0.34; }
+      else { pos.x += -dz / Math.sqrt(L2) * 0.34; pos.z += dx / Math.sqrt(L2) * 0.34; }
+    }
+  }
+  pos.x = Math.max(SHOP.x0 + 0.4, Math.min(91.5, pos.x));
+  const onDeck = pos.x > DECK.x0 + 0.3 && pos.x < DECK.x1 - 0.3;
+  pos.z = Math.max(-64, Math.min(onDeck ? DECK.z1 - 0.4 : 41, pos.z));
+}
+
+wall(-61, -68, -61, -3.6); wall(-61, 3.6, -61, 42); wall(61, -68, 61, 20);
+inst(new THREE.CylinderGeometry(0.18, 0.26, 1, 7), trunks);
+inst(new THREE.IcosahedronGeometry(1, 1), blobs, instMatFlat);
+inst(new THREE.ConeGeometry(0.5, 1, 8), cones, instMatFlat);
+inst(new THREE.SphereGeometry(1, 10, 8), hedges, instMat, {cast:true});
+inst(new THREE.IcosahedronGeometry(1, 0), flowers, instMatFlat, {cast:false});
 inst(new THREE.CylinderGeometry(0.07, 0.1, 1, 8), lampPosts);
 
-const WINDOW_LIGHTS = [];
 /* --- across the river: Douro, stepped hillside of houses, arch bridge, boats --- */
 {
   const river = add(new THREE.PlaneGeometry(1400, 120), M('#86c3d4'), 0, -14, 98, null, {cast:false, recv:false});
@@ -694,6 +1122,65 @@ const WINDOW_LIGHTS = [];
     add(new THREE.CylinderGeometry(0.06, 0.06, 4, 6), '#6b4a34', 1, 2.2, 0, b, {cast:false});
     waterAnim.boats.push({g:b, x:-200 + i * 110, z:62 + (i % 2) * 20 + i * 3, sp:(i % 2 ? -1 : 1) * (2 + i * 0.4)});
   }
+}
+
+/* --- boats on the Douro: rabelo boats, a river cruiser, little sailboats --- */
+const sailTex = (a, b) => texCanvas(64, 64, (g) => { g.fillStyle = a; g.fillRect(0, 0, 64, 64); g.fillStyle = b; for(let i = 0; i < 4; i++) g.fillRect(i * 16, 0, 8, 64); });
+function buildRabelo(sailA, sailB){
+  const g = new THREE.Group();
+  const hull = add(new THREE.BoxGeometry(9, 1.1, 2.4), '#6b4530', 0, 0.35, 0, g, {cast:false});
+  for(const sx of [1, -1]){ const tip = add(new THREE.ConeGeometry(1.2, 2.2, 4), '#6b4530', sx * 5.4, 0.5, 0, g, {cast:false}); tip.rotation.set(0, Math.PI / 4, -sx * Math.PI / 2); tip.scale.set(1, 1, 0.55); }
+  add(new THREE.BoxGeometry(8.6, 0.12, 2.2), '#a8794f', 0, 0.92, 0, g, {cast:false});
+  add(new THREE.BoxGeometry(1.8, 0.9, 2.2), '#8a5a3c', -3.6, 1.35, 0, g, {cast:false});
+  add(new THREE.CylinderGeometry(0.03, 0.03, 3.4, 4), '#3a2418', -5.6, 1.8, 0, g, {cast:false}).rotation.z = 0.9;
+  for(let i = 0; i < 6; i++) add(new THREE.CylinderGeometry(0.32, 0.32, 0.75, 10), '#8f5a35', -1.4 + (i % 3) * 0.8, 1.35, (i < 3 ? -0.45 : 0.45), g, {cast:false});
+  add(new THREE.CylinderGeometry(0.08, 0.1, 6, 6), '#5a3826', 1.2, 3.9, 0, g, {cast:false});
+  add(new THREE.BoxGeometry(0.08, 0.08, 3.6), '#5a3826', 1.2, 6.4, 0, g, {cast:false});
+  const sail = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 3.6), toonTex(sailTex(sailA, sailB), {side:THREE.DoubleSide}));
+  sail.rotation.y = Math.PI / 2; sail.position.set(1.25, 4.6, 0); g.add(sail);
+  return g;
+}
+function buildCruiser(){
+  const g = new THREE.Group();
+  add(new THREE.BoxGeometry(16, 1.4, 3.6), '#fbfaf6', 0, 0.5, 0, g, {cast:false});
+  add(new THREE.BoxGeometry(16.1, 0.3, 3.7), '#2f5fa8', 0, 0.2, 0, g, {cast:false});
+  const bow = add(new THREE.ConeGeometry(1.8, 2.6, 4), '#fbfaf6', 9.2, 0.5, 0, g, {cast:false}); bow.rotation.set(0, Math.PI / 4, -Math.PI / 2); bow.scale.set(1, 1, 0.6);
+  add(new THREE.BoxGeometry(11, 1.4, 3.2), '#f2efe6', -1, 1.9, 0, g, {cast:false});
+  for(let i = 0; i < 8; i++) for(const sz of [-1, 1]) add(new THREE.BoxGeometry(0.8, 0.6, 0.05), '#4f6f80', -5.6 + i * 1.35, 2.0, sz * 1.62, g, {cast:false});
+  add(new THREE.BoxGeometry(11.2, 0.12, 3.4), '#2f5fa8', -1, 2.65, 0, g, {cast:false});
+  for(let i = 0; i < 4; i++) add(new THREE.CylinderGeometry(0.04, 0.04, 1, 4), '#2f5fa8', -5 + i * 3, 3.2, 0, g, {cast:false});
+  add(new THREE.BoxGeometry(11.2, 0.1, 3.4), '#e9e1d2', -1, 3.7, 0, g, {cast:false});
+  return g;
+}
+function buildSailboat(c){
+  const g = new THREE.Group();
+  add(new THREE.BoxGeometry(3.4, 0.6, 1.2), c, 0, 0.25, 0, g, {cast:false});
+  const tip = add(new THREE.ConeGeometry(0.6, 1.2, 4), c, 2.2, 0.3, 0, g, {cast:false}); tip.rotation.set(0, Math.PI / 4, -Math.PI / 2); tip.scale.set(1, 1, 0.6);
+  add(new THREE.CylinderGeometry(0.04, 0.05, 3.6, 5), '#e9e1d2', 0.3, 2.3, 0, g, {cast:false});
+  const sail = new THREE.Mesh(new THREE.CircleGeometry(1.6, 3), M('#ffffff', {side:THREE.DoubleSide}));
+  sail.position.set(-0.4, 2.4, 0); sail.rotation.set(0, 0, Math.PI / 2 + 0.25); sail.scale.set(1, 0.75, 1); g.add(sail);
+  return g;
+}
+{
+  const fleet = [
+    {b:buildRabelo('#f4efe6', '#c9443c'), x:-120, z:58, sp:1.6},
+    {b:buildRabelo('#f4efe6', '#2b3b63'), x:30, z:66, sp:-1.2},
+    {b:buildRabelo('#f2e6c9', '#3f7a57'), x:150, z:74, sp:1.0},
+    {b:buildRabelo('#f4efe6', '#1f1f24'), x:-40, z:82, sp:-1.5},
+    {b:buildRabelo('#f2e6c9', '#b8893a'), x:-20, z:112, sp:0},
+    {b:buildRabelo('#f4efe6', '#7a2630'), x:-8, z:113.5, sp:0},
+    {b:buildRabelo('#f4efe6', '#335c67'), x:4, z:112.5, sp:0},
+    {b:buildCruiser(), x:80, z:92, sp:-2.2},
+    {b:buildSailboat('#e56b6f'), x:-200, z:62, sp:2.6},
+    {b:buildSailboat('#6bb7c9'), x:200, z:100, sp:-2.1},
+  ];
+  for(const f of fleet){
+    f.b.scale.setScalar(1.1); scene.add(f.b);
+    waterAnim.boats.push({g:f.b, x:f.x, z:f.z, sp:f.sp, big:true});
+  }
+  // a little pier for the moored rabelos on the far bank
+  add(new THREE.BoxGeometry(34, 0.5, 3), '#8a6440', -8, -13.6, 116.5, null, {cast:false});
+  for(let x = -24; x <= 8; x += 4) add(new THREE.CylinderGeometry(0.2, 0.2, 2.4, 6), '#6b4530', x, -14.4, 115.2, null, {cast:false});
 }
 
 /* --- clouds --- */
@@ -777,6 +1264,8 @@ function buildChar(ci){
   const body = new THREE.Group(); body.position.y = 0.36; inner.add(body);
   sm(new THREE.CylinderGeometry(0.19, 0.25, 0.44, 16), C.top, 0, 0.22, 0, body);
   if(C.dress) sm(new THREE.CylinderGeometry(0.23, 0.38, 0.32, 18), C.dress, 0, 0.02, 0, body);
+  if(C.apron){ sm(new THREE.BoxGeometry(0.34, 0.5, 0.03), C.apron, 0, 0.14, 0.27, body).rotation.x = -0.12; }
+  if(C.vest){ const v = sm(new THREE.CylinderGeometry(0.2, 0.26, 0.4, 16, 1, false, Math.PI * 0.12, Math.PI * 1.76), C.vest, 0, 0.23, 0, body); v.scale.set(1.04, 1, 1.04); }
   else if(C.skirt) sm(new THREE.CylinderGeometry(0.24, 0.33, 0.2, 18), C.skirt, 0, 0.04, 0, body);
   else sm(new THREE.CylinderGeometry(0.25, 0.25, 0.1, 16), C.legs, 0, 0.03, 0, body);
   if(C.sex === '남') sm(new THREE.CylinderGeometry(0.12, 0.17, 0.05, 14), '#ffffff', 0, 0.44, 0.02, body);
@@ -821,8 +1310,10 @@ function buildChar(ci){
   if(C.style === 'long'){
     const back = add(new THREE.CylinderGeometry(0.43, 0.5, 0.8, 24, 1, true, Math.PI / 2, Math.PI), M(C.hair, {side:THREE.DoubleSide}), 0, -0.3, -0.02, head);
     for(const sx of [1, -1]){ const s = add(new THREE.SphereGeometry(0.11, 10, 8), hair, 0.37 * sx, -0.1, 0.05, head); s.scale.set(0.6, 2.0, 0.9); }
-    for(const sx of [1, -1]){ const r = add(new THREE.ConeGeometry(0.08, 0.18, 8), C.ribbon, 0.28 + sx * 0.09, 0.33, 0.05, head); r.rotation.z = sx * Math.PI / 2; }
-    add(new THREE.SphereGeometry(0.04, 8, 6), C.ribbon, 0.28, 0.33, 0.05, head);
+    if(C.ribbon){
+      for(const sx of [1, -1]){ const r = add(new THREE.ConeGeometry(0.08, 0.18, 8), C.ribbon, 0.28 + sx * 0.09, 0.33, 0.05, head); r.rotation.z = sx * Math.PI / 2; }
+      add(new THREE.SphereGeometry(0.04, 8, 6), C.ribbon, 0.28, 0.33, 0.05, head);
+    }
     back.castShadow = true;
   }
   if(C.style === 'buns'){
@@ -830,6 +1321,24 @@ function buildChar(ci){
       add(new THREE.SphereGeometry(0.16, 14, 10), hair, 0.28 * sx, 0.34, -0.06, head);
       add(new THREE.TorusGeometry(0.1, 0.03, 6, 14), '#f2a3b6', 0.24 * sx, 0.27, -0.05, head).rotation.set(0.5, 0, sx * 0.7);
     }
+  }
+  if(C.style === 'bun'){
+    add(new THREE.SphereGeometry(0.17, 12, 10), hair, 0, 0.3, -0.25, head);
+    const pin = add(new THREE.CylinderGeometry(0.012, 0.012, 0.36, 5), '#c9a14a', 0.02, 0.33, -0.25, head); pin.rotation.z = 1.2;
+  }
+  if(C.mustache){ const mu = add(new THREE.SphereGeometry(0.05, 8, 6), C.mustache, 0, -0.085, 0.375, head, {cast:false}); mu.scale.set(1.8, 0.55, 0.6); }
+  if(C.beret){ const be = add(new THREE.SphereGeometry(0.33, 16, 10), C.beret, 0.05, 0.36, -0.03, head); be.scale.set(1, 0.32, 1); be.rotation.z = 0.25; add(new THREE.CylinderGeometry(0.02, 0.02, 0.06, 5), C.beret, 0.04, 0.47, -0.03, head); }
+  if(C.cap){
+    const cp = new THREE.Group(); cp.position.y = 0.27; cp.rotation.x = -0.12; head.add(cp);
+    add(new THREE.CylinderGeometry(0.4, 0.44, 0.13, 20), C.cap, 0, 0, -0.02, cp);
+    const br = add(new THREE.BoxGeometry(0.42, 0.03, 0.18), C.cap, 0, -0.04, 0.42, cp); br.rotation.x = 0.15;
+  }
+  if(C.sailor){
+    const sc = new THREE.Group(); sc.position.y = 0.3; sc.rotation.x = -0.1; head.add(sc);
+    add(new THREE.CylinderGeometry(0.38, 0.36, 0.2, 20), C.sailor, 0, 0.04, 0, sc);
+    add(new THREE.CylinderGeometry(0.385, 0.385, 0.06, 20), '#1f2f4f', 0, -0.03, 0, sc);
+    const vz = add(new THREE.BoxGeometry(0.36, 0.03, 0.16), '#1f1f24', 0, -0.07, 0.4, sc); vz.rotation.x = 0.2;
+    add(new THREE.SphereGeometry(0.04, 8, 6), '#c9a14a', 0, 0.02, 0.38, sc);
   }
   if(C.style === 'curly'){
     for(let i = 0; i < 22; i++){
@@ -875,7 +1384,7 @@ const thumbs = [];
     ts.add(new THREE.HemisphereLight('#ffffff', '#bcd8c4', 0.85));
     const dl = new THREE.DirectionalLight('#ffffff', 0.6); dl.position.set(2, 3, 4); ts.add(dl);
     const tc = new THREE.PerspectiveCamera(30, 180 / 220, 0.1, 20); tc.position.set(0.9, 1.25, 3.4); tc.lookAt(0, 0.78, 0);
-    CHARS.forEach((c, i) => {
+    CHARS.slice(0, PLAYABLE).forEach((c, i) => {
       const b = buildChar(i); b.root.rotation.y = 0.3; b.arms[1].rotation.z = -0.5; ts.add(b.root);
       tr.render(ts, tc); thumbs[i] = tr.domElement.toDataURL('image/png'); ts.remove(b.root);
     });
@@ -963,7 +1472,7 @@ class Avatar {
     updateProps(this, dt);
     p.root.position.copy(this.pos); p.root.rotation.y = this.ry;
     if(this.sayUntil && clock > this.sayUntil){ this.bubble.hidden = true; this.sayUntil = 0; }
-    placeEl(this.label, this.pos.x, this.pos.y + 1.85 + y, this.pos.z);
+    if(this.hideLabel) this.label.hidden = true; else placeEl(this.label, this.pos.x, this.pos.y + 1.85 + y, this.pos.z);
   }
   dispose(){ this.disposed = true; scene.remove(this.p.root); this.label.remove(); }
 }
@@ -987,7 +1496,7 @@ function spawnHearts(av){
 /* ---------------- player & input ---------------- */
 let entered = false;
 const me = {av:null, nick:'', ci:0, sit:0, emo:{k:'', i:0}, said:{t:'', i:0}};
-try{ me.nick = localStorage.getItem('cp.nick') || ''; me.ci = Math.min(CHARS.length - 1, Math.max(0, parseInt(localStorage.getItem('cp.ci') || '0', 10) || 0)); }catch(e){}
+try{ me.nick = localStorage.getItem('cp.nick') || ''; me.ci = Math.min(PLAYABLE - 1, Math.max(0, parseInt(localStorage.getItem('cp.ci') || '0', 10) || 0)); }catch(e){}
 
 const keys = new Set();
 const joy = {x:0, y:0, active:false, id:null};
@@ -1002,12 +1511,13 @@ addEventListener('keydown', e => {
   if(e.key === 'Escape'){ closePanels(); return; }
   if(reader.open && reader.book >= 0 && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')){ e.preventDefault(); turnPage(e.key === 'ArrowRight' ? 1 : -1); return; }
   const k = e.key.toLowerCase();
-  if(e.repeat && 'efrbtlp12345'.includes(k)) return;
+  if(e.repeat && 'efrbtlpq12345'.includes(k)) return;
+  if(k === 'q'){ toggleQuests(); return; }
   if(k === 't'){ toggleReader(); return; }
   if(k === 'l'){ toggleLantern(); return; }
   if(k === 'p'){ takePhoto(); return; }
   if(k === '5'){ doEmote('bubbles'); return; }
-  if(k === 'e'){ toggleSit(); return; }
+  if(k === 'e'){ contextAction(); return; }
   if(k === 'b'){ toggleBirdBook(); return; }
   if(k === 'f'){ doEmote('feed'); return; }
   if(k === 'r'){ doEmote('coin'); return; }
@@ -1069,7 +1579,14 @@ function toggleSit(){
       if(d < bd){ bd = d; best = {x:sx, z:sz, ry:b.ry}; }
     }
   }
-  if(best){ me.av.pos.set(best.x, 0, best.z); me.av.ry = best.ry; me.sit = 1; }
+  for(const st of seats){
+    let taken = false;
+    remotes.forEach(r => { if(r.av.sit && Math.hypot(r.tx - st.x, r.tz - st.z) < 0.3) taken = true; });
+    if(taken) continue;
+    const d = Math.hypot(st.x - me.av.pos.x, st.z - me.av.pos.z);
+    if(d < Math.min(bd, 1.8)){ bd = d; best = {x:st.x, z:st.z, ry:st.ry, kind:st.kind}; }
+  }
+  if(best){ me.av.pos.set(best.x, 0, best.z); me.av.ry = best.ry; me.sit = best.kind || 1; }
   else me.sit = 2;
   me.av.sit = me.sit;
 }
@@ -1085,18 +1602,20 @@ function doEmote(k){
   if(k === 'feed'){
     if(clock < (me.feedCD || 0)) return;
     me.feedCD = clock + 1.2;
+    bumpStat('feed');
     if(me.sit){ me.sit = 0; me.av.sit = 0; }
   }
   if(k === 'coin'){
     if(!nearPond(me.av)){ toast('연못 가까이에서 던질 수 있어요'); return; }
     if(clock < (me.coinCD || 0)) return;
     me.coinCD = clock + 2;
+    bumpStat('coin');
   }
   me.emo = {k, i:me.emo.i + 1};
   me.av.emote(k);
   emoteEffects(me.av, k, true);
 }
-document.querySelectorAll('.emo').forEach(b => b.addEventListener('click', () => { doEmote(b.dataset.e); b.blur(); }));
+document.querySelectorAll('.emo').forEach(b => tapButton(b, () => doEmote(b.dataset.e)));
 
 /* ---------------- chat log ---------------- */
 const logEl = $('#log');
@@ -1125,7 +1644,7 @@ function toast(t){ const el = $('#toast'); el.textContent = t; el.classList.add(
 const charsEl = $('#chars');
 function renderChars(){
   charsEl.textContent = '';
-  CHARS.forEach((c, i) => {
+  CHARS.slice(0, PLAYABLE).forEach((c, i) => {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'char'; b.id = 'char-' + i;
     b.setAttribute('aria-pressed', String(i === me.ci));
     if(thumbs[i]){ const img = document.createElement('img'); img.src = thumbs[i]; img.alt = c.name; b.append(img); }
@@ -1154,6 +1673,7 @@ $('#enter').addEventListener('click', () => {
     me.av.setName(me.nick);
   }
   entered = true;
+  applyRewards();
   $('#start').hidden = true; $('#hud').hidden = false;
   $('#enter').textContent = '공원으로 돌아가기';
   lastPresence = '';
@@ -1221,21 +1741,22 @@ function upsertPeer(p){
   if(p.sameTab || p.kind !== 'viewer') return;
   const pr = p.presence || {};
   if(!Array.isArray(pr.p)){ removePeer(p.peer); return; }
-  const ci = Math.round(num(pr.c, 0, CHARS.length - 1, 0));
+  const ci = Math.round(num(pr.c, 0, PLAYABLE - 1, 0));
   const name = cleanStr(pr.n, 12) || '산책객';
   let r = remotes.get(p.peer);
   if(!r){
     r = {av:new Avatar(ci, name, false), tx:0, tz:0, try:0, emoI:null, sayI:null};
-    r.av.pos.set(num(pr.p[0], -80, 80, 0), 0, num(pr.p[1], -80, 50, 30));
+    r.av.pos.set(num(pr.p[0], -130, 100, 0), 0, num(pr.p[1], -80, 60, 30));
     remotes.set(p.peer, r);
     if(entered) { logLine('', `${name}님이 공원에 들어왔어요`, '', true); toast(`${name}님이 산책을 시작했어요`); }
   }
   if(r.av.ci !== ci) r.av.build(ci);
   if(r.av.name !== name) r.av.setName(name);
-  r.tx = num(pr.p[0], -80, 80, r.tx); r.tz = num(pr.p[1], -80, 50, r.tz); r.try = num(pr.p[2], -10, 10, 0);
+  r.tx = num(pr.p[0], -130, 100, r.tx); r.tz = num(pr.p[1], -80, 60, r.tz); r.try = num(pr.p[2], -10, 10, 0);
   r.av.sit = Math.round(num(pr.sit, 0, 2, 0));
   r.av.reading = Math.round(num(pr.rd, -1, BOOKS.length - 1, -1));
   r.av.lantern = pr.ln === 1;
+  r.av.crown = pr.cr === 1; r.av.title = pr.tt === 1;
   const e = pr.e && typeof pr.e === 'object' ? pr.e : null;
   if(e && typeof e.i === 'number'){
     if(r.emoI !== null && e.i !== r.emoI && ['wave', 'jump', 'heart', 'feed', 'coin', 'dance', 'bubbles'].includes(e.k)){ r.av.emote(e.k); emoteEffects(r.av, e.k, false); }
@@ -1343,7 +1864,7 @@ function pushPresence(){
   const st = entered ? {
     n:me.nick, c:me.ci,
     p:[+me.av.pos.x.toFixed(2), +me.av.pos.z.toFixed(2), +me.av.ry.toFixed(2)],
-    sit:me.sit, e:me.emo, s:me.said, rd:me.av.reading, ln:me.av.lantern ? 1 : 0
+    sit:me.sit, e:me.emo, s:me.said, rd:me.av.reading, ln:me.av.lantern ? 1 : 0, cr:me.av.crown ? 1 : 0, tt:me.av.title ? 1 : 0
   } : {p:null};
   const js = JSON.stringify(st);
   if(js === lastPresence) return;
@@ -1445,7 +1966,7 @@ function placeName(x, z){
   return '잔디밭';
 }
 function statusOf(av){
-  const ln = av.lantern ? ' · 등불' : '';
+  const ln = (av.lantern ? ' · 등불' : '') + (av.title ? ' · 명예 산책가' : av.crown ? ' · 꽃 화관' : '');
   if(av.reading >= 0 && av.sit) return `『${BOOKS[av.reading].title}』 읽는 중` + ln;
   return statusCore(av) + ln;
 }
@@ -1725,7 +2246,7 @@ function mkBird(type, parts, x, z, extra){
     vel:new THREE.Vector3(), seekT:Math.random() * 0.4, home:{x, z, r:6}, flapK:0, seed:null}, parts, extra || {});
   birds.push(b); return b;
 }
-function validGround(x, z){ return x > -54 && x < 54 && z > -62 && z < 40.6 && !insideCollider(x, z, 0.3); }
+function validGround(x, z){ return x > -54 && x < 88 && !(x > 74 && x < 86 && z > -42 && z < -30) && z > -62 && z < 40.6 && !insideCollider(x, z, 0.3); }
 function wanderTarget(b){
   for(let i = 0; i < 15; i++){
     const a = Math.random() * 6.28, r = Math.random() * b.home.r;
@@ -2145,24 +2666,6 @@ function updateBirds(dt){
 }
 
 /* ---------------- context prompt ---------------- */
-let promptKey = '';
-function updateContext(){
-  let html = '', key = '';
-  const showCoin = !!(me.av && entered && nearPond(me.av));
-  if(me.av && entered && !me.sit){
-    let nearBench = false;
-    for(const b of benches) if(Math.hypot(b.x - me.av.pos.x, b.z - me.av.pos.z) < 2.4){ nearBench = true; break; }
-    if(nearBench){ key = 'bench'; html = '<kbd>E</kbd>벤치에 앉기 · <kbd>T</kbd>책 읽기'; }
-    else if(showCoin){ key = 'coin'; html = '<kbd>R</kbd>분수에 소원 동전 던지기 · <kbd>F</kbd>오리에게 모이 주기'; }
-  } else if(me.av && entered && me.sit === 1 && me.av.reading < 0){ key = 'sitting'; html = '<kbd>T</kbd>공원 문고에서 책 읽기 · 가만히 있으면 참새가 놀러 와요'; }
-  if(key !== promptKey){
-    promptKey = key;
-    const el = $('#prompt');
-    el.hidden = !key; if(key) el.innerHTML = html;
-  }
-  const cb = $('#coinBtn'); if(cb.hidden === showCoin) cb.hidden = !showCoin;
-}
-
 /* ---------------- time of day (shared clock: same for everyone) ---------------- */
 PRESETS.night = {top:'#101a3c', bottom:'#2b3763', hs:'#6273b4', hg:'#202a48', hi:0.46, sc:'#a8bbff', si:0.32, off:[-22, 42, -30], lamp:'#ffe7a0'};
 PRESETS.dawn = {top:'#93b6e3', bottom:'#ffd7c4', hs:'#ffe7dd', hg:'#9aa88f', hi:0.5, sc:'#ffc9a0', si:0.66, off:[42, 16, -12], lamp:'#fff0d0'};
@@ -2369,7 +2872,7 @@ const BOOKS = [
     '밤이 깊어지면 곧 아침이 와요. 첫 햇살이 비칠 때 정자 쪽에서 들리는 우렁찬 소리에 놀라지 마세요.',
   ]},
 ];
-const reader = {open:false, book:-1, page:0};
+const reader = {open:false, book:-1, page:0, mode:'bag'};
 function readerOpen(){ return reader.open; }
 function renderReader(){
   const el = $('#reader');
@@ -2378,17 +2881,20 @@ function renderReader(){
   const shelf = $('#shelf'), pageEl = $('#rpage');
   if(reader.book < 0){
     shelf.hidden = false; pageEl.hidden = true;
-    $('#rtitle').textContent = '공원 문고'; $('#rby').textContent = '벤치에 앉아 읽을 책을 골라 보세요';
+    const store = reader.mode === 'store';
+    $('#rtitle').textContent = store ? '렐루 서점 서가' : '내 책가방';
+    $('#rby').textContent = store ? '마음에 드는 책을 눌러 가방에 담아요' : (bag.length < BOOKS.filter(x => x.shop).length ? '앉아서 읽을 책을 골라요 · 서쪽 렐루 서점에서 더 빌릴 수 있어요' : '앉아서 읽을 책을 골라 보세요');
     shelf.textContent = '';
-    BOOKS.forEach((b, i) => {
+    shelfList().forEach(i => {
+      const b = BOOKS[i];
       const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'bookbtn';
       btn.style.setProperty('--cv', b.cover);
       const sp = document.createElement('span'); sp.className = 'spine';
       const tx = document.createElement('span'); tx.className = 'bt';
       const t1 = document.createElement('b'); t1.textContent = b.title;
-      const t2 = document.createElement('small'); t2.textContent = `${b.by} · ${b.pages.length}쪽`;
+      const t2 = document.createElement('small'); t2.textContent = reader.mode === 'store' ? (bag.includes(i) ? `${b.by} · 가방에 있어요 · 눌러서 읽기` : `${b.by} · ${b.pages.length}쪽 · 눌러서 빌리기`) : `${b.by} · ${b.pages.length}쪽`;
       tx.append(t1, t2); btn.append(sp, tx);
-      btn.addEventListener('click', () => startReading(i));
+      btn.addEventListener('click', () => { if(reader.mode === 'store' && !bag.includes(i)){ borrowBook(i); renderReader(); } else startReading(i); });
       shelf.append(btn);
     });
   } else {
@@ -2404,8 +2910,9 @@ function renderReader(){
 function toggleReader(){
   if(!me.av) return;
   if(reader.open){ closeReader(); return; }
-  reader.open = true; reader.book = -1; renderReader();
+  reader.open = true; reader.mode = 'bag'; reader.book = -1; renderReader();
 }
+function shelfList(){ return BOOKS.map((b, i) => i).filter(i => reader.mode === 'store' ? BOOKS[i].shop : (!BOOKS[i].shop || bag.includes(i))); }
 function startReading(i){
   if(!me.sit) toggleSit();
   reader.book = i; reader.page = 0; me.av.reading = i;
@@ -2416,7 +2923,7 @@ function closeReader(){ reader.open = false; stopReading(); renderReader(); }
 function turnPage(d){
   if(reader.book < 0) return;
   const b = BOOKS[reader.book], np = reader.page + d;
-  if(np >= b.pages.length){ toast(`『${b.title}』을 다 읽었어요`); closeReader(); return; }
+  if(np >= b.pages.length){ toast(`『${b.title}』을 다 읽었어요`); bumpStat('read'); closeReader(); return; }
   if(np < 0) return;
   reader.page = np; flipPage(me.av); renderReader();
 }
@@ -2470,7 +2977,9 @@ function updateProps(av, dt){
     pr.glow.material.opacity = 0.35 + 0.6 * n + Math.sin(clock * 9 + av.t) * 0.05;
     pr.pool.material.opacity = 0.08 + 0.32 * n;
   }
-  const sub = reading ? `『${BOOKS[av.reading].title}』 읽는 중` : '';
+  if(av.crown && !pr.crown) pr.crown = makeCrown(av);
+  if(pr.crown) pr.crown.visible = !!av.crown;
+  const sub = reading ? `『${BOOKS[av.reading].title}』 읽는 중` : (av.role || '');
   if(sub !== av.subText){ av.subText = sub; av.sub.textContent = sub; av.sub.hidden = !sub; }
 }
 function toggleLantern(){
@@ -2496,7 +3005,7 @@ function blowBubbles(av){
       vx:fx * (0.5 + Math.random() * 0.6) + (Math.random() - 0.5) * 0.6, vy:0.25 + Math.random() * 0.45, vz:fz * (0.5 + Math.random() * 0.6) + (Math.random() - 0.5) * 0.6, pop:0, ph:Math.random() * 6});
   }
 }
-function popBubble(b, mine){ if(b.pop) return; b.pop = 0.001; sfx(b.x, b.z, SFX.pop); if(mine){ me.popped = (me.popped || 0) + 1; if(me.popped === 10) toast('비눗방울 10개를 톡톡 터뜨렸어요'); } }
+function popBubble(b, mine){ if(b.pop) return; b.pop = 0.001; sfx(b.x, b.z, SFX.pop); if(mine){ bumpStat('pop'); me.popped = (me.popped || 0) + 1; if(me.popped === 10) toast('비눗방울 10개를 톡톡 터뜨렸어요'); } }
 function updateBubbles(dt){
   for(let i = bubbles.length - 1; i >= 0; i--){
     const b = bubbles[i]; b.t += dt;
@@ -2565,6 +3074,7 @@ function takePhoto(){
   try{ url = c.toDataURL('image/png'); }catch(e){ toast('사진을 만들 수 없었어요'); return; }
   const fl = $('#flash'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
   sfx(me.av.pos.x, me.av.pos.z, SFX.shutter);
+  if(me.av.pos.z > 29 && me.av.pos.x > -26 && me.av.pos.x < 26 && (phaseName(gameHour()) === '노을' || phaseName(gameHour()) === '밤')) bumpStat('photoEve');
   $('#photoImg').src = url;
   const d = new Date(), stamp = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}-${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}${String(d.getSeconds()).padStart(2, '0')}`;
   const a = $('#photoSave'); a.href = url; a.download = `crystal-park-${stamp}.png`;
@@ -2574,12 +3084,391 @@ $('#photoClose').addEventListener('click', () => { $('#photo').hidden = true; })
 $('#btnPhoto').addEventListener('click', () => takePhoto());
 
 function closePanels(){
+  if(closeExtraPanels()) return;
   if(!$('#photo').hidden){ $('#photo').hidden = true; return; }
   if(reader.open){ closeReader(); return; }
   if(!$('#roster').hidden){ toggleRoster(false); return; }
   if(!$('#birdbook').hidden){ toggleBirdBook(false); return; }
 }
 
+/* ---------------- bookstore catalogue (borrow, then read anywhere) ---------------- */
+BOOKS.push(
+  {shop:true, title:'비 오는 날의 우산 가게', by:'렐루 서점 · 동화', cover:'#335c67', pages:[
+    '골목 끝 우산 가게에는 이상한 규칙이 있었어요. 우산은 팔지 않고 빌려주기만 한다는 것. 대신 돌려줄 때 그날 있었던 일을 하나만 이야기해 달라고 했지요.',
+    '첫 손님은 면접에 늦을까 뛰어가던 청년이었어요. 일주일 뒤 우산을 돌려주며 말했어요. "떨어졌어요. 그런데 비 맞지 않고 걸어가는 동안 마음이 차분해져서, 처음으로 제 이야기를 제대로 했어요."',
+    '어떤 아이는 우산 아래에서 친구와 화해했다고 했고, 어떤 할머니는 오랜만에 손녀와 우산을 나눠 썼다고 했어요. 할아버지는 그 이야기들을 작은 공책에 꼭꼭 적어 두었어요.',
+    '어느 비 오는 날, 이번엔 할아버지가 우산 없이 가게 앞에 서 있었어요. 그러자 지나가던 사람들이 하나둘 우산을 씌워 주었어요. 모두 예전에 이 가게에서 우산을 빌려 간 사람들이었지요.',
+    '그날 할아버지의 공책 마지막 장에는 이렇게 적혔어요. "오늘은 내가 빌렸다. 생각보다 많이 따뜻했다."',
+  ]},
+  {shop:true, title:'느린 우체통', by:'렐루 서점 · 짧은 소설', cover:'#b8893a', pages:[
+    '언덕 위 공원에는 1년 뒤에 편지를 배달해 주는 빨간 우체통이 있다. 서윤은 시험에 떨어진 날, 그 우체통 앞에 오래 서 있다가 1년 뒤의 자신에게 편지를 썼다.',
+    '"지금 나는 아무것도 잘 안 되는 것 같아. 그래도 너는 조금 괜찮아졌으면 좋겠어. 괜찮아지지 않았어도, 이 편지를 받을 때까지 잘 버텨 줘서 고마워."',
+    '그리고 1년이 지났다. 서윤은 그 편지를 까맣게 잊고 있었다. 새로운 일을 시작했고, 여전히 서툴렀고, 가끔은 울었지만 좋아하는 사람들이 조금 늘어 있었다.',
+    '우편함에서 낯익은 글씨를 본 순간, 서윤은 웃음이 났다. 1년 전의 자신이 지금의 자신을 꽉 안아 주는 것 같았다.',
+    '그날 저녁 서윤은 다시 언덕에 올라 새 편지를 넣었다. 이번엔 첫 줄을 이렇게 썼다. "있잖아, 우리 생각보다 잘하고 있어."',
+  ]},
+  {shop:true, title:'작은 등대지기', by:'렐루 서점 · 동화', cover:'#c9443c', pages:[
+    '바닷가 끝 작은 등대에는 마루라는 아이가 살았어요. 등대는 너무 작아서 불빛도 작았어요. 큰 배들은 마루의 등대를 보지 못하고 지나가곤 했지요.',
+    '"내 불빛은 아무 쓸모가 없나 봐." 마루는 시무룩해졌어요. 그날 밤, 안개가 짙게 깔리고 작은 고깃배 한 척이 길을 잃었어요.',
+    '큰 등대의 강한 빛은 안개에 부딪혀 하얗게 번질 뿐이었어요. 그런데 낮게 깜빡이는 마루의 작은 불빛은 안개 아래로 또렷하게 보였어요.',
+    '고깃배는 그 불빛을 따라 무사히 항구로 돌아왔어요. 배에서 내린 어부가 마루의 손을 잡고 말했어요. "네 불빛이 꼭 알맞은 크기였단다."',
+    '그 뒤로 마루는 불빛이 작다고 속상해하지 않았어요. 누군가에게는 작은 빛이 가장 잘 보인다는 걸 알게 되었거든요.',
+  ]},
+  {shop:true, title:'골목 고양이 무화과', by:'렐루 서점 · 고양이 일기', cover:'#8a5a2c', pages:[
+    '나는 무화과. 포르투의 가파른 골목에 산다. 아침에는 빵집 계단에서 해를 쬐고, 점심에는 타일 벽에 등을 대고 낮잠을 잔다. 파란 타일은 여름에도 시원하다.',
+    '사람들은 늘 바쁘다. 언덕을 오르며 숨을 헐떡이고, 전차를 놓치면 발을 동동 구른다. 나는 그럴 때마다 꼬리를 한 번 흔들어 준다. 천천히 가도 언덕은 그대로 있다고.',
+    '오후에는 강가로 내려간다. 배에서 생선 냄새가 나지만 나는 품위 있는 고양이라 구경만 한다. 물론 누가 주면 사양하지 않는다.',
+    '해 질 무렵, 창문마다 불이 켜지면 나는 집집마다 들리는 웃음소리를 하나씩 세어 본다. 오늘은 열일곱 번. 꽤 괜찮은 하루였다는 뜻이다.',
+  ]},
+  {shop:true, title:'할머니의 레시피 노트', by:'렐루 서점 · 에세이', cover:'#d9a21b', pages:[
+    '할머니의 레시피 노트에는 정확한 양이 하나도 없다. "버터는 마음이 넉넉해질 만큼", "설탕은 오늘 기분만큼", "굽는 시간은 부엌에 좋은 냄새가 가득 찰 때까지".',
+    '어릴 땐 그게 답답했다. 레시피라면 몇 그램, 몇 분이 적혀 있어야 한다고 생각했으니까. 할머니가 떠나신 뒤 처음 에그타르트를 구웠을 때, 나는 완전히 망쳤다.',
+    '타르트는 타고 크림은 흘러넘쳤다. 그런데 부엌에 가득 찬 그 냄새가 할머니 집 냄새와 똑같아서, 나는 탄 타르트를 들고 한참을 웃다가 울었다.',
+    '이제는 안다. 할머니가 적어 둔 건 요리법이 아니라 요리하는 마음이었다는 걸. 그래서 나도 노트 맨 끝에 한 줄을 보탰다. "같이 먹을 사람을 떠올리며 구울 것."',
+  ]},
+  {shop:true, title:'오늘의 작은 기쁨 목록', by:'렐루 서점 · 목록 에세이', cover:'#7fb069', pages:[
+    '하나. 횡단보도 앞에 섰는데 바로 초록불로 바뀌었다.\n둘. 오래 입은 니트 주머니에서 지난겨울의 사탕이 나왔다.\n셋. 처음 가 본 카페의 음악이 내 취향이었다.',
+    '넷. 비둘기 한 마리가 내 발 옆에서 아주 진지하게 빵 부스러기를 고민했다.\n다섯. 친구가 "그냥 생각나서" 사진을 보내왔다.\n여섯. 퇴근길 하늘이 분홍색이었다.',
+    '일곱. 책을 펼쳤는데 누군가 연필로 밑줄 그어 둔 문장이 마침 내게 필요한 말이었다.\n여덟. 저녁밥이 생각보다 맛있게 됐다.\n아홉. 오늘 하루, 크게 잘한 건 없지만 크게 망친 것도 없다.',
+    '열. 이 목록을 쓰다 보니 기쁨이 생각보다 많았다는 걸 알게 되었다.\n\n당신의 오늘 목록에는 무엇이 있나요? 하나만 떠올려도 충분해요.',
+  ]},
+  {shop:true, title:'별을 굽는 빵집', by:'렐루 서점 · 동화', cover:'#2b3b63', pages:[
+    '마을 사람들이 모두 잠든 새벽 세 시, 언덕 아래 빵집에만 불이 켜져 있었어요. 제빵사 토마스 아저씨는 밀가루를 반죽하며 창밖의 별을 세곤 했지요.',
+    '어느 날 밤, 작은 별 하나가 굴뚝으로 쏙 떨어졌어요. 별은 너무 지쳐서 더는 반짝일 수 없다고 했어요. "다들 잠든 시간에 혼자 빛나는 게 외로워."',
+    '토마스 아저씨는 별을 오븐 옆 따뜻한 자리에 앉혀 주었어요. "나도 다들 잘 때 일해. 그런데 아침에 누군가 내 빵을 먹고 웃는 걸 생각하면 하나도 외롭지 않단다."',
+    '둘은 밤새 함께 빵을 구웠어요. 아침이 되자 별은 다시 하늘로 돌아갔고, 그날 빵에는 반짝이는 설탕 가루가 조금 묻어 있었어요.',
+    '지금도 새벽에 빵집 불빛을 보면 하늘의 별 하나가 유난히 밝게 깜빡인대요. 서로의 밤을 아는 친구끼리 하는 인사래요.',
+  ]},
+  {shop:true, title:'다정한 말 사전', by:'렐루 서점 · 낱말 사전', cover:'#d06c88', pages:[
+    '【괜찮아】 상대가 괜찮지 않을 때 더 자주 쓰이는 말. 말하는 사람과 듣는 사람 모두에게 숨 쉴 틈을 만들어 준다.\n\n【천천히】 서두르는 마음에게 건네는 쉼표.',
+    '【덕분에】 혼자 한 일이 아니었다는 걸 알아차릴 때 나오는 말. 들은 사람의 하루를 오래 데워 준다.\n\n【같이】 무거운 것을 반으로, 기쁜 것을 두 배로 만드는 낱말.',
+    '【잘 자】 하루의 끝에 문을 살며시 닫아 주는 말.\n\n【오늘도 수고했어】 아무도 몰라준 노력을 누군가 알아봐 주었다는 신호.',
+    '【여기 있어】 가장 짧고 가장 든든한 약속.\n\n이 사전은 아직 미완성이에요. 당신이 들었던 다정한 말을 마음속에 한 줄 보태 주세요.',
+  ]},
+  {shop:true, title:'노란 트램을 타고', by:'렐루 서점 · 여행 소설', cover:'#e9c46a', pages:[
+    '포르투의 노란 트램은 느리다. 걷는 사람이 추월할 만큼. 처음 이 도시에 왔을 때 하진은 그게 답답해서 트램을 한 번도 타지 않았다.',
+    '여행 마지막 날, 하진은 다리가 아파 어쩔 수 없이 트램에 올랐다. 덜컹, 덜컹. 창밖으로 강이 천천히 따라오고, 빨래가 널린 창문들이 하나씩 지나갔다.',
+    '맞은편에 앉은 할아버지가 창밖을 가리키며 뭐라고 말했다. 알아듣지 못했지만 손끝을 따라가니 강 위로 햇빛이 부서지고 있었다. 하진도 모르게 "와" 소리가 나왔다.',
+    '할아버지가 웃었고, 하진도 웃었다. 말은 하나도 통하지 않았는데 그 순간만큼은 같은 걸 보고 있었다.',
+    '집으로 돌아온 뒤에도 하진은 가끔 일부러 한 정거장을 걷지 않고 버스를 탄다. 느리게 가는 동안에만 보이는 것들이 있다는 걸 그날 배웠으니까.',
+  ]},
+  {shop:true, title:'잠이 오지 않는 밤에', by:'렐루 서점 · 시와 자장가', cover:'#4f3a5a', pages:[
+    '〈숫자 대신〉\n\n양 대신\n오늘 고마웠던 것을 세어 봐요\n따뜻한 국 한 그릇\n먼저 웃어 준 사람\n제시간에 온 버스\n세다 보면 어느새',
+    '〈베개에게〉\n\n오늘 하루 무거웠던 생각들\n여기 잠깐 내려놓을게\n내일 아침엔\n가벼운 것만\n다시 챙겨 갈게',
+    '〈창밖의 강〉\n\n강은 밤에도 흘러요\n아무도 보지 않아도\n천천히, 쉬지 않고\n당신도 그래요\n잠든 동안에도\n조금씩 나아지고 있어요',
+    '〈마지막 장〉\n\n이제 책을 덮어요\n불을 끄고\n숨을 길게 한 번\n\n잘 자요.\n내일의 공원에서 또 만나요.',
+  ]}
+);
+let bag = [];
+try{ bag = JSON.parse(localStorage.getItem('cp.bag') || '[]').filter(i => Number.isInteger(i) && BOOKS[i] && BOOKS[i].shop); }catch(e){ bag = []; }
+function saveBag(){ try{ localStorage.setItem('cp.bag', JSON.stringify(bag)); }catch(e){} }
+function borrowBook(i){
+  if(bag.includes(i)) return;
+  bag.push(i); saveBag(); bumpStat('borrow');
+  toast(`『${BOOKS[i].title}』을(를) 가방에 담았어요`);
+}
+
+/* ---------------- stats (kept in this browser) ---------------- */
+let stats = {feed:0, coin:0, pop:0, read:0, photoEve:0, scope:0, borrow:0};
+try{ Object.assign(stats, JSON.parse(localStorage.getItem('cp.stats') || '{}')); }catch(e){}
+function bumpStat(k){
+  stats[k] = (stats[k] || 0) + 1;
+  try{ localStorage.setItem('cp.stats', JSON.stringify(stats)); }catch(e){}
+  questTick();
+}
+const friendCount = () => SPECIES.filter(s => friends[s.id]).length;
+
+/* ---------------- NPCs and their little quests ---------------- */
+const QUESTS = [
+  {id:'marta', name:'마르타', role:'정원사 할머니', look:'marta', x:-12.6, z:19.6, ry:Math.PI / 2, where:'장미 정원',
+    title:'배고픈 새들', goal:'모이를 5번 뿌리기',
+    offer:'어머, 산책 나왔구나. 요즘 정원 새들이 부쩍 배고파하는 것 같아. 모이를 다섯 번만 뿌려 줄 수 있겠니?',
+    hint:'F를 누르면 모이를 뿌릴 수 있단다.',
+    prog:b => [Math.min(5, stats.feed - b.feed), 5],
+    done:'고마워라. 새들이 배부르니 정원이 한결 노래하는 것 같구나. 이건 우리 정원에서 제일 먼저 핀 장미란다.', reward:'첫 장미'},
+  {id:'sofia', name:'소피아', role:'연못가의 아이', look:'sofia', x:27.6, z:15, ry:-2.4, where:'분수 연못',
+    title:'연못의 소원', goal:'소원 동전 1번 + 비눗방울 5개 터뜨리기',
+    offer:'있잖아, 분수에 동전을 던지면 소원이 이뤄진대! 같이 동전 하나 던지고, 비눗방울도 다섯 개 톡톡 터뜨려 줄래?',
+    hint:'동전은 연못 근처에서 R, 비눗방울은 5를 누르고 손가락으로 톡!',
+    prog:b => [Math.min(1, stats.coin - b.coin) + Math.min(5, stats.pop - b.pop), 6],
+    done:'우와, 진짜 소원 빈 거지? 나도 빌었어. 우리 둘 다 이뤄질 거야! 이거, 내가 주운 제일 반짝이는 조약돌이야.', reward:'반짝이는 조약돌'},
+  {id:'ines', name:'이네스', role:'테라스의 화가', look:'ines', x:6.5, z:38.4, ry:0, where:'전망 테라스',
+    title:'노을 한 장', goal:'노을이나 밤에 테라스에서 사진 찍기',
+    offer:'이 테라스에서 보는 노을은 그림으로도 다 못 담아요. 노을이 지거나 밤이 되면, 여기서 사진 한 장 찍어 줄래요?',
+    hint:'노을(오후 5시 반 이후)이나 밤에 테라스에서 P를 눌러 주세요. 시계 버튼으로 시간을 바꿔도 돼요.',
+    prog:b => [Math.min(1, stats.photoEve - b.photoEve), 1],
+    done:'와, 색이 정말 곱네요. 이 사진을 보고 그림을 그려 볼게요. 답례로 제 작은 스케치를 드릴게요.', reward:'테라스 스케치'},
+  {id:'antonio', name:'안토니오', role:'보리수 길의 할아버지', look:'antonio', x:-15.4, z:-27, ry:-Math.PI / 2, where:'보리수 길',
+    title:'밤의 손님', goal:'밤에 부엉이와 친구 되기',
+    offer:'이 보리수 길에는 밤마다 부엉이가 찾아온다네. 밤이 되면 큰 나무 아래에서 조용히 기다려 보게. 인사를 해 줄 걸세.',
+    hint:'밤이 되면 이 근처 큰 나무 아래에서 가만히 서 있어 보게.',
+    prog:() => [friends.owl ? 1 : 0, 1],
+    done:'허허, 만났구먼! 그 녀석이 아무에게나 고개를 돌리진 않는다네. 이 깃털을 가져가게.', reward:'부엉이 깃털'},
+  {id:'joao', name:'주앙', role:'도우루 강의 뱃사공', look:'joao', x:66.2, z:48.6, ry:Math.PI / 2, where:'강 전망 데크',
+    title:'강 위의 배', goal:'망원경으로 강 위의 배 구경하기',
+    offer:'도우루 강에는 옛날부터 라벨루라는 배가 포도주 통을 싣고 오르내렸지. 저기 망원경으로 강 위의 배를 한번 구경해 보게나.',
+    hint:'망원경 옆에서 E를 누르면 된다네.',
+    prog:b => [Math.min(1, stats.scope - b.scope), 1],
+    done:'어때, 멋지지? 저 배들이 강을 따라 바다까지 간다네. 이 작은 밧줄 매듭은 뱃사람들의 행운 매듭이야.', reward:'행운의 매듭'},
+  {id:'luis', name:'루이스', role:'렐루 서점 주인', look:'luis', x:-106.8, z:-8.3, ry:0, where:'렐루 서점',
+    title:'첫 번째 책', goal:'책 2권 빌리고 1권 끝까지 읽기',
+    offer:'렐루 서점에 오신 걸 환영해요. 서가에서 마음에 드는 책 두 권을 가방에 담고, 그중 한 권을 끝까지 읽어 보시겠어요?',
+    hint:'서가 앞에서 E로 책을 빌리고, 의자에 앉아 T로 읽어 보세요.',
+    prog:b => [Math.min(2, bag.length) + Math.min(1, stats.read - b.read), 3],
+    done:'좋은 책을 끝까지 읽은 사람은 어딘가 조금 달라 보여요. 이건 우리 서점의 책갈피예요. 다음 책에 꽂아 두세요.', reward:'렐루 책갈피'},
+  {id:'camila', name:'카밀라', role:'책방 거리 카페 주인', look:'camila', x:-73.2, z:3.4, ry:Math.PI, where:'책방 거리 카페',
+    title:'새 친구 네 종류', goal:'새 친구 4종 사귀기',
+    offer:'우리 카페 단골손님은 사실 다 새들이에요. 공원에서 새 친구를 네 종류 사귀고 오면, 따끈한 에그타르트를 드릴게요.',
+    hint:'B를 누르면 새 친구 도감에서 사귀는 방법을 볼 수 있어요.',
+    prog:() => [Math.min(4, friendCount()), 4],
+    done:'정말 다 사귀었네요! 약속한 에그타르트예요. 방금 구워서 따끈따끈하답니다.', reward:'따끈한 에그타르트'},
+];
+let qs = {};
+try{ qs = JSON.parse(localStorage.getItem('cp.quests') || '{}') || {}; }catch(e){ qs = {}; }
+const saveQs = () => { try{ localStorage.setItem('cp.quests', JSON.stringify(qs)); }catch(e){} };
+const qState = q => (qs[q.id] && qs[q.id].s) || 0;
+const qReady = q => { if(qState(q) !== 1) return false; const [a, b] = q.prog(qs[q.id].b); return a >= b; };
+const stampCount = () => QUESTS.filter(q => qState(q) === 3).length;
+const readyToasted = {};
+function questTick(){
+  for(const q of QUESTS) if(qReady(q) && !readyToasted[q.id]){ readyToasted[q.id] = 1; toast(`${q.name}에게 돌아가 보세요`); }
+  if(!$('#quests').hidden) renderQuests();
+}
+
+const npcs = [];
+function npcIndex(id){ return CHARS.findIndex(c => c.npc === id); }
+function spawnNPCs(){
+  for(const q of QUESTS){
+    const av = new Avatar(npcIndex(q.look), q.name, false);
+    av.role = q.role; av.pos.set(q.x, 0, q.z); av.ry = q.ry; av.home = q.ry;
+    av.label.classList.add('npc');
+    av.mark = document.createElement('div'); av.mark.className = 'mark'; av.label.prepend(av.mark);
+    npcs.push({q, av, greeted:false});
+  }
+}
+const GREET = {아침:'좋은 아침이에요!', 낮:'날씨 참 좋죠?', 노을:'노을이 참 예쁘네요.', 밤:'밤 산책 나오셨군요.'};
+let wasInShop = false;
+function updateNPCs(dt){
+  const here = me.av && entered ? me.av.pos : null;
+  for(const n of npcs){
+    const a = n.av;
+    let d = 99;
+    if(here){
+      d = Math.hypot(here.x - a.pos.x, here.z - a.pos.z);
+      if(d < 6) a.ry = lerpAngle(a.ry, Math.atan2(here.x - a.pos.x, here.z - a.pos.z), Math.min(1, dt * 4));
+      else a.ry = lerpAngle(a.ry, a.home, Math.min(1, dt * 1.5));
+      if(d < 4 && !n.greeted){ n.greeted = true; a.say(GREET[phaseName(gameHour())] || '안녕하세요!'); a.emote('wave'); }
+      if(d > 8) n.greeted = false;
+    }
+    a.hideLabel = !here || inShop(a.pos.x, a.pos.z) !== inShop(here.x, here.z);
+    const st = qState(n.q), ready = qReady(n.q);
+    const m = st === 0 ? '!' : ready ? '?' : '';
+    if(a.markText !== m){ a.markText = m; a.mark.textContent = m; a.mark.hidden = !m; a.mark.classList.toggle('ready', ready); }
+    a.update(dt, 0);
+  }
+  if(here){
+    const inside = inShop(here.x, here.z);
+    if(inside && !wasInShop){ toast('렐루 서점이에요. 서가 앞에서 E를 누르면 책을 빌릴 수 있어요'); }
+    wasInShop = inside;
+  }
+}
+function nearestNPC(r){
+  if(!me.av) return null;
+  let best = null, bd = r;
+  for(const n of npcs){ const d = Math.hypot(n.av.pos.x - me.av.pos.x, n.av.pos.z - me.av.pos.z); if(d < bd){ bd = d; best = n; } }
+  return best;
+}
+
+/* dialog */
+let dlg = null;
+function openDialog(n){
+  const q = n.q, st = qState(q);
+  dlg = n;
+  $('#dname').textContent = q.name; $('#drole').textContent = q.role;
+  const yes = $('#dyes'), no = $('#dno'), txt = $('#dtext');
+  yes.hidden = false; no.hidden = false;
+  if(st === 0){
+    txt.textContent = q.offer; yes.textContent = '좋아요, 해 볼게요'; no.textContent = '다음에 할게요';
+    yes.onclick = () => {
+      qs[q.id] = {s:1, b:Object.assign({}, stats)}; saveQs();
+      txt.textContent = q.hint; yes.hidden = true; no.textContent = '알겠어요';
+      logLine('', `새 부탁: ${q.title} (${q.goal})`, '', true);
+      questTick();
+    };
+  } else if(st === 1 && qReady(q)){
+    txt.textContent = q.done; yes.textContent = `${q.reward} 받기`; no.hidden = true;
+    yes.onclick = () => {
+      qs[q.id].s = 3; saveQs();
+      n.av.emote('heart');
+      const c = stampCount();
+      logLine('', `${q.name}에게 '${q.reward}'을(를) 받았어요. 도장 ${c}/${QUESTS.length}`, '', true);
+      if(c === 3){ toast('꽃 화관을 받았어요! 다른 사람들에게도 보여요'); logLine('', '부탁을 세 개 들어주고 꽃 화관을 받았어요.', '', true); }
+      else if(c === QUESTS.length){ toast('공원 명예 산책가가 되었어요!'); logLine('', '모든 부탁을 들어주었어요. 이제 당신은 공원 명예 산책가예요.', '', true); }
+      else toast(`도장을 받았어요 (${c}/${QUESTS.length})`);
+      applyRewards();
+      closeDialog();
+    };
+  } else if(st === 1){
+    const [a, b] = q.prog(qs[q.id].b);
+    txt.textContent = `${q.hint} (${a}/${b})`; yes.hidden = true; no.textContent = '알겠어요';
+  } else {
+    txt.textContent = `${q.reward}, 잘 간직하고 있지요? ${GREET[phaseName(gameHour())]} 천천히 둘러보다 가요.`; yes.hidden = true; no.textContent = '고마워요';
+  }
+  no.onclick = () => closeDialog();
+  $('#npcDlg').hidden = false;
+}
+function closeDialog(){ dlg = null; $('#npcDlg').hidden = true; }
+
+/* journal */
+function renderQuests(){
+  const list = $('#qlist'); list.textContent = '';
+  $('#qcount').textContent = `도장 ${stampCount()} / ${QUESTS.length}`;
+  for(const q of QUESTS){
+    const st = qState(q), ready = qReady(q);
+    const d = document.createElement('div'); d.className = 'quest' + (st === 3 ? ' done' : ready ? ' ready' : '');
+    const t = document.createElement('div'); t.className = 'qt'; t.textContent = q.title;
+    const s = document.createElement('div'); s.className = 'qs';
+    s.textContent = st === 3 ? '완료' : ready ? '보고하기' : st === 1 ? `${q.prog(qs[q.id].b)[0]}/${q.prog(qs[q.id].b)[1]}` : '새 부탁';
+    const h = document.createElement('div'); h.className = 'qh';
+    h.textContent = st === 0 ? `${q.where}의 ${q.role} ${q.name}에게 말을 걸어 보세요.` : st === 3 ? `${q.name}에게 '${q.reward}'을(를) 받았어요.` : ready ? `${q.where}의 ${q.name}에게 돌아가세요.` : `${q.goal} · ${q.hint}`;
+    d.append(t, s, h); list.append(d);
+  }
+  const c = stampCount();
+  $('#qfoot').textContent = c >= QUESTS.length ? '공원 명예 산책가! 모든 부탁을 들어주었어요.' : c >= 3 ? `꽃 화관을 쓰고 있어요. ${QUESTS.length}개를 다 모으면 명예 산책가가 돼요.` : '부탁 3개를 들어주면 꽃 화관을 받아요.';
+}
+function toggleQuests(force){
+  const el = $('#quests'), open = force !== undefined ? force : el.hidden;
+  el.hidden = !open; $('#btnQuest').setAttribute('aria-expanded', String(open));
+  if(open) renderQuests();
+}
+$('#btnQuest').addEventListener('click', () => toggleQuests());
+function applyRewards(){
+  if(!me.av) return;
+  const c = stampCount();
+  me.av.crown = c >= 3; me.av.title = c >= QUESTS.length;
+}
+function makeCrown(av){
+  const g = new THREE.Group(); g.position.y = (CHARS[av.ci].hat ? 0.55 : CHARS[av.ci].style === 'beanie' ? 0.5 : 0.36); g.rotation.x = -0.25;
+  const ring = add(new THREE.TorusGeometry(0.3, 0.035, 6, 24), '#5f9e66', 0, 0, 0, g, {cast:false}); ring.rotation.x = Math.PI / 2;
+  const cols = ['#f48fa8', '#ffd36e', '#ffffff', '#c7a7f0'];
+  for(let i = 0; i < 10; i++){ const a = i / 10 * Math.PI * 2; add(new THREE.SphereGeometry(0.055, 8, 6), cols[i % 4], Math.cos(a) * 0.3, 0.02, Math.sin(a) * 0.3, g, {cast:false}); }
+  av.p.head.add(g);
+  return g;
+}
+
+/* ---------------- telescope ---------------- */
+let scopeBoat = null, scopeT = 0;
+function enterScope(){
+  let best = null, bd = 1e9;
+  for(const b of waterAnim.boats){ if(!b.big) continue; const d = Math.abs(b.x - TELESCOPE.x) + Math.abs(b.z - 70) * 0.5; if(d < bd){ bd = d; best = b; } }
+  scopeBoat = best; scopeT = 0; me.scope = true;
+  if(me.sit){ me.sit = 0; me.av.sit = 0; }
+  $('#scopeUI').hidden = false;
+}
+function exitScope(){ me.scope = false; $('#scopeUI').hidden = true; }
+const _look = new THREE.Vector3();
+function cameraHook(dt){
+  const want = me.scope ? 24 : 50;
+  if(Math.abs(camera.fov - want) > 0.05){ camera.fov += (want - camera.fov) * Math.min(1, dt * 5); camera.updateProjectionMatrix(); }
+  if(me.scope && scopeBoat){
+    scopeT += dt;
+    if(scopeT > 2.5 && !me.scopeCounted){ me.scopeCounted = true; bumpStat('scope'); }
+    camera.position.set(TELESCOPE.x, 1.55, TELESCOPE.z + 0.4);
+    _look.set(scopeBoat.g.position.x, scopeBoat.g.position.y + 2.5, scopeBoat.g.position.z);
+    camera.lookAt(_look);
+    return;
+  }
+  me.scopeCounted = false;
+  if(me.av && entered && inShop(me.av.pos.x, me.av.pos.z)){
+    const p = camera.position;
+    const dx = p.x - cam.tx, dy = p.y - cam.ty, dz = p.z - cam.tz, L = Math.hypot(dx, dy, dz);
+    if(L > 6){ p.set(cam.tx + dx / L * 6, cam.ty + dy / L * 6, cam.tz + dz / L * 6); }
+    p.x = Math.max(SHOP.x0 + 0.5, Math.min(SHOP.x1 - 0.5, p.x));
+    p.z = Math.max(SHOP.z0 + 0.5, Math.min(SHOP.z1 - 0.5, p.z));
+    p.y = Math.min(SHOP.h - 0.6, p.y);
+    camera.lookAt(cam.tx, cam.ty, cam.tz);
+  } else if(me.av && entered && me.av.pos.x < -59.5 && Math.abs(me.av.pos.z) < 7.6){
+    const p = camera.position;
+    if(Math.abs(p.z) > 6.8 || p.x < SHOP.x1 + 0.4){
+      p.z = Math.max(-6.8, Math.min(6.8, p.z)); p.x = Math.max(SHOP.x1 + 0.4, p.x);
+      camera.lookAt(cam.tx, cam.ty, cam.tz);
+    }
+  }
+}
+
+/* ---------------- one context button: talk, telescope, shelf, sit ---------------- */
+function nearShelf(){ if(!me.av || !inShop(me.av.pos.x, me.av.pos.z)) return false; return SHELF_SPOTS.some(s => Math.hypot(s.x - me.av.pos.x, s.z - me.av.pos.z) < 3); }
+function nearScope(){ return me.av && Math.hypot(TELESCOPE.x - me.av.pos.x, TELESCOPE.z - me.av.pos.z) < 2.2; }
+function openStore(){ reader.open = true; reader.mode = 'store'; reader.book = -1; renderReader(); }
+function contextAction(){
+  if(!me.av || !entered) return;
+  if(me.scope){ exitScope(); return; }
+  if(dlg){ closeDialog(); return; }
+  const n = nearestNPC(2.6);
+  if(n && !me.sit){ openDialog(n); return; }
+  if(nearScope() && !me.sit){ enterScope(); return; }
+  if(nearShelf() && !me.sit){ openStore(); return; }
+  toggleSit();
+}
+function seatNear(){
+  if(!me.av) return false;
+  for(const b of benches) if(Math.hypot(b.x - me.av.pos.x, b.z - me.av.pos.z) < 2.4) return true;
+  for(const s of seats) if(Math.hypot(s.x - me.av.pos.x, s.z - me.av.pos.z) < 1.8) return true;
+  return false;
+}
+let promptKey = '';
+function updateContext(){
+  let html = '', key = '', act = '앉기';
+  const showCoin = !!(me.av && entered && nearPond(me.av));
+  if(me.av && entered){
+    const n = nearestNPC(2.6);
+    if(me.scope){ key = 'scope'; html = '<kbd>E</kbd>망원경에서 눈 떼기'; act = '그만 보기'; }
+    else if(me.sit){
+      act = '일어나기';
+      if(me.av.reading < 0){ key = 'sitting'; html = '<kbd>T</kbd>책 읽기 · 가만히 있으면 참새가 놀러 와요'; }
+    }
+    else if(n){ key = 'npc' + n.q.id; html = `<kbd>E</kbd>${n.q.name}에게 말 걸기`; act = '대화'; }
+    else if(nearScope()){ key = 'tele'; html = '<kbd>E</kbd>망원경으로 강 위의 배 구경하기'; act = '망원경'; }
+    else if(nearShelf()){ key = 'shelf'; html = '<kbd>E</kbd>서가 둘러보기 · 책을 빌려 가방에 담아요'; act = '서가'; }
+    else if(seatNear()){ key = 'bench'; html = '<kbd>E</kbd>앉기 · <kbd>T</kbd>책 읽기'; }
+    else if(showCoin){ key = 'coin'; html = '<kbd>R</kbd>분수에 소원 동전 던지기 · <kbd>F</kbd>오리에게 모이 주기'; }
+  }
+  if(key !== promptKey){
+    promptKey = key;
+    const el = $('#prompt');
+    el.hidden = !key; if(key) el.innerHTML = html;
+  }
+  const pa = $('#padAct'); if(pa.textContent !== act) pa.textContent = act;
+  const cb = $('#coinBtn'); if(cb.hidden === showCoin) cb.hidden = !showCoin;
+}
+function closeExtraPanels(){
+  if(me.scope){ exitScope(); return true; }
+  if(dlg){ closeDialog(); return true; }
+  if(!$('#quests').hidden){ toggleQuests(false); return true; }
+  if(!$('#trMenu').classList.contains('open')) return false;
+  $('#trMenu').classList.remove('open'); return true;
+}
+
+/* ---------------- touch controls: buttons fire on touch-down so they work while moving ---------------- */
+function tapButton(el, fn){
+  let lastTouch = 0;
+  el.addEventListener('pointerdown', e => {
+    if(e.pointerType === 'mouse') return;
+    e.preventDefault(); lastTouch = performance.now(); el.classList.add('down'); fn();
+  });
+  const up = () => el.classList.remove('down');
+  el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up); el.addEventListener('pointerleave', up);
+  el.addEventListener('click', e => { if(performance.now() - lastTouch < 800) return; fn(); el.blur(); });
+}
+tapButton($('#padJump'), () => doEmote('jump'));
+tapButton($('#padAct'), () => contextAction());
+tapButton($('#padFeed'), () => doEmote('feed'));
+tapButton($('#btnMenu'), () => $('#trMenu').classList.toggle('open'));
+document.querySelectorAll('#trMenu .tbtn:not(#btnMenu)').forEach(b => b.addEventListener('click', () => $('#trMenu').classList.remove('open')));
+
+spawnNPCs();
+
+for(const [x, y, z] of shopLights){ const sp = new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex, color:'#ffd38a', transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, opacity:0.55})); sp.position.set(x, y, z); sp.scale.setScalar(2.2); scene.add(sp); }
 /* ---------------- main loop ---------------- */
 const fwd = new THREE.Vector3();
 let last = performance.now();
@@ -2607,7 +3496,7 @@ function frame(now){
       const fx = -Math.sin(cam.yaw), fz = -Math.cos(cam.yaw);
       const rx = Math.cos(cam.yaw), rz = -Math.sin(cam.yaw);
       dx = fx * iz + rx * ix; dz = fz * iz + rz * ix;
-      run = keys.has('shift') ? 7 : 4.2;
+      run = (keys.has('shift') || (joy.active && Math.hypot(joy.x, joy.y) > 0.92)) ? 7 : 4.2;
     } else if(me.follow && entered){
       const fr = remotes.get(me.follow);
       if(fr){
@@ -2616,6 +3505,7 @@ function frame(now){
       }
     }
     if(n > 0){
+      if(me.scope) exitScope();
       if(me.sit){ me.sit = 0; me.av.sit = 0; stopReading(); if(reader.open) closeReader(); }
       speed = run * n;
       const pos = me.av.pos;
@@ -2624,8 +3514,7 @@ function frame(now){
         const ddx = pos.x - c.x, ddz = pos.z - c.z, d = Math.hypot(ddx, ddz), r = c.r + 0.32;
         if(d < r && d > 1e-4){ pos.x = c.x + ddx / d * r; pos.z = c.z + ddz / d * r; }
       }
-      pos.x = Math.max(BOUNDS.x0 - 3, Math.min(BOUNDS.x1 + 3, pos.x));
-      pos.z = Math.max(BOUNDS.z0 - 2, Math.min(BOUNDS.z1, pos.z));
+      clampMe(pos);
       me.av.ry = lerpAngle(me.av.ry, Math.atan2(dx, dz), Math.min(1, dt * 12));
     }
     me.av.update(dt, speed);
@@ -2659,6 +3548,7 @@ function frame(now){
   );
   camera.position.y = Math.max(0.4, camera.position.y);
   camera.lookAt(cam.tx, cam.ty, cam.tz);
+  cameraHook(dt);
   sky.position.copy(camera.position);
 
   // sun follows the view so shadows stay crisp
@@ -2680,6 +3570,7 @@ function frame(now){
 
   updateBirds(dt);
   updateBubbles(dt);
+  updateNPCs(dt);
   updateSeeds(dt);
   updateCoins(dt);
   updateContext();
